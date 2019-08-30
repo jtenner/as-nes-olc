@@ -79,10 +79,36 @@ class olc6502as {
     return this.status & flag;
   }
 
-  irq() {
+  push(value: u8): void {
+    this.write(0x0100 + this.stkp--, value);
+  }
+
+  push16be(value: u16): void {
+    let stkp = this.stkp - 1;
+    this.writeu16be(0x100 + stkp, value);
+    this.stkp = stkp - 2;
+  }
+
+  irq(): void {
     if (!this.getFlag(I)) {
-      
+      this.push16be(this.pc);
+      this.setFlag(B, false);
+      this.setFlag(U, false);
+      this.setFlag(I, false);
+      this.push(this.status);
+      this.pc = this.read16be(this.addr_abs = 0xFFFE);
+      this.cycles = 7;
     }
+  }
+
+  nmi(): void {
+    this.push16be(this.pc);
+    this.setFlag(B, false);
+    this.setFlag(U, false);
+    this.setFlag(I, false);
+    this.push(this.status);
+    this.pc = this.read16be(this.addr_abs = 0xFFFA);
+    this.cycles = 8;
   }
 
   write(addr: u16, value: u8): void {
@@ -113,8 +139,7 @@ class olc6502as {
       this.setFlag(U, true);
       let op = unchecked(ops[opcode]);
 
-      this.cycles = op.cycles
-      + (op.addr(this) & op.op(this));
+      this.cycles = op.cycles + (op.addr(this) & op.op(this));
       this.setFlag(U, true);
     }
     this.clockCount++;
@@ -158,28 +183,35 @@ function ABS(self: olc6502as): u8 {
   return 0;
 }
 
+// @ts-ignore
+@inline
+function samePage(a: u16, b: u16): bool {
+  return (a >> 8) == (b >> 8);
+}
+
+
 function ABX(self: olc6502as): u8 {
+  let pc = self.pc;
   let result = self.read16be(self.pc);
-  let hi = 0xFF00 & result;
   let compare = self.addr_abs = result + self.x;
-  self.pc += 2;
-  return select(1, 0, (compare & 0xFF00) != (hi & 0xFF00));
+  self.pc = pc + 2;
+  return select(0, 1, samePage(compare, result));
 }
 
 function ABY(self: olc6502as): u8 {
   let result = self.read16be(self.pc);
-  let hi = 0xFF00 & result;
   let compare = self.addr_abs = result + self.y;
   self.pc += 2;
-  return select(1, 0, (compare & 0xFF00) != (hi & 0xFF00));
+  return select(0, 1, samePage(compare, result));
 }
 
 function IND(self: olc6502as): u8 {
+  let pc = self.pc;
   let ptr = self.read16be(self.pc);
-  self.pc += 2;
+  self.pc = pc + 2;
 
   let value = (ptr & 0xFF) == 0xFF
-    ? <u16>self.read(ptr & 0xFF00)
+    ? <u16>self.read(ptr & 0xFF00) // IND BUG
     : <u16>self.read(ptr + 1);
 
   self.addr_abs = (value << 8) | self.read(ptr);
@@ -187,9 +219,9 @@ function IND(self: olc6502as): u8 {
 }
 
 function IZX(self: olc6502as): u8 {
-  let t: u16 = <u16>self.read(self.pc++);
-  let lo: u16 = self.read(<u16>(t + <u16>self.x) & 0x00FF);
-  let hi: u16 = self.read(<u16>(t + <u16>self.x + 1) & 0x00FF);
+  let t = <u16>self.read(self.pc++);
+  let lo = <u16>self.read(<u16>(t + <u16>self.x) & 0x00FF);
+  let hi = <u16>self.read(<u16>(t + <u16>self.x + 1) & 0x00FF);
   self.addr_abs = (hi << 8) | lo;
   return 0;
 }
@@ -197,9 +229,9 @@ function IZX(self: olc6502as): u8 {
 function IZY(self: olc6502as): u8 {
   let t = self.read(self.pc++);
   let lo = self.read(t & 0xFF);
-  let hi = self.read((t + 1) & 0xFF);
-  let result = self.addr_abs = <u16>self.y + ((hi << 8) | lo);
-  return select(1, 0, (result & 0xFF00) != (hi << 8));
+  let hi = self.read((t + 1) & 0xFF) << 8;
+  let result = self.addr_abs = <u16>self.y + (hi | lo);
+  return select(0, 1, samePage(result, hi));
 }
 
 // instructions

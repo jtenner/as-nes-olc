@@ -1,14 +1,13 @@
-const enum FLAGS6502
-{
-  C = <u8>(1 << 0),	// Carry Bit
-  Z = <u8>(1 << 1),	// Zero
-  I = <u8>(1 << 2),	// Disable Interrupts
-  D = <u8>(1 << 3),	// Decimal Mode (unused in this implementation)
-  B = <u8>(1 << 4),	// Break
-  U = <u8>(1 << 5),	// Unused
-  V = <u8>(1 << 6),	// Overflow
-  N = <u8>(1 << 7),	// Negative
-};
+
+const C = <u8>(1 << 0);	// Carry Bit
+const Z = <u8>(1 << 1);	// Zero
+const I = <u8>(1 << 2);	// Disable Interrupts
+const D = <u8>(1 << 3);	// Decimal Mode (unused in this implementation)
+const B = <u8>(1 << 4);	// Break
+const U = <u8>(1 << 5);	// Unused
+const V = <u8>(1 << 6);	// Overflow
+const N = <u8>(1 << 7);	// Negative
+
 
 class Op {
   constructor(
@@ -45,19 +44,19 @@ class olc6502as {
   y: u8;
   stkp: u8;
   status: u8;
-  
+
   // private?
   fetched: u8;
   addr_abs: u16;
   addr_rel: u16;
-  private opcode: u8;
-  private cycles: u8;
+  opcode: u8;
+  cycles: u8;
   private clockCount: u32;
 
   bus: ArrayBuffer = new ArrayBuffer(0xFFFF)
 
   constructor() {
-    this.setFlag(FLAGS6502.U, true);
+    this.setFlag(U, true);
   }
 
   reset(): void {
@@ -71,17 +70,19 @@ class olc6502as {
     this.cycles = 8;
   }
 
-  setFlag(f: FLAGS6502, v: bool): void {
+  setFlag(f: u8, v: bool): void {
     let status = this.status;
     this.status = select(status | f, status & ~f, v);
   }
 
-  getFlag(flag: FLAGS6502): bool {
+  getFlag(flag: u8): bool {
     return this.status & flag;
   }
 
   irq() {
-
+    if (!this.getFlag(I)) {
+      
+    }
   }
 
   write(addr: u16, value: u8): void {
@@ -96,6 +97,10 @@ class olc6502as {
     return bswap(load<u16>(changetype<usize>(this.bus) + <usize>addr));
   }
 
+  writeu16be(addr: u16, value: u16): void {
+    store<u16>(changetype<usize>(this.bus) + <usize>addr, bswap(value));
+  }
+
   fetch(): u8 {
     return ops[this.opcode].addr == IMP
       ? this.fetched = this.read(this.addr_abs)
@@ -105,12 +110,12 @@ class olc6502as {
   clock(): void {
     if (this.cycles == 0) {
       let opcode = this.opcode = this.read(this.pc++);
-      this.setFlag(FLAGS6502.U, true);
+      this.setFlag(U, true);
       let op = unchecked(ops[opcode]);
 
       this.cycles = op.cycles
       + (op.addr(this) & op.op(this));
-      this.setFlag(FLAGS6502.U, true);
+      this.setFlag(U, true);
     }
     this.clockCount++;
     this.cycles--;
@@ -202,28 +207,28 @@ function IZY(self: olc6502as): u8 {
 function ADC(self: olc6502as): u8 {
   self.fetch();
   let fetched = <u16>self.fetch();
-  let temp = <u16>self.a + fetched + u16(self.getFlag(FLAGS6502.C));
-  self.setFlag(FLAGS6502.C, temp > 255);
-  self.setFlag(FLAGS6502.Z, (temp & 0xFF) == 0);
+  let temp = <u16>self.a + fetched + u16(self.getFlag(C));
+  self.setFlag(C, temp > 255);
+  self.setFlag(Z, (temp & 0xFF) == 0);
   let a = <u16>self.a;
-  self.setFlag(FLAGS6502.V,
+  self.setFlag(V,
     (~(a ^ fetched) & (a ^ temp)) & 0x0080
   );
-  self.setFlag(FLAGS6502.N, temp & 0x80);
+  self.setFlag(N, temp & 0x80);
   self.a = <u8>temp & 0xFF;
   return 1;
 }
 
 function SBC(self: olc6502as): u8 {
   let fetched = <u16>self.fetched ^ 0xFF;
-  let temp = <u16>self.a + fetched + u16(self.getFlag(FLAGS6502.C));
-  self.setFlag(FLAGS6502.C, temp > 255);
-  self.setFlag(FLAGS6502.Z, (temp & 0xFF) == 0);
+  let temp = <u16>self.a + fetched + u16(self.getFlag(C));
+  self.setFlag(C, temp > 255);
+  self.setFlag(Z, (temp & 0xFF) == 0);
   let a = <u16>self.a;
-  self.setFlag(FLAGS6502.V,
+  self.setFlag(V,
     (~(a ^ fetched) & (a ^ temp)) & 0x0080
   );
-  self.setFlag(FLAGS6502.N, temp & 0x80);
+  self.setFlag(N, temp & 0x80);
   self.a = <u8>temp & 0xFF;
   return 1;
 }
@@ -231,9 +236,451 @@ function SBC(self: olc6502as): u8 {
 function AND(self: olc6502as): u8 {
   let a = self.a & self.fetch();
   self.a = a;
-  self.setFlag(FLAGS6502.Z, a == 0);
-  self.setFlag(FLAGS6502.N, a & 0x80);
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
   return 1;
 }
+
+function ASL(self: olc6502as): u8 {
+  let temp = <u16>self.fetch() << 1;
+  self.setFlag(C, (temp & 0xFF00) > 0);
+	self.setFlag(Z, (temp & 0x00FF) == 0x00);
+  self.setFlag(N, temp & 0x80);
+
+  if (ops[self.opcode].addr == IMP) {
+    self.a = <u8>(temp & 0xFF);
+  } else {
+    self.write(self.addr_abs, temp & 0xFF);
+  }
+  return 0;
+}
+
+function BCC(self: olc6502as): u8 {
+  if (!self.getFlag(C)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BCS(self: olc6502as): u8 {
+  if (self.getFlag(C)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BEQ(self: olc6502as): u8 {
+  if (self.getFlag(Z)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BIT(self: olc6502as): u8 {
+  let fetched = self.fetch();
+  self.setFlag(Z, (self.a & fetched) == 0x00);
+	self.setFlag(N, fetched & 0b10000000);
+  self.setFlag(V, fetched & 0b01000000);
+  return 0;
+}
+
+function BMI(self: olc6502as): u8 {
+  if (self.getFlag(N)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BNE(self: olc6502as): u8 {
+  if (!self.getFlag(Z)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BPL(self: olc6502as): u8 {
+  if (self.getFlag(N)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BRK(self: olc6502as): u8 {
+  let pc = self.pc + 1;
+  let stkp = self.stkp;
+  self.setFlag(I, true);
+  self.writeu16be(0x0100 + stkp - 1, pc);
+  self.setFlag(B, true);
+	self.write(0x0100 + (stkp - 2), self.status);
+	self.setFlag(B, false);
+  self.stkp = stkp - 3;
+	self.pc = self.read16be(0xFFFE);
+  return 0;
+}
+
+function BVC(self: olc6502as): u8 {
+  if (!self.getFlag(V)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function BVS(self: olc6502as): u8 {
+  if (self.getFlag(V)) {
+    let pc = self.pc;
+    let addr_abs = pc + self.addr_rel;
+    self.addr_abs = addr_abs;
+    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+  }
+  return 0;
+}
+
+function CLC(self: olc6502as): u8 {
+  self.setFlag(C, false);
+  return 0;
+}
+
+function CLD(self: olc6502as): u8 {
+  self.setFlag(D, false);
+  return 0;
+}
+
+function CLI(self: olc6502as): u8 {
+  self.setFlag(I, false);
+  return 0;
+}
+
+function CLV(self: olc6502as): u8 {
+  self.setFlag(V, false);
+  return 0;
+}
+
+function CMP(self: olc6502as): u8 {
+  let fetched = <u16>self.fetch();
+  let a = <u16>self.a;
+  let temp = a - fetched;
+  self.setFlag(C, a >= fetched);
+	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
+	self.setFlag(N, temp & 0x0080);
+  return 1;
+}
+
+function CPX(self: olc6502as): u8 {
+  let fetched = <u16>self.fetch();
+  let x = <u16>self.x;
+  let temp = x - fetched;
+  self.setFlag(C, x >= fetched);
+	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
+	self.setFlag(N, temp & 0x0080);
+  return 1;
+}
+
+function CPY(self: olc6502as): u8 {
+  let fetched = <u16>self.fetch();
+  let y = <u16>self.y;
+  let temp = y - fetched;
+  self.setFlag(C, y >= fetched);
+	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
+	self.setFlag(N, temp & 0x0080);
+  return 1;
+}
+
+function DEC(self: olc6502as): u8 {
+  let temp = <u16>self.fetch() - 1;
+  self.write(self.addr_abs, <u8>temp);
+  self.setFlag(Z, !(temp & 0xFF00));
+  self.setFlag(N, temp & 0x80);
+  return 0;
+}
+
+function DEX(self: olc6502as): u8 {
+  let x = self.x - 1;
+  self.setFlag(Z, x == 0);
+  self.setFlag(N, x & 0x80);
+  self.x = x;
+  return 0;
+}
+
+function DEY(self: olc6502as): u8 {
+  let y = self.y - 1;
+  self.setFlag(Z, y == 0);
+  self.setFlag(N, y & 0x80);
+  self.y = y;
+  return 0;
+}
+
+function EOR(self: olc6502as): u8 {
+  let a = self.a ^ self.fetch();
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 1;
+}
+
+function INC(self: olc6502as): u8 {
+  let temp = <u16>self.fetch() + 1;
+  self.write(self.addr_abs, <u8>temp);
+  self.setFlag(Z, !(temp & 0xFF00));
+  self.setFlag(N, temp & 0x80);
+  return 0;
+}
+
+function INX(self: olc6502as): u8 {
+  let x = self.x + 1;
+  self.setFlag(Z, x == 0);
+  self.setFlag(N, x & 0x80);
+  self.x = x;
+  return 0;
+}
+
+
+function INY(self: olc6502as): u8 {
+  let y = self.y + 1;
+  self.setFlag(Z, y == 0);
+  self.setFlag(N, y & 0x80);
+  self.y = y;
+  return 0;
+}
+
+function JMP(self: olc6502as): u8 {
+  self.pc = self.addr_abs;
+  return 0;
+}
+
+function JSR(self: olc6502as): u8 {
+  let pc = self.pc - 1;
+  let stkp = self.stkp;
+  self.writeu16be(0x0100 + self.stkp - 1, pc);
+  self.stkp = stkp - 2;
+  self.pc = self.addr_abs;
+  return 0;
+}
+
+function LDA(self: olc6502as): u8 {
+  let a = self.fetch();
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 1;
+}
+
+function LDX(self: olc6502as): u8 {
+  let x = self.fetch();
+  self.setFlag(Z, x == 0);
+  self.setFlag(N, x & 0x80);
+  self.x = x;
+  return 1;
+}
+
+function LDY(self: olc6502as): u8 {
+  let y = self.fetch();
+  self.setFlag(Z, y == 0);
+  self.setFlag(N, y & 0x80);
+  self.y = y;
+  return 1;
+}
+
+function LSR(self: olc6502as): u8 {
+  let fetched: u16 = self.fetch();
+  let temp: u16 = fetched >> 1;
+  self.setFlag(C, fetched & 1);
+  self.setFlag(Z, (temp & 0xFF) == 0);
+  self.setFlag(N, temp & 0x80);
+  if (ops[self.opcode].addr == IMP) {
+    self.a = <u8>temp;
+  } else {
+    self.write(self.addr_abs, <u8>temp);
+  }
+  return 0;
+}
+
+function NOP(self: olc6502as): u8 {
+  switch (self.opcode) {
+    case 0x1C:
+    case 0x3C:
+    case 0x5C:
+    case 0x7C:
+    case 0xDC:
+    case 0xFC:
+      return 1;
+  }
+  return 0;
+}
+
+function ORA(self: olc6502as): u8 {
+  let fetched = self.fetch();
+  let a = self.a | fetched;
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 1;
+}
+
+function PHA(self: olc6502as): u8 {
+  self.write(0x0100 + self.stkp--, self.a);
+  return 0;
+}
+
+function PHP(self: olc6502as): u8 {
+  self.write(0x0100 + self.stkp--, self.status | B | U);
+  self.setFlag(B, false);
+  self.setFlag(U, false);
+  return 0;
+}
+
+function PLA(self: olc6502as): u8 {
+  let a = self.read(0x0100 + ++self.stkp);
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 0;
+}
+
+function PLP(self: olc6502as): u8 {
+  self.status = self.read(0x0100 + ++self.stkp);
+  self.setFlag(U, true);
+  return 0;
+}
+
+function ROL(self: olc6502as): u8 {
+  let fetched: u16 = self.fetch();
+  let temp = (fetched << 1) | <u16>self.getFlag(C);
+  self.setFlag(C, temp & 0xFF00);
+	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
+  self.setFlag(N, temp & 0x0080);
+  if (ops[self.opcode].addr == IMP) {
+    self.a = <u8>temp;
+  } else {
+    self.write(self.addr_abs, <u8>temp);
+  }
+  return 0;
+}
+
+function ROR(self: olc6502as): u8 {
+  let fetched: u16 = self.fetch();
+  let temp = (fetched >> 1) | (<u16>self.getFlag(C) << 7);
+  self.setFlag(C, temp & 0xFF00);
+	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
+  self.setFlag(N, temp & 0x0080);
+  if (ops[self.opcode].addr == IMP) {
+    self.a = <u8>temp;
+  } else {
+    self.write(self.addr_abs, <u8>temp);
+  }
+  return 0;
+}
+
+function RTI(self: olc6502as): u8 {
+  let stkp = self.stkp;
+  self.status = (self.read(0x0100 + stkp + 1) & ~B) & ~U; // set B and U to 0
+  self.pc = self.read16be(0x0100 + stkp + 2);
+  self.stkp = stkp + 3;
+  return 0;
+}
+
+function RTS(self: olc6502as): u8 {
+  let stkp = self.stkp;
+  self.pc = self.read16be(0x0100 + stkp + 1);
+  self.stkp = stkp + 2;
+  return 0;
+}
+
+function SEC(self: olc6502as): u8 {
+  self.setFlag(C, true);
+  return 0;
+}
+
+function SED(self: olc6502as): u8 {
+  self.setFlag(D, true);
+  return 0;
+}
+
+function SEI(self: olc6502as): u8 {
+  self.setFlag(I, true);
+  return 0;
+}
+
+function STA(self: olc6502as): u8 {
+  self.write(self.addr_abs, self.a);
+  return 0;
+}
+
+function STX(self: olc6502as): u8 {
+  self.write(self.addr_abs, self.x);
+  return 0;
+}
+
+function STY(self: olc6502as): u8 {
+  self.write(self.addr_abs, self.y);
+  return 0;
+}
+
+function TAX(self: olc6502as): u8 {
+  let x = self.a;
+  self.setFlag(Z, x == 0);
+  self.setFlag(N, x & 0x80);
+  self.x = x;
+  return 0;
+}
+
+function TAY(self: olc6502as): u8 {
+  let y = self.a;
+  self.setFlag(Z, y == 0);
+  self.setFlag(N, y & 0x80);
+  self.y = y;
+  return 0;
+}
+
+function TSX(self: olc6502as): u8 {
+  let x = self.stkp;
+  self.setFlag(Z, x == 0);
+  self.setFlag(N, x & 0x80);
+  self.x = x;
+  return 0;
+}
+
+function TXA(self: olc6502as): u8 {
+  let a = self.x;
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 0;
+}
+
+function TXS(self: olc6502as): u8 {
+  self.stkp = self.x;
+  return 0;
+}
+
+function TYA(self: olc6502as): u8 {
+  let a = self.y;
+  self.setFlag(Z, a == 0);
+  self.setFlag(N, a & 0x80);
+  self.a = a;
+  return 0;
+}
+
+function XXX(): u8 { return 0; }
 
 export { olc6502as }

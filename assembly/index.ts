@@ -1,12 +1,12 @@
 
-const C = <u8>(1 << 0);	// Carry Bit
-const Z = <u8>(1 << 1);	// Zero
-const I = <u8>(1 << 2);	// Disable Interrupts
-const D = <u8>(1 << 3);	// Decimal Mode (unused in this implementation)
-const B = <u8>(1 << 4);	// Break
-const U = <u8>(1 << 5);	// Unused
-const V = <u8>(1 << 6);	// Overflow
-const N = <u8>(1 << 7);	// Negative
+const C = <u8>0b00000001; // Carry Bit
+const Z = <u8>0b00000010; // Zero
+const I = <u8>0b00000100; // Disable Interrupts
+const D = <u8>0b00001000; // Decimal Mode (unused in this implementation)
+const B = <u8>0b00010000; // Break
+const U = <u8>0b00100000; // Unused
+const V = <u8>0b01000000; // Overflow
+const N = <u8>0b10000000; // Negative
 
 class Op {
   constructor(
@@ -128,8 +128,14 @@ class OLC6502 {
   @inline
   push16be(value: u16): void {
     let stkp = this.stkp - 1;
-    this.writeu16be(0x0100 + stkp, value);
-    this.stkp = stkp - 2;
+    if (stkp == 0) {
+      this.write(0x0100, <u8>(value >> 8));
+      this.write(0x01FF, <u8>value);
+      this.push(<u8>value);
+    } else {
+      this.writeu16be(0x0100 + stkp, value);
+      this.stkp = stkp - 2;
+    }
   }
 
   irq(): void {
@@ -183,14 +189,15 @@ class OLC6502 {
 
   clock(): void {
     if (this.cycles == 0) {
-      let opcode = this.opcode = this.read(this.pc++);
-      this.setFlag(U, true);
+      let opcode = this.read(this.pc++);
+      this.status |= U;
       let op = unchecked(ops[opcode]);
       let cycs = unchecked(cycles[opcode]);
       let addr = unchecked(addrs[opcode]);
 
+      this.opcode = opcode;
       this.cycles = cycs + (addr(this) & op(this));
-      this.setFlag(U, true);
+      this.status |= U;
     }
     this.clockCount++;
     this.cycles--;
@@ -198,8 +205,9 @@ class OLC6502 {
 
   @inline
   setNZ(value: u8): u8 {
-    this.setFlag(Z, value == 0);
-    this.setFlag(N, <bool>(value & 0x80));
+    this.status = this.status & ~(N | Z) // unset N and Z
+      | select(0, Z, value) // set Z
+      | select(N, 0, value & 0x80); // set N
     return value;
   }
 
@@ -212,7 +220,9 @@ class OLC6502 {
   pop16be(): u16 {
     let stkp = this.stkp;
     this.stkp = stkp + 2;
-    return this.read16be(stkp + 1);
+    return stkp == 254
+      ? <u16>this.read(0x01FF) | (<u16>this.read(0x0100) << 8)
+      : this.read16be(stkp + 1);
   }
 }
 
@@ -309,11 +319,12 @@ function ADC(self: OLC6502): u8 {
   let fetched = <u16>self.fetch();
   let a = <u16>self.a;
   let temp = a + fetched + u16(self.getFlag(C));
-  self.setFlag(C, temp > 255);
-  self.setFlag(V,
-    <bool>((~(a ^ fetched) & (a ^ temp)) & 0x0080)
-  );
-  self.a = self.setNZ(<u8>temp);
+  self.status = self.status & 0b00111100 // ~(C | V | N | Z)
+    | select(C, 0, temp > 255)
+    | select(V, 0, (~(a ^ fetched) & (a ^ temp)) & 0x0080)
+    | select(N, 0, temp & 0x80)
+    | select(0, Z, temp & 0xFF);
+  self.a = <u8>temp;
   return 1;
 }
 

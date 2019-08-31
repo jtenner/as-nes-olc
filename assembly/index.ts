@@ -8,8 +8,6 @@ const U = <u8>(1 << 5);	// Unused
 const V = <u8>(1 << 6);	// Overflow
 const N = <u8>(1 << 7);	// Negative
 
-export let a = 0;
-
 class Op {
   constructor(
     public name: string,
@@ -675,4 +673,4 @@ function TYA(self: OLC6502): u8 {
 
 function XXX(): u8 { return 0; }
 
-export { OLC6502 as olc6502as }
+export { OLC6502 }

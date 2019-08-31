@@ -8,14 +8,6 @@ const U = <u8>0b00100000; // Unused
 const V = <u8>0b01000000; // Overflow
 const N = <u8>0b10000000; // Negative
 
-class Op {
-  constructor(
-    public name: string,
-    public op: (self: OLC6502) => u8,
-    public addr: (self: OLC6502) => u8,
-    public cycles: u8,
-  ) {}
-}
 type OPCODE_LIST = Array<(olc: OLC6502) => u8>;
 
 let ops = <OPCODE_LIST>[
@@ -206,8 +198,8 @@ class OLC6502 {
   @inline
   setNZ(value: u8): u8 {
     this.status = this.status & ~(N | Z) // unset N and Z
-      | select(0, Z, value) // set Z
-      | select(N, 0, value & 0x80); // set N
+      | <u8>select(0, Z, value) // set Z
+      | <u8>select(N, 0, value & 0x80); // set N
     return value;
   }
 
@@ -320,10 +312,10 @@ function ADC(self: OLC6502): u8 {
   let a = <u16>self.a;
   let temp = a + fetched + u16(self.getFlag(C));
   self.status = self.status & 0b00111100 // ~(C | V | N | Z)
-    | select(C, 0, temp > 255)
-    | select(V, 0, (~(a ^ fetched) & (a ^ temp)) & 0x0080)
-    | select(N, 0, temp & 0x80)
-    | select(0, Z, temp & 0xFF);
+    | <u8>select(C, 0, temp > 255)
+    | <u8>select(V, 0, (~(a ^ fetched) & (a ^ temp)) & 0x0080)
+    | <u8>select(N, 0, temp & 0x80)
+    | <u8>select(0, Z, temp & 0xFF);
   self.a = <u8>temp;
   return 1;
 }
@@ -332,11 +324,13 @@ function SBC(self: OLC6502): u8 {
   let a = <u16>self.a;
   let fetched = <u16>self.fetch() ^ 0xFF;
   let temp = a + fetched + u16(self.getFlag(C));
-  self.setFlag(C, temp > 255);
-  self.setFlag(V,
-    <bool>((~(a ^ fetched) & (a ^ temp)) & 0x0080)
-  );
-  self.a = self.setNZ(<u8>temp);
+
+  self.status = (self.status & 0b00111100) // ~(C | V | N | Z)
+    | <u8>select(C, 0, temp > 255)
+    | <u8>select(V, 0, (~(a ^ fetched) & (a ^ temp)) & 0x0080)
+    | <u8>select(N, 0, temp & 0x80)
+    | <u8>select(0, Z, temp & 0xFF);
+  self.a = <u8>temp;
   return 1;
 }
 
@@ -347,15 +341,21 @@ function AND(self: OLC6502): u8 {
 
 function ASL(self: OLC6502): u8 {
   let temp = <u16>self.fetch() << 1;
-  self.setFlag(C, (temp & 0xFF00) > 0);
-  self.write(self.addr_abs, self.setNZ(<u8>temp));
+  self.status = (self.status & 0b01111100)
+    | <u8>select(C, 0, temp & 0xFF00)
+    | <u8>select(N, 0, temp & 0x0080)
+    | <u8>select(0, Z, temp & 0x00FF);
+  self.write(self.addr_abs, <u8>temp);
   return 0;
 }
 
 function ASLi(self: OLC6502): u8 {
   let temp = <u16>self.fetch() << 1;
-  self.setFlag(C, (temp & 0xFF00) > 0);
-  self.a = self.setNZ(<u8>temp);
+  self.status = (self.status & 0b01111100)
+    | <u8>select(C, 0, temp & 0xFF00)
+    | <u8>select(N, 0, temp & 0x0080)
+    | <u8>select(0, Z, temp & 0x00FF);
+  self.a = <u8>temp;
   return 0;
 }
 

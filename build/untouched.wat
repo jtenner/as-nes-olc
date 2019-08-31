@@ -3446,7 +3446,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3534,11 +3533,6 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3612,9 +3606,6 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3719,6 +3710,8 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3734,30 +3727,95 @@
   i32.const 1
   i32.sub
   local.set $3
-  local.get $2
-  local.set $6
-  i32.const 256
   local.get $3
   i32.const 255
   i32.and
-  i32.add
-  local.set $5
-  local.get $1
-  local.set $4
-  local.get $6
-  i32.load offset=20
-  local.get $5
-  i32.const 65535
-  i32.and
-  i32.add
-  local.get $4
-  call $~lib/polyfills/bswap<u16>
-  i32.store16
-  local.get $2
-  local.get $3
-  i32.const 2
-  i32.sub
-  i32.store8 offset=5
+  i32.const 0
+  i32.eq
+  if
+   local.get $2
+   local.set $6
+   i32.const 256
+   local.set $5
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8
+   i32.shr_u
+   local.set $4
+   local.get $6
+   i32.load offset=20
+   local.get $5
+   i32.add
+   local.get $4
+   i32.store8
+   local.get $2
+   local.set $6
+   i32.const 511
+   local.set $5
+   local.get $1
+   local.set $4
+   local.get $6
+   i32.load offset=20
+   local.get $5
+   i32.add
+   local.get $4
+   i32.store8
+   local.get $2
+   local.set $5
+   local.get $1
+   local.set $4
+   local.get $5
+   local.set $8
+   i32.const 256
+   local.get $5
+   local.get $5
+   i32.load8_u offset=5
+   local.tee $6
+   i32.const 1
+   i32.sub
+   i32.store8 offset=5
+   local.get $6
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $7
+   local.get $4
+   local.set $6
+   local.get $8
+   i32.load offset=20
+   local.get $7
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $6
+   i32.store8
+  else   
+   local.get $2
+   local.set $8
+   i32.const 256
+   local.get $3
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $7
+   local.get $1
+   local.set $6
+   local.get $8
+   i32.load offset=20
+   local.get $7
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $6
+   call $~lib/polyfills/bswap<u16>
+   i32.store16
+   local.get $2
+   local.get $3
+   i32.const 2
+   i32.sub
+   i32.store8 offset=5
+  end
   local.get $0
   local.get $0
   i32.load16_u offset=8
@@ -3774,7 +3832,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3807,9 +3864,6 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3888,8 +3942,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -3992,6 +4044,7 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
+  (local $5 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4044,22 +4097,57 @@
   i32.const 2
   i32.add
   i32.store8 offset=5
-  local.get $2
-  local.set $4
   local.get $1
-  i32.const 1
-  i32.add
-  i32.const 255
-  i32.and
-  local.set $3
-  local.get $4
-  i32.load offset=20
-  local.get $3
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
-  i32.and
+  i32.const 254
+  i32.eq
+  if (result i32)
+   local.get $2
+   local.set $4
+   i32.const 511
+   local.set $3
+   i32.const 1
+   local.set $5
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   local.get $2
+   local.set $4
+   i32.const 256
+   local.set $3
+   i32.const 1
+   local.set $5
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   i32.const 8
+   i32.shl
+   i32.or
+  else   
+   local.get $2
+   local.set $4
+   local.get $1
+   i32.const 1
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $3
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load16_u
+   call $~lib/polyfills/bswap<u16>
+   i32.const 65535
+   i32.and
+  end
   i32.const 65535
   i32.and
   i32.store16
@@ -4075,7 +4163,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4095,9 +4182,6 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4156,8 +4240,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4278,6 +4360,7 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
+  (local $5 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4292,22 +4375,57 @@
   i32.const 2
   i32.add
   i32.store8 offset=5
-  local.get $1
-  local.set $4
   local.get $2
-  i32.const 1
-  i32.add
-  i32.const 255
-  i32.and
-  local.set $3
-  local.get $4
-  i32.load offset=20
-  local.get $3
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
-  i32.and
+  i32.const 254
+  i32.eq
+  if (result i32)
+   local.get $1
+   local.set $4
+   i32.const 511
+   local.set $3
+   i32.const 1
+   local.set $5
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   local.get $1
+   local.set $4
+   i32.const 256
+   local.set $3
+   i32.const 1
+   local.set $5
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   i32.const 8
+   i32.shl
+   i32.or
+  else   
+   local.get $1
+   local.set $4
+   local.get $2
+   i32.const 1
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $3
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.add
+   i32.load16_u
+   call $~lib/polyfills/bswap<u16>
+   i32.const 65535
+   i32.and
+  end
   i32.const 65535
   i32.and
   i32.store16
@@ -4322,11 +4440,6 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4341,9 +4454,6 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4357,7 +4467,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4394,52 +4503,28 @@
   i32.and
   local.set $2
   local.get $5
-  local.set $1
+  local.get $5
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $4
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $2
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $1
-  i32.load8_u offset=6
-  local.set $6
-  local.get $1
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
-  i32.store8 offset=6
-  local.get $5
-  local.set $1
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $2
   i32.const 128
   i32.and
-  local.set $3
-  local.get $1
-  i32.load8_u offset=6
-  local.set $6
-  local.get $1
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $2
   i32.const 255
@@ -4457,8 +4542,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4640,10 +4723,6 @@
  (func $assembly/index/DEY (; 64 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4656,52 +4735,28 @@
   i32.sub
   local.set $1
   local.get $2
-  local.set $5
+  local.get $2
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $4
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $1
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.const 255
@@ -4716,10 +4771,6 @@
  (func $assembly/index/TXA (; 65 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4730,50 +4781,26 @@
   i32.load8_u offset=3
   local.set $1
   local.get $2
-  local.set $5
-  global.get $assembly/index/Z
-  local.set $4
-  local.get $1
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
+  local.get $2
   i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
+  global.get $assembly/index/N
+  global.get $assembly/index/Z
   i32.or
-  local.get $6
-  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $3
+  i32.const 0
+  global.get $assembly/index/Z
+  local.get $1
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.store8 offset=2
@@ -4844,10 +4871,6 @@
  (func $assembly/index/TYA (; 67 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4858,50 +4881,26 @@
   i32.load8_u offset=4
   local.set $1
   local.get $2
-  local.set $5
-  global.get $assembly/index/Z
-  local.set $4
-  local.get $1
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
+  local.get $2
   i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
+  global.get $assembly/index/N
+  global.get $assembly/index/Z
   i32.or
-  local.get $6
-  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $3
+  i32.const 0
+  global.get $assembly/index/Z
+  local.get $1
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.store8 offset=2
@@ -4932,7 +4931,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4949,7 +4947,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4966,7 +4963,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4980,10 +4976,6 @@
  (func $assembly/index/TAY (; 72 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -4994,50 +4986,26 @@
   i32.load8_u offset=2
   local.set $1
   local.get $2
-  local.set $5
-  global.get $assembly/index/Z
-  local.set $4
-  local.get $1
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
+  local.get $2
   i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
+  global.get $assembly/index/N
+  global.get $assembly/index/Z
   i32.or
-  local.get $6
-  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $3
+  i32.const 0
+  global.get $assembly/index/Z
+  local.get $1
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.store8 offset=4
@@ -5050,10 +5018,6 @@
  (func $assembly/index/TAX (; 73 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5064,50 +5028,26 @@
   i32.load8_u offset=2
   local.set $1
   local.get $2
-  local.set $5
-  global.get $assembly/index/Z
-  local.set $4
-  local.get $1
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
+  local.get $2
   i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
+  global.get $assembly/index/N
+  global.get $assembly/index/Z
   i32.or
-  local.get $6
-  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $3
+  i32.const 0
+  global.get $assembly/index/Z
+  local.get $1
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.store8 offset=3
@@ -5210,10 +5150,6 @@
  (func $assembly/index/TSX (; 76 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5224,50 +5160,26 @@
   i32.load8_u offset=5
   local.set $1
   local.get $2
-  local.set $5
-  global.get $assembly/index/Z
-  local.set $4
-  local.get $1
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
+  local.get $2
   i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
+  global.get $assembly/index/N
+  global.get $assembly/index/Z
   i32.or
-  local.get $6
-  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $3
+  i32.const 0
+  global.get $assembly/index/Z
+  local.get $1
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.store8 offset=3
@@ -5285,8 +5197,6 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5302,8 +5212,6 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5316,9 +5224,6 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5329,10 +5234,6 @@
  (func $assembly/index/INY (; 80 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5345,52 +5246,28 @@
   i32.add
   local.set $1
   local.get $2
-  local.set $5
+  local.get $2
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $4
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $1
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.const 255
@@ -5405,10 +5282,6 @@
  (func $assembly/index/DEX (; 81 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5421,52 +5294,28 @@
   i32.sub
   local.set $1
   local.get $2
-  local.set $5
+  local.get $2
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $4
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $1
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.const 255
@@ -5579,8 +5428,6 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5594,10 +5441,6 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5616,15 +5459,14 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.set $8
+  local.set $7
   local.get $0
   i32.load16_u offset=8
-  local.set $7
+  local.set $6
   local.get $0
   local.set $5
   local.get $0
@@ -5634,10 +5476,6 @@
  (func $assembly/index/INX (; 87 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
@@ -5650,52 +5488,28 @@
   i32.add
   local.set $1
   local.get $2
-  local.set $5
+  local.get $2
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $4
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $1
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
-  i32.store8 offset=6
-  local.get $2
-  local.set $5
+  i32.or
   global.get $assembly/index/N
-  local.set $4
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $3
-  local.get $5
-  i32.load8_u offset=6
-  local.set $6
-  local.get $5
-  local.get $6
-  local.get $4
-  i32.or
-  local.get $6
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $3
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.const 255
@@ -6952,35 +6766,102 @@
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
   local.get $0
   i32.load8_u offset=5
   i32.const 1
   i32.sub
   local.set $2
-  local.get $0
-  local.set $5
-  i32.const 256
   local.get $2
   i32.const 255
   i32.and
-  i32.add
-  local.set $4
-  local.get $1
-  local.set $3
-  local.get $5
-  i32.load offset=20
-  local.get $4
-  i32.const 65535
-  i32.and
-  i32.add
-  local.get $3
-  call $~lib/polyfills/bswap<u16>
-  i32.store16
-  local.get $0
-  local.get $2
-  i32.const 2
-  i32.sub
-  i32.store8 offset=5
+  i32.const 0
+  i32.eq
+  if
+   local.get $0
+   local.set $5
+   i32.const 256
+   local.set $4
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8
+   i32.shr_u
+   local.set $3
+   local.get $5
+   i32.load offset=20
+   local.get $4
+   i32.add
+   local.get $3
+   i32.store8
+   local.get $0
+   local.set $5
+   i32.const 511
+   local.set $4
+   local.get $1
+   local.set $3
+   local.get $5
+   i32.load offset=20
+   local.get $4
+   i32.add
+   local.get $3
+   i32.store8
+   local.get $0
+   local.set $4
+   local.get $1
+   local.set $3
+   local.get $4
+   local.set $7
+   i32.const 256
+   local.get $4
+   local.get $4
+   i32.load8_u offset=5
+   local.tee $5
+   i32.const 1
+   i32.sub
+   i32.store8 offset=5
+   local.get $5
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $6
+   local.get $3
+   local.set $5
+   local.get $7
+   i32.load offset=20
+   local.get $6
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $5
+   i32.store8
+  else   
+   local.get $0
+   local.set $7
+   i32.const 256
+   local.get $2
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $6
+   local.get $1
+   local.set $5
+   local.get $7
+   i32.load offset=20
+   local.get $6
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $5
+   call $~lib/polyfills/bswap<u16>
+   i32.store16
+   local.get $0
+   local.get $2
+   i32.const 2
+   i32.sub
+   i32.store8 offset=5
+  end
  )
  (func $assembly/index/OLC6502#irq (; 111 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
@@ -6989,6 +6870,8 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
   local.get $0
   local.set $2
   i32.const 4
@@ -7013,30 +6896,93 @@
    i32.const 1
    i32.sub
    local.set $3
-   local.get $2
-   local.set $6
-   i32.const 256
    local.get $3
    i32.const 255
    i32.and
-   i32.add
-   local.set $5
-   local.get $1
-   local.set $4
-   local.get $6
-   i32.load offset=20
-   local.get $5
-   i32.const 65535
-   i32.and
-   i32.add
-   local.get $4
-   call $~lib/polyfills/bswap<u16>
-   i32.store16
-   local.get $2
-   local.get $3
-   i32.const 2
-   i32.sub
-   i32.store8 offset=5
+   i32.const 0
+   i32.eq
+   if
+    local.get $2
+    local.set $6
+    i32.const 256
+    local.set $5
+    local.get $1
+    i32.const 8
+    i32.shr_u
+    local.set $4
+    local.get $6
+    i32.load offset=20
+    local.get $5
+    i32.add
+    local.get $4
+    i32.store8
+    local.get $2
+    local.set $6
+    i32.const 511
+    local.set $5
+    local.get $1
+    local.set $4
+    local.get $6
+    i32.load offset=20
+    local.get $5
+    i32.add
+    local.get $4
+    i32.store8
+    local.get $2
+    local.set $5
+    local.get $1
+    local.set $4
+    local.get $5
+    local.set $8
+    i32.const 256
+    local.get $5
+    local.get $5
+    i32.load8_u offset=5
+    local.tee $6
+    i32.const 1
+    i32.sub
+    i32.store8 offset=5
+    local.get $6
+    i32.const 255
+    i32.and
+    i32.add
+    local.set $7
+    local.get $4
+    local.set $6
+    local.get $8
+    i32.load offset=20
+    local.get $7
+    i32.const 65535
+    i32.and
+    i32.add
+    local.get $6
+    i32.store8
+   else    
+    local.get $2
+    local.set $8
+    i32.const 256
+    local.get $3
+    i32.const 255
+    i32.and
+    i32.add
+    local.set $7
+    local.get $1
+    local.set $6
+    local.get $8
+    i32.load offset=20
+    local.get $7
+    i32.const 65535
+    i32.and
+    i32.add
+    local.get $6
+    call $~lib/polyfills/bswap<u16>
+    i32.store16
+    local.get $2
+    local.get $3
+    i32.const 2
+    i32.sub
+    i32.store8 offset=5
+   end
    local.get $0
    local.set $6
    global.get $assembly/index/B
@@ -7059,57 +7005,57 @@
    select
    i32.store8 offset=6
    local.get $0
-   local.set $4
+   local.set $1
    global.get $assembly/index/U
-   local.set $2
+   local.set $8
    i32.const 0
-   local.set $1
-   local.get $4
+   local.set $7
+   local.get $1
    i32.load8_u offset=6
    local.set $3
-   local.get $4
+   local.get $1
    local.get $3
-   local.get $2
+   local.get $8
    i32.or
    local.get $3
-   local.get $2
+   local.get $8
    i32.const -1
    i32.xor
    i32.and
-   local.get $1
+   local.get $7
    select
    i32.store8 offset=6
    local.get $0
-   local.set $1
-   global.get $assembly/index/I
-   local.set $6
-   i32.const 0
    local.set $5
-   local.get $1
+   global.get $assembly/index/I
+   local.set $4
+   i32.const 0
+   local.set $2
+   local.get $5
    i32.load8_u offset=6
    local.set $3
-   local.get $1
+   local.get $5
    local.get $3
-   local.get $6
+   local.get $4
    i32.or
    local.get $3
-   local.get $6
+   local.get $4
    i32.const -1
    i32.xor
    i32.and
-   local.get $5
+   local.get $2
    select
    i32.store8 offset=6
    local.get $0
-   local.set $4
+   local.set $7
    local.get $0
    i32.load8_u offset=6
+   local.set $6
+   local.get $7
    local.set $2
-   local.get $4
-   local.set $1
    i32.const 256
-   local.get $4
-   local.get $4
+   local.get $7
+   local.get $7
    i32.load8_u offset=5
    local.tee $3
    i32.const 1
@@ -7119,29 +7065,29 @@
    i32.const 255
    i32.and
    i32.add
-   local.set $6
-   local.get $2
-   local.set $5
-   local.get $1
-   i32.load offset=20
+   local.set $1
    local.get $6
+   local.set $8
+   local.get $2
+   i32.load offset=20
+   local.get $1
    i32.const 65535
    i32.and
    i32.add
-   local.get $5
+   local.get $8
    i32.store8
    local.get $0
    local.get $0
    local.set $5
    local.get $0
    i32.const 65534
-   local.tee $4
+   local.tee $7
    i32.store16 offset=8
-   local.get $4
-   local.set $3
+   local.get $7
+   local.set $4
    local.get $5
    i32.load offset=20
-   local.get $3
+   local.get $4
    i32.add
    i32.load16_u
    call $~lib/polyfills/bswap<u16>
@@ -7160,6 +7106,8 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
   local.get $0
   local.set $2
   local.get $0
@@ -7170,30 +7118,93 @@
   i32.const 1
   i32.sub
   local.set $3
-  local.get $2
-  local.set $6
-  i32.const 256
   local.get $3
   i32.const 255
   i32.and
-  i32.add
-  local.set $5
-  local.get $1
-  local.set $4
-  local.get $6
-  i32.load offset=20
-  local.get $5
-  i32.const 65535
-  i32.and
-  i32.add
-  local.get $4
-  call $~lib/polyfills/bswap<u16>
-  i32.store16
-  local.get $2
-  local.get $3
-  i32.const 2
-  i32.sub
-  i32.store8 offset=5
+  i32.const 0
+  i32.eq
+  if
+   local.get $2
+   local.set $6
+   i32.const 256
+   local.set $5
+   local.get $1
+   i32.const 8
+   i32.shr_u
+   local.set $4
+   local.get $6
+   i32.load offset=20
+   local.get $5
+   i32.add
+   local.get $4
+   i32.store8
+   local.get $2
+   local.set $6
+   i32.const 511
+   local.set $5
+   local.get $1
+   local.set $4
+   local.get $6
+   i32.load offset=20
+   local.get $5
+   i32.add
+   local.get $4
+   i32.store8
+   local.get $2
+   local.set $5
+   local.get $1
+   local.set $4
+   local.get $5
+   local.set $8
+   i32.const 256
+   local.get $5
+   local.get $5
+   i32.load8_u offset=5
+   local.tee $6
+   i32.const 1
+   i32.sub
+   i32.store8 offset=5
+   local.get $6
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $7
+   local.get $4
+   local.set $6
+   local.get $8
+   i32.load offset=20
+   local.get $7
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $6
+   i32.store8
+  else   
+   local.get $2
+   local.set $8
+   i32.const 256
+   local.get $3
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $7
+   local.get $1
+   local.set $6
+   local.get $8
+   i32.load offset=20
+   local.get $7
+   i32.const 65535
+   i32.and
+   i32.add
+   local.get $6
+   call $~lib/polyfills/bswap<u16>
+   i32.store16
+   local.get $2
+   local.get $3
+   i32.const 2
+   i32.sub
+   i32.store8 offset=5
+  end
   local.get $0
   local.set $6
   global.get $assembly/index/B
@@ -7216,57 +7227,57 @@
   select
   i32.store8 offset=6
   local.get $0
-  local.set $4
+  local.set $1
   global.get $assembly/index/U
-  local.set $2
+  local.set $8
   i32.const 0
-  local.set $1
-  local.get $4
+  local.set $7
+  local.get $1
   i32.load8_u offset=6
   local.set $3
-  local.get $4
+  local.get $1
   local.get $3
-  local.get $2
+  local.get $8
   i32.or
   local.get $3
-  local.get $2
+  local.get $8
   i32.const -1
   i32.xor
   i32.and
-  local.get $1
+  local.get $7
   select
   i32.store8 offset=6
   local.get $0
-  local.set $1
-  global.get $assembly/index/I
-  local.set $6
-  i32.const 0
   local.set $5
-  local.get $1
+  global.get $assembly/index/I
+  local.set $4
+  i32.const 0
+  local.set $2
+  local.get $5
   i32.load8_u offset=6
   local.set $3
-  local.get $1
+  local.get $5
   local.get $3
-  local.get $6
+  local.get $4
   i32.or
   local.get $3
-  local.get $6
+  local.get $4
   i32.const -1
   i32.xor
   i32.and
-  local.get $5
+  local.get $2
   select
   i32.store8 offset=6
   local.get $0
-  local.set $4
+  local.set $7
   local.get $0
   i32.load8_u offset=6
+  local.set $6
+  local.get $7
   local.set $2
-  local.get $4
-  local.set $1
   i32.const 256
-  local.get $4
-  local.get $4
+  local.get $7
+  local.get $7
   i32.load8_u offset=5
   local.tee $3
   i32.const 1
@@ -7276,29 +7287,29 @@
   i32.const 255
   i32.and
   i32.add
-  local.set $6
-  local.get $2
-  local.set $5
-  local.get $1
-  i32.load offset=20
+  local.set $1
   local.get $6
+  local.set $8
+  local.get $2
+  i32.load offset=20
+  local.get $1
   i32.const 65535
   i32.and
   i32.add
-  local.get $5
+  local.get $8
   i32.store8
   local.get $0
   local.get $0
   local.set $5
   local.get $0
   i32.const 65530
-  local.tee $4
+  local.tee $7
   i32.store16 offset=8
-  local.get $4
-  local.set $3
+  local.get $7
+  local.set $4
   local.get $5
   i32.load offset=20
-  local.get $3
+  local.get $4
   i32.add
   i32.load16_u
   call $~lib/polyfills/bswap<u16>
@@ -7439,16 +7450,11 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
   local.get $0
   i32.load8_u offset=13
   i32.const 0
   i32.eq
   if
-   local.get $0
    local.get $0
    local.set $2
    local.get $0
@@ -7469,84 +7475,54 @@
    i32.and
    i32.add
    i32.load8_u
-   local.tee $3
-   i32.store8 offset=12
-   local.get $3
    local.set $3
    local.get $0
-   local.set $4
-   global.get $assembly/index/U
-   local.set $2
-   i32.const 1
-   local.set $1
-   local.get $4
+   local.get $0
    i32.load8_u offset=6
-   local.set $5
-   local.get $4
-   local.get $5
-   local.get $2
+   global.get $assembly/index/U
    i32.or
-   local.get $5
-   local.get $2
-   i32.const -1
-   i32.xor
-   i32.and
-   local.get $1
-   select
    i32.store8 offset=6
    global.get $assembly/index/ops
    local.get $3
    i32.const 255
    i32.and
    call "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__unchecked_get"
-   local.set $5
+   local.set $2
    global.get $assembly/index/cycles
    local.get $3
    i32.const 255
    i32.and
    call $~lib/array/Array<u8>#__unchecked_get
-   local.set $4
+   local.set $1
    global.get $assembly/index/addrs
    local.get $3
    i32.const 255
    i32.and
    call "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__unchecked_get"
-   local.set $2
+   local.set $4
+   local.get $0
+   local.get $3
+   i32.store8 offset=12
+   local.get $0
+   local.get $1
+   i32.const 1
+   global.set $~lib/argc
    local.get $0
    local.get $4
+   call_indirect (type $FUNCSIG$ii)
    i32.const 1
    global.set $~lib/argc
    local.get $0
    local.get $2
    call_indirect (type $FUNCSIG$ii)
-   i32.const 1
-   global.set $~lib/argc
-   local.get $0
-   local.get $5
-   call_indirect (type $FUNCSIG$ii)
    i32.and
    i32.add
    i32.store8 offset=13
    local.get $0
-   local.set $7
-   global.get $assembly/index/U
-   local.set $6
-   i32.const 1
-   local.set $1
-   local.get $7
+   local.get $0
    i32.load8_u offset=6
-   local.set $8
-   local.get $7
-   local.get $8
-   local.get $6
+   global.get $assembly/index/U
    i32.or
-   local.get $8
-   local.get $6
-   i32.const -1
-   i32.xor
-   i32.and
-   local.get $1
-   select
    i32.store8 offset=6
   end
   local.get $0
@@ -7563,57 +7539,29 @@
   i32.store8 offset=13
  )
  (func $assembly/index/OLC6502#setNZ (; 122 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
   local.get $0
-  local.set $4
+  local.get $0
+  i32.load8_u offset=6
+  global.get $assembly/index/N
   global.get $assembly/index/Z
-  local.set $3
+  i32.or
+  i32.const -1
+  i32.xor
+  i32.and
+  i32.const 0
+  global.get $assembly/index/Z
   local.get $1
   i32.const 255
   i32.and
-  i32.const 0
-  i32.eq
-  local.set $2
-  local.get $4
-  i32.load8_u offset=6
-  local.set $5
-  local.get $4
-  local.get $5
-  local.get $3
-  i32.or
-  local.get $5
-  local.get $3
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $2
   select
-  i32.store8 offset=6
-  local.get $0
-  local.set $4
+  i32.or
   global.get $assembly/index/N
-  local.set $3
+  i32.const 0
   local.get $1
   i32.const 128
   i32.and
-  local.set $2
-  local.get $4
-  i32.load8_u offset=6
-  local.set $5
-  local.get $4
-  local.get $5
-  local.get $3
-  i32.or
-  local.get $5
-  local.get $3
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $2
   select
+  i32.or
   i32.store8 offset=6
   local.get $1
   i32.const 255
@@ -7654,6 +7602,7 @@
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
+  (local $4 i32)
   local.get $0
   i32.load8_u offset=5
   local.set $1
@@ -7662,22 +7611,57 @@
   i32.const 2
   i32.add
   i32.store8 offset=5
-  local.get $0
-  local.set $3
   local.get $1
-  i32.const 1
-  i32.add
-  i32.const 255
-  i32.and
-  local.set $2
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
-  i32.and
+  i32.const 254
+  i32.eq
+  if (result i32)
+   local.get $0
+   local.set $3
+   i32.const 511
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   local.get $0
+   local.set $3
+   i32.const 256
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.add
+   i32.load8_u
+   i32.const 255
+   i32.and
+   i32.const 8
+   i32.shl
+   i32.or
+  else   
+   local.get $0
+   local.set $3
+   local.get $1
+   i32.const 1
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $2
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.add
+   i32.load16_u
+   call $~lib/polyfills/bswap<u16>
+   i32.const 65535
+   i32.and
+  end
   i32.const 65535
   i32.and
  )

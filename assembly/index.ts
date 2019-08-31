@@ -19,13 +19,13 @@ class Op {
 }
 
 let ops: Op[] = [
-  new Op("BRK", BRK, IMM, 7),new Op("ORA", ORA, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ORA", ORA, ZP0, 3),new Op("ASL", ASL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHP", PHP, IMP, 3),new Op("ORA", ORA, IMM, 2),new Op("ASL", ASL, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ABS, 4),new Op("ASL", ASL, ABS, 6),new Op("XXX", XXX, IMP, 6),
+  new Op("BRK", BRK, IMM, 7),new Op("ORA", ORA, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ORA", ORA, ZP0, 3),new Op("ASL", ASL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHP", PHP, IMP, 3),new Op("ORA", ORA, IMM, 2),new Op("ASL", ASLi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ABS, 4),new Op("ASL", ASL, ABS, 6),new Op("XXX", XXX, IMP, 6),
   new Op("BPL", BPL, REL, 2),new Op("ORA", ORA, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ZPX, 4),new Op("ASL", ASL, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("CLC", CLC, IMP, 2),new Op("ORA", ORA, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ABX, 4),new Op("ASL", ASL, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("JSR", JSR, ABS, 6),new Op("AND", AND, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("BIT", BIT, ZP0, 3),new Op("AND", AND, ZP0, 3),new Op("ROL", ROL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLP", PLP, IMP, 4),new Op("AND", AND, IMM, 2),new Op("ROL", ROL, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("BIT", BIT, ABS, 4),new Op("AND", AND, ABS, 4),new Op("ROL", ROL, ABS, 6),new Op("XXX", XXX, IMP, 6),
+  new Op("JSR", JSR, ABS, 6),new Op("AND", AND, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("BIT", BIT, ZP0, 3),new Op("AND", AND, ZP0, 3),new Op("ROL", ROL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLP", PLP, IMP, 4),new Op("AND", AND, IMM, 2),new Op("ROL", ROLi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("BIT", BIT, ABS, 4),new Op("AND", AND, ABS, 4),new Op("ROL", ROL, ABS, 6),new Op("XXX", XXX, IMP, 6),
   new Op("BMI", BMI, REL, 2),new Op("AND", AND, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("AND", AND, ZPX, 4),new Op("ROL", ROL, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("SEC", SEC, IMP, 2),new Op("AND", AND, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("AND", AND, ABX, 4),new Op("ROL", ROL, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("RTI", RTI, IMP, 6),new Op("EOR", EOR, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("EOR", EOR, ZP0, 3),new Op("LSR", LSR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHA", PHA, IMP, 3),new Op("EOR", EOR, IMM, 2),new Op("LSR", LSR, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, ABS, 3),new Op("EOR", EOR, ABS, 4),new Op("LSR", LSR, ABS, 6),new Op("XXX", XXX, IMP, 6),
+  new Op("RTI", RTI, IMP, 6),new Op("EOR", EOR, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("EOR", EOR, ZP0, 3),new Op("LSR", LSR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHA", PHA, IMP, 3),new Op("EOR", EOR, IMM, 2),new Op("LSR", LSRi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, ABS, 3),new Op("EOR", EOR, ABS, 4),new Op("LSR", LSR, ABS, 6),new Op("XXX", XXX, IMP, 6),
   new Op("BVC", BVC, REL, 2),new Op("EOR", EOR, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("EOR", EOR, ZPX, 4),new Op("LSR", LSR, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("CLI", CLI, IMP, 2),new Op("EOR", EOR, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("EOR", EOR, ABX, 4),new Op("LSR", LSR, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("RTS", RTS, IMP, 6),new Op("ADC", ADC, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ADC", ADC, ZP0, 3),new Op("ROR", ROR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLA", PLA, IMP, 4),new Op("ADC", ADC, IMM, 2),new Op("ROR", ROR, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, IND, 5),new Op("ADC", ADC, ABS, 4),new Op("ROR", ROR, ABS, 6),new Op("XXX", XXX, IMP, 6),
+  new Op("RTS", RTS, IMP, 6),new Op("ADC", ADC, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ADC", ADC, ZP0, 3),new Op("ROR", ROR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLA", PLA, IMP, 4),new Op("ADC", ADC, IMM, 2),new Op("ROR", RORi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, IND, 5),new Op("ADC", ADC, ABS, 4),new Op("ROR", ROR, ABS, 6),new Op("XXX", XXX, IMP, 6),
   new Op("BVS", BVS, REL, 2),new Op("ADC", ADC, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("ADC", ADC, ZPX, 4),new Op("ROR", ROR, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("SEI", SEI, IMP, 2),new Op("ADC", ADC, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("ADC", ADC, ABX, 4),new Op("ROR", ROR, ABX, 7),new Op("XXX", XXX, IMP, 7),
   new Op("NOP", NOP, IMP, 2),new Op("STA", STA, IZX, 6),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 6),new Op("STY", STY, ZP0, 3),new Op("STA", STA, ZP0, 3),new Op("STX", STX, ZP0, 3),new Op("XXX", XXX, IMP, 3),new Op("DEY", DEY, IMP, 2),new Op("NOP", NOP, IMP, 2),new Op("TXA", TXA, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("STY", STY, ABS, 4),new Op("STA", STA, ABS, 4),new Op("STX", STX, ABS, 4),new Op("XXX", XXX, IMP, 4),
   new Op("BCC", BCC, REL, 2),new Op("STA", STA, IZY, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 6),new Op("STY", STY, ZPX, 4),new Op("STA", STA, ZPX, 4),new Op("STX", STX, ZPY, 4),new Op("XXX", XXX, IMP, 4),new Op("TYA", TYA, IMP, 2),new Op("STA", STA, ABY, 5),new Op("TXS", TXS, IMP, 2),new Op("XXX", XXX, IMP, 5),new Op("NOP", NOP, IMP, 5),new Op("STA", STA, ABX, 5),new Op("XXX", XXX, IMP, 5),new Op("XXX", XXX, IMP, 5),
@@ -70,22 +70,26 @@ class olc6502as {
     this.cycles = 8;
   }
 
+  @inline
   setFlag(f: u8, v: bool): void {
     let status = this.status;
     this.status = select(status | f, status & ~f, v);
   }
 
+  @inline
   getFlag(flag: u8): bool {
     return this.status & flag;
   }
 
+  @inline
   push(value: u8): void {
     this.write(0x0100 + this.stkp--, value);
   }
 
+  @inline
   push16be(value: u16): void {
     let stkp = this.stkp - 1;
-    this.writeu16be(0x100 + stkp, value);
+    this.writeu16be(0x0100 + stkp, value);
     this.stkp = stkp - 2;
   }
 
@@ -111,22 +115,27 @@ class olc6502as {
     this.cycles = 8;
   }
 
+  @inline
   write(addr: u16, value: u8): void {
     store<u8>(changetype<usize>(this.bus) + <usize>addr, value);
   }
 
+  @inline
   read(addr: u16, readonly: bool = true): u8 {
     return load<u8>(changetype<usize>(this.bus) + <usize>addr);
   }
 
+  @inline
   read16be(addr: u16): u16 {
     return bswap(load<u16>(changetype<usize>(this.bus) + <usize>addr));
   }
 
+  @inline
   writeu16be(addr: u16, value: u16): void {
     store<u16>(changetype<usize>(this.bus) + <usize>addr, bswap(value));
   }
 
+  @inline
   fetch(): u8 {
     return ops[this.opcode].addr == IMP
       ? this.fetched = this.read(this.addr_abs)
@@ -144,6 +153,25 @@ class olc6502as {
     }
     this.clockCount++;
     this.cycles--;
+  }
+
+  @inline
+  setNZ(value: u8): u8 {
+    this.setFlag(Z, value == 0);
+    this.setFlag(N, value & 0x80);
+    return value;
+  }
+
+  @inline
+  pop(): u8 {
+    return this.read(0x0100 + ++this.stkp);
+  }
+
+  @inline
+  pop16be(): u16 {
+    let stkp = this.stkp;
+    this.stkp = stkp + 2;
+    return this.read16be(stkp + 1);
   }
 }
 
@@ -237,53 +265,45 @@ function IZY(self: olc6502as): u8 {
 // instructions
 
 function ADC(self: olc6502as): u8 {
-  self.fetch();
   let fetched = <u16>self.fetch();
-  let temp = <u16>self.a + fetched + u16(self.getFlag(C));
-  self.setFlag(C, temp > 255);
-  self.setFlag(Z, (temp & 0xFF) == 0);
   let a = <u16>self.a;
+  let temp = a + fetched + u16(self.getFlag(C));
+  self.setFlag(C, temp > 255);
   self.setFlag(V,
     (~(a ^ fetched) & (a ^ temp)) & 0x0080
   );
-  self.setFlag(N, temp & 0x80);
-  self.a = <u8>temp & 0xFF;
+  self.a = self.setNZ(<u8>temp);
   return 1;
 }
 
 function SBC(self: olc6502as): u8 {
-  let fetched = <u16>self.fetched ^ 0xFF;
-  let temp = <u16>self.a + fetched + u16(self.getFlag(C));
-  self.setFlag(C, temp > 255);
-  self.setFlag(Z, (temp & 0xFF) == 0);
   let a = <u16>self.a;
+  let fetched = <u16>self.fetch() ^ 0xFF;
+  let temp = a + fetched + u16(self.getFlag(C));
+  self.setFlag(C, temp > 255);
   self.setFlag(V,
     (~(a ^ fetched) & (a ^ temp)) & 0x0080
   );
-  self.setFlag(N, temp & 0x80);
-  self.a = <u8>temp & 0xFF;
+  self.a = self.setNZ(<u8>temp);
   return 1;
 }
 
 function AND(self: olc6502as): u8 {
-  let a = self.a & self.fetch();
-  self.a = a;
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
+  self.a = self.setNZ(self.a & self.fetch());
   return 1;
 }
 
 function ASL(self: olc6502as): u8 {
   let temp = <u16>self.fetch() << 1;
   self.setFlag(C, (temp & 0xFF00) > 0);
-	self.setFlag(Z, (temp & 0x00FF) == 0x00);
-  self.setFlag(N, temp & 0x80);
+  self.write(self.addr_abs, self.setNZ(<u8>temp));
+  return 0;
+}
 
-  if (ops[self.opcode].addr == IMP) {
-    self.a = <u8>(temp & 0xFF);
-  } else {
-    self.write(self.addr_abs, temp & 0xFF);
-  }
+function ASLi(self: olc6502as): u8 {
+  let temp = <u16>self.fetch() << 1;
+  self.setFlag(C, (temp & 0xFF00) > 0);
+  self.a = self.setNZ(<u8>temp);
   return 0;
 }
 
@@ -292,7 +312,7 @@ function BCC(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -302,7 +322,7 @@ function BCS(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -312,7 +332,7 @@ function BEQ(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -330,7 +350,7 @@ function BMI(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -340,7 +360,7 @@ function BNE(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -350,7 +370,7 @@ function BPL(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -373,7 +393,7 @@ function BVC(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -383,7 +403,7 @@ function BVS(self: olc6502as): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(2, 1, (addr_abs & 0xFF00) != (pc & 0xFF00));
+    self.cycles = select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -413,8 +433,7 @@ function CMP(self: olc6502as): u8 {
   let a = <u16>self.a;
   let temp = a - fetched;
   self.setFlag(C, a >= fetched);
-	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
-	self.setFlag(N, temp & 0x0080);
+  self.setNZ(<u8>temp);
   return 1;
 }
 
@@ -423,8 +442,7 @@ function CPX(self: olc6502as): u8 {
   let x = <u16>self.x;
   let temp = x - fetched;
   self.setFlag(C, x >= fetched);
-	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
-	self.setFlag(N, temp & 0x0080);
+  self.setNZ(<u8>temp);
   return 1;
 }
 
@@ -433,65 +451,45 @@ function CPY(self: olc6502as): u8 {
   let y = <u16>self.y;
   let temp = y - fetched;
   self.setFlag(C, y >= fetched);
-	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
-	self.setFlag(N, temp & 0x0080);
+  self.setNZ(<u8>temp);
   return 1;
 }
 
 function DEC(self: olc6502as): u8 {
   let temp = <u16>self.fetch() - 1;
   self.write(self.addr_abs, <u8>temp);
-  self.setFlag(Z, !(temp & 0xFF00));
-  self.setFlag(N, temp & 0x80);
+  self.setNZ(<u8>temp);
   return 0;
 }
 
 function DEX(self: olc6502as): u8 {
-  let x = self.x - 1;
-  self.setFlag(Z, x == 0);
-  self.setFlag(N, x & 0x80);
-  self.x = x;
+  self.x = self.setNZ(self.x - 1);
   return 0;
 }
 
 function DEY(self: olc6502as): u8 {
-  let y = self.y - 1;
-  self.setFlag(Z, y == 0);
-  self.setFlag(N, y & 0x80);
-  self.y = y;
+  self.y = self.setNZ(self.y - 1);
   return 0;
 }
 
 function EOR(self: olc6502as): u8 {
-  let a = self.a ^ self.fetch();
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.a ^ self.fetch());
   return 1;
 }
 
 function INC(self: olc6502as): u8 {
-  let temp = <u16>self.fetch() + 1;
-  self.write(self.addr_abs, <u8>temp);
-  self.setFlag(Z, !(temp & 0xFF00));
-  self.setFlag(N, temp & 0x80);
+  self.write(self.addr_abs, self.setNZ(self.fetch() + 1));
   return 0;
 }
 
 function INX(self: olc6502as): u8 {
-  let x = self.x + 1;
-  self.setFlag(Z, x == 0);
-  self.setFlag(N, x & 0x80);
-  self.x = x;
+  self.x = self.setNZ(self.x + 1);
   return 0;
 }
 
 
 function INY(self: olc6502as): u8 {
-  let y = self.y + 1;
-  self.setFlag(Z, y == 0);
-  self.setFlag(N, y & 0x80);
-  self.y = y;
+  self.y = self.setNZ(self.y + 1);
   return 0;
 }
 
@@ -501,49 +499,37 @@ function JMP(self: olc6502as): u8 {
 }
 
 function JSR(self: olc6502as): u8 {
-  let pc = self.pc - 1;
-  let stkp = self.stkp;
-  self.writeu16be(0x0100 + self.stkp - 1, pc);
-  self.stkp = stkp - 2;
+  self.push16be(self.pc - 1);
   self.pc = self.addr_abs;
   return 0;
 }
 
 function LDA(self: olc6502as): u8 {
-  let a = self.fetch();
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.fetch());
   return 1;
 }
 
 function LDX(self: olc6502as): u8 {
-  let x = self.fetch();
-  self.setFlag(Z, x == 0);
-  self.setFlag(N, x & 0x80);
-  self.x = x;
+  self.x = self.setNZ(self.fetch());
   return 1;
 }
 
 function LDY(self: olc6502as): u8 {
-  let y = self.fetch();
-  self.setFlag(Z, y == 0);
-  self.setFlag(N, y & 0x80);
-  self.y = y;
+  self.y = self.setNZ(self.fetch());
   return 1;
 }
 
-function LSR(self: olc6502as): u8 {
-  let fetched: u16 = self.fetch();
-  let temp: u16 = fetched >> 1;
+function LSRi(self: olc6502as): u8 {
+  let fetched = self.fetch();
   self.setFlag(C, fetched & 1);
-  self.setFlag(Z, (temp & 0xFF) == 0);
-  self.setFlag(N, temp & 0x80);
-  if (ops[self.opcode].addr == IMP) {
-    self.a = <u8>temp;
-  } else {
-    self.write(self.addr_abs, <u8>temp);
-  }
+  self.a = self.setNZ(fetched >> 1);
+  return 0;
+}
+
+function LSR(self: olc6502as): u8 {
+  let fetched = self.fetch();
+  self.setFlag(C, fetched & 1);
+  self.write(self.addr_abs, self.setNZ(fetched >> 1));
   return 0;
 }
 
@@ -561,80 +547,68 @@ function NOP(self: olc6502as): u8 {
 }
 
 function ORA(self: olc6502as): u8 {
-  let fetched = self.fetch();
-  let a = self.a | fetched;
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.a | self.fetch());
   return 1;
 }
 
 function PHA(self: olc6502as): u8 {
-  self.write(0x0100 + self.stkp--, self.a);
+  self.push(self.a);
   return 0;
 }
 
 function PHP(self: olc6502as): u8 {
-  self.write(0x0100 + self.stkp--, self.status | B | U);
-  self.setFlag(B, false);
-  self.setFlag(U, false);
+  self.push(self.status | B | U);
+  self.status &= (~B) & (~U);
   return 0;
 }
 
 function PLA(self: olc6502as): u8 {
-  let a = self.read(0x0100 + ++self.stkp);
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.pop());
   return 0;
 }
 
 function PLP(self: olc6502as): u8 {
-  self.status = self.read(0x0100 + ++self.stkp);
+  self.status = self.pop();
   self.setFlag(U, true);
   return 0;
 }
 
-function ROL(self: olc6502as): u8 {
-  let fetched: u16 = self.fetch();
-  let temp = (fetched << 1) | <u16>self.getFlag(C);
+function ROLi(self: olc6502as): u8 {
+  let temp = (<u16>self.fetch() << 1) | <u16>self.getFlag(C);
   self.setFlag(C, temp & 0xFF00);
-	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
-  self.setFlag(N, temp & 0x0080);
-  if (ops[self.opcode].addr == IMP) {
-    self.a = <u8>temp;
-  } else {
-    self.write(self.addr_abs, <u8>temp);
-  }
+  self.a = self.setNZ(<u8>temp);
+  return 0;
+}
+
+function ROL(self: olc6502as): u8 {
+  let temp = (<u16>self.fetch() << 1) | <u16>self.getFlag(C);
+  self.setFlag(C, temp & 0xFF00);
+  self.write(self.addr_abs, self.setNZ(<u8>temp));
+  return 0;
+}
+
+function RORi(self: olc6502as): u8 {
+  let temp = (<u16>self.fetch() >> 1) | (<u16>self.getFlag(C) << 7);
+  self.setFlag(C, temp & 0xFF00);
+  self.a = self.setNZ(<u8>temp);
   return 0;
 }
 
 function ROR(self: olc6502as): u8 {
-  let fetched: u16 = self.fetch();
-  let temp = (fetched >> 1) | (<u16>self.getFlag(C) << 7);
+  let temp = (<u16>self.fetch() >> 1) | (<u16>self.getFlag(C) << 7);
   self.setFlag(C, temp & 0xFF00);
-	self.setFlag(Z, (temp & 0x00FF) == 0x0000);
-  self.setFlag(N, temp & 0x0080);
-  if (ops[self.opcode].addr == IMP) {
-    self.a = <u8>temp;
-  } else {
-    self.write(self.addr_abs, <u8>temp);
-  }
+  self.write(self.addr_abs, self.setNZ(<u8>temp));
   return 0;
 }
 
 function RTI(self: olc6502as): u8 {
-  let stkp = self.stkp;
-  self.status = (self.read(0x0100 + stkp + 1) & ~B) & ~U; // set B and U to 0
-  self.pc = self.read16be(0x0100 + stkp + 2);
-  self.stkp = stkp + 3;
+  self.status = (self.pop() & ~B) & ~U; // set B and U to 0
+  self.pc = self.pop16be();
   return 0;
 }
 
 function RTS(self: olc6502as): u8 {
-  let stkp = self.stkp;
-  self.pc = self.read16be(0x0100 + stkp + 1);
-  self.stkp = stkp + 2;
+  self.pc = self.pop16be();
   return 0;
 }
 
@@ -669,34 +643,22 @@ function STY(self: olc6502as): u8 {
 }
 
 function TAX(self: olc6502as): u8 {
-  let x = self.a;
-  self.setFlag(Z, x == 0);
-  self.setFlag(N, x & 0x80);
-  self.x = x;
+  self.x = self.setNZ(self.a);
   return 0;
 }
 
 function TAY(self: olc6502as): u8 {
-  let y = self.a;
-  self.setFlag(Z, y == 0);
-  self.setFlag(N, y & 0x80);
-  self.y = y;
+  self.y = self.setNZ(self.a);
   return 0;
 }
 
 function TSX(self: olc6502as): u8 {
-  let x = self.stkp;
-  self.setFlag(Z, x == 0);
-  self.setFlag(N, x & 0x80);
-  self.x = x;
+  self.x = self.setNZ(self.stkp);
   return 0;
 }
 
 function TXA(self: olc6502as): u8 {
-  let a = self.x;
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.x);
   return 0;
 }
 
@@ -706,10 +668,7 @@ function TXS(self: olc6502as): u8 {
 }
 
 function TYA(self: olc6502as): u8 {
-  let a = self.y;
-  self.setFlag(Z, a == 0);
-  self.setFlag(N, a & 0x80);
-  self.a = a;
+  self.a = self.setNZ(self.y);
   return 0;
 }
 

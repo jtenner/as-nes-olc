@@ -13,28 +13,68 @@ class Op {
     public name: string,
     public op: (self: OLC6502) => u8,
     public addr: (self: OLC6502) => u8,
-    public cycles: i32,
+    public cycles: u8,
   ) {}
 }
+type OPCODE_LIST = Array<(olc: OLC6502) => u8>;
 
-let ops: Op[] = [
-  new Op("BRK", BRK, IMM, 7),new Op("ORA", ORA, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ORA", ORA, ZP0, 3),new Op("ASL", ASL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHP", PHP, IMP, 3),new Op("ORA", ORA, IMM, 2),new Op("ASL", ASLi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ABS, 4),new Op("ASL", ASL, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BPL", BPL, REL, 2),new Op("ORA", ORA, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ZPX, 4),new Op("ASL", ASL, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("CLC", CLC, IMP, 2),new Op("ORA", ORA, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("ORA", ORA, ABX, 4),new Op("ASL", ASL, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("JSR", JSR, ABS, 6),new Op("AND", AND, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("BIT", BIT, ZP0, 3),new Op("AND", AND, ZP0, 3),new Op("ROL", ROL, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLP", PLP, IMP, 4),new Op("AND", AND, IMM, 2),new Op("ROL", ROLi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("BIT", BIT, ABS, 4),new Op("AND", AND, ABS, 4),new Op("ROL", ROL, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BMI", BMI, REL, 2),new Op("AND", AND, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("AND", AND, ZPX, 4),new Op("ROL", ROL, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("SEC", SEC, IMP, 2),new Op("AND", AND, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("AND", AND, ABX, 4),new Op("ROL", ROL, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("RTI", RTI, IMP, 6),new Op("EOR", EOR, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("EOR", EOR, ZP0, 3),new Op("LSR", LSR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PHA", PHA, IMP, 3),new Op("EOR", EOR, IMM, 2),new Op("LSR", LSRi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, ABS, 3),new Op("EOR", EOR, ABS, 4),new Op("LSR", LSR, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BVC", BVC, REL, 2),new Op("EOR", EOR, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("EOR", EOR, ZPX, 4),new Op("LSR", LSR, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("CLI", CLI, IMP, 2),new Op("EOR", EOR, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("EOR", EOR, ABX, 4),new Op("LSR", LSR, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("RTS", RTS, IMP, 6),new Op("ADC", ADC, IZX, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 3),new Op("ADC", ADC, ZP0, 3),new Op("ROR", ROR, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("PLA", PLA, IMP, 4),new Op("ADC", ADC, IMM, 2),new Op("ROR", RORi, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("JMP", JMP, IND, 5),new Op("ADC", ADC, ABS, 4),new Op("ROR", ROR, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BVS", BVS, REL, 2),new Op("ADC", ADC, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("ADC", ADC, ZPX, 4),new Op("ROR", ROR, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("SEI", SEI, IMP, 2),new Op("ADC", ADC, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("ADC", ADC, ABX, 4),new Op("ROR", ROR, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("NOP", NOP, IMP, 2),new Op("STA", STA, IZX, 6),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 6),new Op("STY", STY, ZP0, 3),new Op("STA", STA, ZP0, 3),new Op("STX", STX, ZP0, 3),new Op("XXX", XXX, IMP, 3),new Op("DEY", DEY, IMP, 2),new Op("NOP", NOP, IMP, 2),new Op("TXA", TXA, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("STY", STY, ABS, 4),new Op("STA", STA, ABS, 4),new Op("STX", STX, ABS, 4),new Op("XXX", XXX, IMP, 4),
-  new Op("BCC", BCC, REL, 2),new Op("STA", STA, IZY, 6),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 6),new Op("STY", STY, ZPX, 4),new Op("STA", STA, ZPX, 4),new Op("STX", STX, ZPY, 4),new Op("XXX", XXX, IMP, 4),new Op("TYA", TYA, IMP, 2),new Op("STA", STA, ABY, 5),new Op("TXS", TXS, IMP, 2),new Op("XXX", XXX, IMP, 5),new Op("NOP", NOP, IMP, 5),new Op("STA", STA, ABX, 5),new Op("XXX", XXX, IMP, 5),new Op("XXX", XXX, IMP, 5),
-  new Op("LDY", LDY, IMM, 2),new Op("LDA", LDA, IZX, 6),new Op("LDX", LDX, IMM, 2),new Op("XXX", XXX, IMP, 6),new Op("LDY", LDY, ZP0, 3),new Op("LDA", LDA, ZP0, 3),new Op("LDX", LDX, ZP0, 3),new Op("XXX", XXX, IMP, 3),new Op("TAY", TAY, IMP, 2),new Op("LDA", LDA, IMM, 2),new Op("TAX", TAX, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("LDY", LDY, ABS, 4),new Op("LDA", LDA, ABS, 4),new Op("LDX", LDX, ABS, 4),new Op("XXX", XXX, IMP, 4),
-  new Op("BCS", BCS, REL, 2),new Op("LDA", LDA, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 5),new Op("LDY", LDY, ZPX, 4),new Op("LDA", LDA, ZPX, 4),new Op("LDX", LDX, ZPY, 4),new Op("XXX", XXX, IMP, 4),new Op("CLV", CLV, IMP, 2),new Op("LDA", LDA, ABY, 4),new Op("TSX", TSX, IMP, 2),new Op("XXX", XXX, IMP, 4),new Op("LDY", LDY, ABX, 4),new Op("LDA", LDA, ABX, 4),new Op("LDX", LDX, ABY, 4),new Op("XXX", XXX, IMP, 4),
-  new Op("CPY", CPY, IMM, 2),new Op("CMP", CMP, IZX, 6),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("CPY", CPY, ZP0, 3),new Op("CMP", CMP, ZP0, 3),new Op("DEC", DEC, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("INY", INY, IMP, 2),new Op("CMP", CMP, IMM, 2),new Op("DEX", DEX, IMP, 2),new Op("XXX", XXX, IMP, 2),new Op("CPY", CPY, ABS, 4),new Op("CMP", CMP, ABS, 4),new Op("DEC", DEC, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BNE", BNE, REL, 2),new Op("CMP", CMP, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("CMP", CMP, ZPX, 4),new Op("DEC", DEC, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("CLD", CLD, IMP, 2),new Op("CMP", CMP, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("CMP", CMP, ABX, 4),new Op("DEC", DEC, ABX, 7),new Op("XXX", XXX, IMP, 7),
-  new Op("CPX", CPX, IMM, 2),new Op("SBC", SBC, IZX, 6),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("CPX", CPX, ZP0, 3),new Op("SBC", SBC, ZP0, 3),new Op("INC", INC, ZP0, 5),new Op("XXX", XXX, IMP, 5),new Op("INX", INX, IMP, 2),new Op("SBC", SBC, IMM, 2),new Op("NOP", NOP, IMP, 2),new Op("SBC", SBC, IMP, 2),new Op("CPX", CPX, ABS, 4),new Op("SBC", SBC, ABS, 4),new Op("INC", INC, ABS, 6),new Op("XXX", XXX, IMP, 6),
-  new Op("BEQ", BEQ, REL, 2),new Op("SBC", SBC, IZY, 5),new Op("XXX", XXX, IMP, 2),new Op("XXX", XXX, IMP, 8),new Op("NOP", NOP, IMP, 4),new Op("SBC", SBC, ZPX, 4),new Op("INC", INC, ZPX, 6),new Op("XXX", XXX, IMP, 6),new Op("SED", SED, IMP, 2),new Op("SBC", SBC, ABY, 4),new Op("NOP", NOP, IMP, 2),new Op("XXX", XXX, IMP, 7),new Op("NOP", NOP, IMP, 4),new Op("SBC", SBC, ABX, 4),new Op("INC", INC, ABX, 7),new Op("XXX", XXX, IMP, 7),
+let ops = <OPCODE_LIST>[
+  BRK,ORA,XXX,XXX,NOP,ORA,ASL,XXX,PHP,ORA,ASLi,XXX,NOP,ORA,ASL,XXX,
+  BPL,ORA,XXX,XXX,NOP,ORA,ASL,XXX,CLC,ORA,NOP ,XXX,NOP,ORA,ASL,XXX,
+  JSR,AND,XXX,XXX,BIT,AND,ROL,XXX,PLP,AND,ROLi,XXX,BIT,AND,ROL,XXX,
+  BMI,AND,XXX,XXX,NOP,AND,ROL,XXX,SEC,AND,NOP ,XXX,NOP,AND,ROL,XXX,
+  RTI,EOR,XXX,XXX,NOP,EOR,LSR,XXX,PHA,EOR,LSRi,XXX,JMP,EOR,LSR,XXX,
+  BVC,EOR,XXX,XXX,NOP,EOR,LSR,XXX,CLI,EOR,NOP ,XXX,NOP,EOR,LSR,XXX,
+  RTS,ADC,XXX,XXX,NOP,ADC,ROR,XXX,PLA,ADC,RORi,XXX,JMP,ADC,ROR,XXX,
+  BVS,ADC,XXX,XXX,NOP,ADC,ROR,XXX,SEI,ADC,NOP ,XXX,NOP,ADC,ROR,XXX,
+  NOP,STA,NOP,XXX,STY,STA,STX,XXX,DEY,NOP,TXA ,XXX,STY,STA,STX,XXX,
+  BCC,STA,XXX,XXX,STY,STA,STX,XXX,TYA,STA,TXS ,XXX,NOP,STA,XXX,XXX,
+  LDY,LDA,LDX,XXX,LDY,LDA,LDX,XXX,TAY,LDA,TAX ,XXX,LDY,LDA,LDX,XXX,
+  BCS,LDA,XXX,XXX,LDY,LDA,LDX,XXX,CLV,LDA,TSX ,XXX,LDY,LDA,LDX,XXX,
+  CPY,CMP,NOP,XXX,CPY,CMP,DEC,XXX,INY,CMP,DEX ,XXX,CPY,CMP,DEC,XXX,
+  BNE,CMP,XXX,XXX,NOP,CMP,DEC,XXX,CLD,CMP,NOP ,XXX,NOP,CMP,DEC,XXX,
+  CPX,SBC,NOP,XXX,CPX,SBC,INC,XXX,INX,SBC,NOP ,SBC,CPX,SBC,INC,XXX,
+  BEQ,SBC,XXX,XXX,NOP,SBC,INC,XXX,SED,SBC,NOP ,XXX,NOP,SBC,INC,XXX,
 ];
+
+let addrs = <OPCODE_LIST>[
+  IMM,IZX,IMP,IMP,IMP,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,IMP,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+  ABS,IZX,IMP,IMP,ZP0,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+  IMP,IZX,IMP,IMP,IMP,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+  IMP,IZX,IMP,IMP,IMP,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,IND,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+  IMP,IZX,IMP,IMP,ZP0,ZP0,ZP0,IMP,IMP,IMP,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,ZPX,ZPX,ZPY,IMP,IMP,ABY,IMP,IMP,IMP,ABX,IMP,IMP,
+  IMM,IZX,IMM,IMP,ZP0,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,ZPX,ZPX,ZPY,IMP,IMP,ABY,IMP,IMP,ABX,ABX,ABY,IMP,
+  IMM,IZX,IMP,IMP,ZP0,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+  IMM,IZX,IMP,IMP,ZP0,ZP0,ZP0,IMP,IMP,IMM,IMP,IMP,ABS,ABS,ABS,IMP,
+  REL,IZY,IMP,IMP,IMP,ZPX,ZPX,IMP,IMP,ABY,IMP,IMP,IMP,ABX,ABX,IMP,
+];
+
+const cycles = <u8[]>[
+  7,6,2,8,3,3,5,5,3,2,2,2,4,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+  6,6,2,8,3,3,5,5,4,2,2,2,4,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+  6,6,2,8,3,3,5,5,3,2,2,2,3,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+  6,6,2,8,3,3,5,5,4,2,2,2,5,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+  2,6,2,6,3,3,3,3,2,2,2,2,4,4,4,4,
+  2,6,2,6,4,4,4,4,2,5,2,5,5,5,5,5,
+  2,6,2,6,3,3,3,3,2,2,2,2,4,4,4,4,
+  2,5,2,5,4,4,4,4,2,4,2,4,4,4,4,4,
+  2,6,2,8,3,3,5,5,2,2,2,2,4,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+  2,6,2,8,3,3,5,5,2,2,2,2,4,4,6,6,
+  2,5,2,8,4,4,6,6,2,4,2,7,4,4,7,7,
+];
+
 
 class OLC6502 {
   pc: u16;
@@ -77,7 +117,7 @@ class OLC6502 {
 
   @inline
   getFlag(flag: u8): bool {
-    return this.status & flag;
+    return (this.status & flag) > 0;
   }
 
   @inline
@@ -136,7 +176,7 @@ class OLC6502 {
 
   @inline
   fetch(): u8 {
-    return ops[this.opcode].addr == IMP
+    return <(self: OLC6502) => u8>addrs[this.opcode] == IMP
       ? this.fetched = this.read(this.addr_abs)
       : this.fetched;
   }
@@ -146,8 +186,10 @@ class OLC6502 {
       let opcode = this.opcode = this.read(this.pc++);
       this.setFlag(U, true);
       let op = unchecked(ops[opcode]);
+      let cycs = unchecked(cycles[opcode]);
+      let addr = unchecked(addrs[opcode]);
 
-      this.cycles = op.cycles + (op.addr(this) & op.op(this));
+      this.cycles = cycs + (addr(this) & op(this));
       this.setFlag(U, true);
     }
     this.clockCount++;
@@ -157,7 +199,7 @@ class OLC6502 {
   @inline
   setNZ(value: u8): u8 {
     this.setFlag(Z, value == 0);
-    this.setFlag(N, value & 0x80);
+    this.setFlag(N, <bool>(value & 0x80));
     return value;
   }
 
@@ -200,7 +242,7 @@ function ZPY(self: OLC6502): u8 {
 }
 
 function REL(self: OLC6502): u8 {
-  self.addr_abs = select(0xFF00, 0, self.read(self.pc++));
+  self.addr_abs = select(<u16>0xFF00, <u16>0, self.read(self.pc++));
   return 0;
 }
 
@@ -222,14 +264,14 @@ function ABX(self: OLC6502): u8 {
   let result = self.read16be(self.pc);
   let compare = self.addr_abs = result + self.x;
   self.pc = pc + 2;
-  return select(0, 1, samePage(compare, result));
+  return <u8>select(0, 1, samePage(compare, result));
 }
 
 function ABY(self: OLC6502): u8 {
   let result = self.read16be(self.pc);
   let compare = self.addr_abs = result + self.y;
   self.pc += 2;
-  return select(0, 1, samePage(compare, result));
+  return <u8>select(0, 1, samePage(compare, result));
 }
 
 function IND(self: OLC6502): u8 {
@@ -258,7 +300,7 @@ function IZY(self: OLC6502): u8 {
   let lo = self.read(t & 0xFF);
   let hi = self.read((t + 1) & 0xFF) << 8;
   let result = self.addr_abs = <u16>self.y + (hi | lo);
-  return select(0, 1, samePage(result, hi));
+  return <u8>select(0, 1, samePage(result, hi));
 }
 
 // instructions
@@ -269,7 +311,7 @@ function ADC(self: OLC6502): u8 {
   let temp = a + fetched + u16(self.getFlag(C));
   self.setFlag(C, temp > 255);
   self.setFlag(V,
-    (~(a ^ fetched) & (a ^ temp)) & 0x0080
+    <bool>((~(a ^ fetched) & (a ^ temp)) & 0x0080)
   );
   self.a = self.setNZ(<u8>temp);
   return 1;
@@ -281,7 +323,7 @@ function SBC(self: OLC6502): u8 {
   let temp = a + fetched + u16(self.getFlag(C));
   self.setFlag(C, temp > 255);
   self.setFlag(V,
-    (~(a ^ fetched) & (a ^ temp)) & 0x0080
+    <bool>((~(a ^ fetched) & (a ^ temp)) & 0x0080)
   );
   self.a = self.setNZ(<u8>temp);
   return 1;
@@ -311,7 +353,7 @@ function BCC(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -321,7 +363,7 @@ function BCS(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -331,7 +373,7 @@ function BEQ(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -339,8 +381,8 @@ function BEQ(self: OLC6502): u8 {
 function BIT(self: OLC6502): u8 {
   let fetched = self.fetch();
   self.setFlag(Z, (self.a & fetched) == 0x00);
-	self.setFlag(N, fetched & 0b10000000);
-  self.setFlag(V, fetched & 0b01000000);
+	self.setFlag(N, (fetched & 0b10000000) > 0);
+  self.setFlag(V, (fetched & 0b01000000) > 0);
   return 0;
 }
 
@@ -349,7 +391,7 @@ function BMI(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -359,7 +401,7 @@ function BNE(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -369,7 +411,7 @@ function BPL(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -392,7 +434,7 @@ function BVC(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -402,7 +444,7 @@ function BVS(self: OLC6502): u8 {
     let pc = self.pc;
     let addr_abs = pc + self.addr_rel;
     self.addr_abs = addr_abs;
-    self.cycles = select(1, 2, samePage(addr_abs, pc));
+    self.cycles = <u8>select(1, 2, samePage(addr_abs, pc));
   }
   return 0;
 }
@@ -520,14 +562,14 @@ function LDY(self: OLC6502): u8 {
 
 function LSRi(self: OLC6502): u8 {
   let fetched = self.fetch();
-  self.setFlag(C, fetched & 1);
+  self.setFlag(C, (fetched & 1) > 0);
   self.a = self.setNZ(fetched >> 1);
   return 0;
 }
 
 function LSR(self: OLC6502): u8 {
   let fetched = self.fetch();
-  self.setFlag(C, fetched & 1);
+  self.setFlag(C, (fetched & 1) > 0);
   self.write(self.addr_abs, self.setNZ(fetched >> 1));
   return 0;
 }
@@ -574,28 +616,28 @@ function PLP(self: OLC6502): u8 {
 
 function ROLi(self: OLC6502): u8 {
   let temp = (<u16>self.fetch() << 1) | <u16>self.getFlag(C);
-  self.setFlag(C, temp & 0xFF00);
+  self.setFlag(C, (temp & 0xFF00) > 0);
   self.a = self.setNZ(<u8>temp);
   return 0;
 }
 
 function ROL(self: OLC6502): u8 {
   let temp = (<u16>self.fetch() << 1) | <u16>self.getFlag(C);
-  self.setFlag(C, temp & 0xFF00);
+  self.setFlag(C, (temp & 0xFF00) > 0);
   self.write(self.addr_abs, self.setNZ(<u8>temp));
   return 0;
 }
 
 function RORi(self: OLC6502): u8 {
   let temp = (<u16>self.fetch() >> 1) | (<u16>self.getFlag(C) << 7);
-  self.setFlag(C, temp & 0xFF00);
+  self.setFlag(C, (temp & 0xFF00) > 0);
   self.a = self.setNZ(<u8>temp);
   return 0;
 }
 
 function ROR(self: OLC6502): u8 {
   let temp = (<u16>self.fetch() >> 1) | (<u16>self.getFlag(C) << 7);
-  self.setFlag(C, temp & 0xFF00);
+  self.setFlag(C, (temp & 0xFF00) > 0);
   self.write(self.addr_abs, self.setNZ(<u8>temp));
   return 0;
 }
@@ -671,6 +713,6 @@ function TYA(self: OLC6502): u8 {
   return 0;
 }
 
-function XXX(): u8 { return 0; }
+function XXX(self: OLC6502): u8 { return 0; }
 
 export { OLC6502 }

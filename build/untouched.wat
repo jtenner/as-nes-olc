@@ -7,22 +7,25 @@
  (type $FUNCSIG$ii (func (param i32) (result i32)))
  (type $FUNCSIG$viii (func (param i32 i32 i32)))
  (type $FUNCSIG$vi (func (param i32)))
+ (type $FUNCSIG$viiddddd (func (param i32 i32 f64 f64 f64 f64 f64)))
  (type $FUNCSIG$iiiii (func (param i32 i32 i32 i32) (result i32)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
+ (import "env" "trace" (func $~lib/builtins/trace (param i32 i32 f64 f64 f64 f64 f64)))
  (memory $0 1)
  (data (i32.const 8) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00~\00l\00i\00b\00/\00r\00t\00/\00t\00l\00s\00f\00.\00t\00s\00")
  (data (i32.const 56) "(\00\00\00\01\00\00\00\01\00\00\00(\00\00\00a\00l\00l\00o\00c\00a\00t\00i\00o\00n\00 \00t\00o\00o\00 \00l\00a\00r\00g\00e\00")
  (data (i32.const 112) "\1e\00\00\00\01\00\00\00\01\00\00\00\1e\00\00\00~\00l\00i\00b\00/\00r\00t\00/\00p\00u\00r\00e\00.\00t\00s\00")
  (data (i32.const 160) "$\00\00\00\01\00\00\00\01\00\00\00$\00\00\00I\00n\00d\00e\00x\00 \00o\00u\00t\00 \00o\00f\00 \00r\00a\00n\00g\00e\00")
  (data (i32.const 216) "\14\00\00\00\01\00\00\00\01\00\00\00\14\00\00\00~\00l\00i\00b\00/\00r\00t\00.\00t\00s\00")
- (data (i32.const 256) "\00\04\00\00\01\00\00\00\00\00\00\00\00\04\00\00\01\00\00\00\03\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\07\00\00\00\03\00\00\00\08\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\t\00\00\00\03\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\n\00\00\00\03\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\0b\00\00\00\0c\00\00\00\04\00\00\00\04\00\00\00\0d\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\0f\00\00\00\0c\00\00\00\10\00\00\00\04\00\00\00\0d\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\11\00\00\00\0c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\12\00\00\00\0c\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\13\00\00\00\14\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\16\00\00\00\14\00\00\00\17\00\00\00\04\00\00\00\18\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\19\00\00\00\14\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\1a\00\00\00\14\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\1b\00\00\00\1c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00\1e\00\00\00\1c\00\00\00\1f\00\00\00\04\00\00\00\18\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00 \00\00\00\1c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00!\00\00\00\1c\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00\05\00\00\00\"\00\00\00\05\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00%\00\00\00\05\00\00\00&\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00\'\00\00\00\"\00\00\00\04\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00(\00\00\00\"\00\00\00)\00\00\00\04\00\00\00\05\00\00\00\"\00\00\00\04\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00-\00\00\00+\00\00\00.\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00/\00\00\00+\00\00\00\04\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\000\00\00\00+\00\00\001\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\002\00\00\003\00\00\00\05\00\00\00\04\00\00\002\00\00\003\00\00\004\00\00\00\04\00\00\005\00\00\003\00\00\006\00\00\00\04\00\00\002\00\00\003\00\00\004\00\00\00\04\00\00\007\00\00\003\00\00\00\04\00\00\00\04\00\00\00\05\00\00\003\00\00\004\00\00\00\04\00\00\008\00\00\003\00\00\00\05\00\00\00\04\00\00\00\05\00\00\003\00\00\004\00\00\00\04\00\00\009\00\00\00:\00\00\00\05\00\00\00\04\00\00\009\00\00\00:\00\00\00;\00\00\00\04\00\00\00<\00\00\00:\00\00\00\05\00\00\00:\00\00\009\00\00\00:\00\00\00;\00\00\00\04\00\00\00=\00\00\00:\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00:\00\00\00;\00\00\00\04\00\00\00>\00\00\00:\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00:\00\00\00;\00\00\00\04\00\00\00")
- (data (i32.const 1296) "\00\04\00\00\01\00\00\00\00\00\00\00\00\04\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00B\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00H\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00I\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00\02\00\00\00\02\00\00\00?\00\00\00@\00\00\00?\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00I\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00F\00\00\00\02\00\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00")
- (data (i32.const 2336) "\00\01\00\00\01\00\00\00\00\00\00\00\00\01\00\00\07\06\02\08\03\03\05\05\03\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\04\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\03\02\02\02\03\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\04\02\02\02\05\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\02\06\02\06\03\03\03\03\02\02\02\02\04\04\04\04\02\06\02\06\04\04\04\04\02\05\02\05\05\05\05\05\02\06\02\06\03\03\03\03\02\02\02\02\04\04\04\04\02\05\02\05\04\04\04\04\02\04\02\04\04\04\04\04\02\06\02\08\03\03\05\05\02\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\02\06\02\08\03\03\05\05\02\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07")
- (data (i32.const 2608) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00l\00e\00n\00g\00t\00h\00")
- (data (i32.const 2656) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00b\00u\00f\00f\00e\00r\00.\00t\00s\00")
- (data (i32.const 2712) "^\00\00\00\01\00\00\00\01\00\00\00^\00\00\00E\00l\00e\00m\00e\00n\00t\00 \00t\00y\00p\00e\00 \00m\00u\00s\00t\00 \00b\00e\00 \00n\00u\00l\00l\00a\00b\00l\00e\00 \00i\00f\00 \00a\00r\00r\00a\00y\00 \00i\00s\00 \00h\00o\00l\00e\00y\00")
- (data (i32.const 2824) "\1a\00\00\00\01\00\00\00\01\00\00\00\1a\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00.\00t\00s\00")
- (data (i32.const 2872) "\07\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\93\00\00\00\02\00\00\00\93\04\00\00\02\00\00\003\00\00\00\02\00\00\00")
+ (data (i32.const 256) "\0e\00\00\00\01\00\00\00\01\00\00\00\0e\00\00\00F\00a\00i\00l\00 \00a\00t\00")
+ (data (i32.const 288) "\00\04\00\00\01\00\00\00\00\00\00\00\00\04\00\00\01\00\00\00\03\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\07\00\00\00\03\00\00\00\08\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\t\00\00\00\03\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\n\00\00\00\03\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\03\00\00\00\06\00\00\00\04\00\00\00\0b\00\00\00\0c\00\00\00\04\00\00\00\04\00\00\00\0d\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\0f\00\00\00\0c\00\00\00\10\00\00\00\04\00\00\00\0d\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\11\00\00\00\0c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\12\00\00\00\0c\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\0c\00\00\00\0e\00\00\00\04\00\00\00\13\00\00\00\14\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\16\00\00\00\14\00\00\00\17\00\00\00\04\00\00\00\18\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\19\00\00\00\14\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\1a\00\00\00\14\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\14\00\00\00\15\00\00\00\04\00\00\00\1b\00\00\00\1c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00\1e\00\00\00\1c\00\00\00\1f\00\00\00\04\00\00\00\18\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00 \00\00\00\1c\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00!\00\00\00\1c\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00\1c\00\00\00\1d\00\00\00\04\00\00\00\05\00\00\00\"\00\00\00\05\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00%\00\00\00\05\00\00\00&\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00\'\00\00\00\"\00\00\00\04\00\00\00\04\00\00\00#\00\00\00\"\00\00\00$\00\00\00\04\00\00\00(\00\00\00\"\00\00\00)\00\00\00\04\00\00\00\05\00\00\00\"\00\00\00\04\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00-\00\00\00+\00\00\00.\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\00/\00\00\00+\00\00\00\04\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\000\00\00\00+\00\00\001\00\00\00\04\00\00\00*\00\00\00+\00\00\00,\00\00\00\04\00\00\002\00\00\003\00\00\00\05\00\00\00\04\00\00\002\00\00\003\00\00\004\00\00\00\04\00\00\005\00\00\003\00\00\006\00\00\00\04\00\00\002\00\00\003\00\00\004\00\00\00\04\00\00\007\00\00\003\00\00\00\04\00\00\00\04\00\00\00\05\00\00\003\00\00\004\00\00\00\04\00\00\008\00\00\003\00\00\00\05\00\00\00\04\00\00\00\05\00\00\003\00\00\004\00\00\00\04\00\00\009\00\00\00:\00\00\00\05\00\00\00\04\00\00\009\00\00\00:\00\00\00;\00\00\00\04\00\00\00<\00\00\00:\00\00\00\05\00\00\00:\00\00\009\00\00\00:\00\00\00;\00\00\00\04\00\00\00=\00\00\00:\00\00\00\04\00\00\00\04\00\00\00\05\00\00\00:\00\00\00;\00\00\00\04\00\00\00>\00\00\00:\00\00\00\05\00\00\00\04\00\00\00\05\00\00\00:\00\00\00;\00\00\00\04\00\00\00")
+ (data (i32.const 1328) "\00\04\00\00\01\00\00\00\00\00\00\00\00\04\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00B\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00H\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00\02\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00I\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00\02\00\00\00\02\00\00\00?\00\00\00@\00\00\00?\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00I\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00F\00\00\00\02\00\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00?\00\00\00@\00\00\00\02\00\00\00\02\00\00\00A\00\00\00A\00\00\00A\00\00\00\02\00\00\00\02\00\00\00?\00\00\00\02\00\00\00\02\00\00\00B\00\00\00B\00\00\00B\00\00\00\02\00\00\00C\00\00\00D\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00E\00\00\00E\00\00\00\02\00\00\00\02\00\00\00F\00\00\00\02\00\00\00\02\00\00\00\02\00\00\00G\00\00\00G\00\00\00\02\00\00\00")
+ (data (i32.const 2368) "\00\01\00\00\01\00\00\00\00\00\00\00\00\01\00\00\07\06\02\08\03\03\05\05\03\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\04\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\03\02\02\02\03\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\06\06\02\08\03\03\05\05\04\02\02\02\05\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\02\06\02\06\03\03\03\03\02\02\02\02\04\04\04\04\02\06\02\06\04\04\04\04\02\05\02\05\05\05\05\05\02\06\02\06\03\03\03\03\02\02\02\02\04\04\04\04\02\05\02\05\04\04\04\04\02\04\02\04\04\04\04\04\02\06\02\08\03\03\05\05\02\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07\02\06\02\08\03\03\05\05\02\02\02\02\04\04\06\06\02\05\02\08\04\04\06\06\02\04\02\07\04\04\07\07")
+ (data (i32.const 2640) "\1c\00\00\00\01\00\00\00\01\00\00\00\1c\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00l\00e\00n\00g\00t\00h\00")
+ (data (i32.const 2688) "&\00\00\00\01\00\00\00\01\00\00\00&\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00b\00u\00f\00f\00e\00r\00.\00t\00s\00")
+ (data (i32.const 2744) "^\00\00\00\01\00\00\00\01\00\00\00^\00\00\00E\00l\00e\00m\00e\00n\00t\00 \00t\00y\00p\00e\00 \00m\00u\00s\00t\00 \00b\00e\00 \00n\00u\00l\00l\00a\00b\00l\00e\00 \00i\00f\00 \00a\00r\00r\00a\00y\00 \00i\00s\00 \00h\00o\00l\00e\00y\00")
+ (data (i32.const 2856) "\1a\00\00\00\01\00\00\00\01\00\00\00\1a\00\00\00~\00l\00i\00b\00/\00a\00r\00r\00a\00y\00.\00t\00s\00")
+ (data (i32.const 2904) "\07\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\10\00\00\00\00\00\00\00\93\00\00\00\02\00\00\00\93\04\00\00\02\00\00\003\00\00\00\02\00\00\00")
  (table $0 74 funcref)
  (elem (i32.const 0) $null $assembly/index/BRK $assembly/index/IMP $assembly/index/ORA $assembly/index/XXX $assembly/index/NOP $assembly/index/ASL $assembly/index/PHP $assembly/index/ASLi $assembly/index/BPL $assembly/index/CLC $assembly/index/JSR $assembly/index/AND $assembly/index/BIT $assembly/index/ROL $assembly/index/PLP $assembly/index/ROLi $assembly/index/BMI $assembly/index/SEC $assembly/index/RTI $assembly/index/EOR $assembly/index/LSR $assembly/index/PHA $assembly/index/LSRi $assembly/index/JMP $assembly/index/BVC $assembly/index/CLI $assembly/index/RTS $assembly/index/ADC $assembly/index/ROR $assembly/index/PLA $assembly/index/RORi $assembly/index/BVS $assembly/index/SEI $assembly/index/STA $assembly/index/STY $assembly/index/STX $assembly/index/DEY $assembly/index/TXA $assembly/index/BCC $assembly/index/TYA $assembly/index/TXS $assembly/index/LDY $assembly/index/LDA $assembly/index/LDX $assembly/index/TAY $assembly/index/TAX $assembly/index/BCS $assembly/index/CLV $assembly/index/TSX $assembly/index/CPY $assembly/index/CMP $assembly/index/DEC $assembly/index/INY $assembly/index/DEX $assembly/index/BNE $assembly/index/CLD $assembly/index/CPX $assembly/index/SBC $assembly/index/INC $assembly/index/INX $assembly/index/BEQ $assembly/index/SED $assembly/index/IMM $assembly/index/IZX $assembly/index/ZP0 $assembly/index/ABS $assembly/index/REL $assembly/index/IZY $assembly/index/ZPX $assembly/index/ABY $assembly/index/ABX $assembly/index/IND $assembly/index/ZPY)
  (global $~lib/rt/tlsf/ROOT (mut i32) (i32.const 0))
@@ -38,12 +41,13 @@
  (global $assembly/index/U i32 (i32.const 32))
  (global $assembly/index/V i32 (i32.const 64))
  (global $assembly/index/N i32 (i32.const 128))
+ (global $assembly/index/abid i32 (i32.const 0))
  (global $assembly/index/ops (mut i32) (i32.const 0))
  (global $assembly/index/addrs (mut i32) (i32.const 0))
  (global $assembly/index/cycles (mut i32) (i32.const 0))
  (global $~lib/argc (mut i32) (i32.const 0))
- (global $~lib/rt/__rtti_base i32 (i32.const 2872))
- (global $~lib/heap/__heap_base i32 (i32.const 2932))
+ (global $~lib/rt/__rtti_base i32 (i32.const 2904))
+ (global $~lib/heap/__heap_base i32 (i32.const 2964))
  (global $assembly/index/OLC6502 i32 (i32.const 3))
  (export "memory" (memory $0))
  (export "__alloc" (func $~lib/rt/tlsf/__alloc))
@@ -51,6 +55,15 @@
  (export "__release" (func $~lib/rt/pure/__release))
  (export "__collect" (func $~lib/rt/pure/__collect))
  (export "__rtti_base" (global $~lib/rt/__rtti_base))
+ (export "C" (global $assembly/index/C))
+ (export "Z" (global $assembly/index/Z))
+ (export "I" (global $assembly/index/I))
+ (export "D" (global $assembly/index/D))
+ (export "B" (global $assembly/index/B))
+ (export "U" (global $assembly/index/U))
+ (export "V" (global $assembly/index/V))
+ (export "N" (global $assembly/index/N))
+ (export "abid" (global $assembly/index/abid))
  (export "OLC6502" (global $assembly/index/OLC6502))
  (export "OLC6502#get:pc" (func $OLC6502#get:pc))
  (export "OLC6502#set:pc" (func $OLC6502#set:pc))
@@ -74,28 +87,38 @@
  (export "OLC6502#set:opcode" (func $OLC6502#set:opcode))
  (export "OLC6502#get:cycles" (func $OLC6502#get:cycles))
  (export "OLC6502#set:cycles" (func $OLC6502#set:cycles))
- (export "OLC6502#get:bus" (func $OLC6502#get:bus))
- (export "OLC6502#set:bus" (func $OLC6502#set:bus))
+ (export "OLC6502#get:clockCount" (func $OLC6502#get:clockCount))
+ (export "OLC6502#set:clockCount" (func $OLC6502#set:clockCount))
+ (export "OLC6502#get:gameRam" (func $OLC6502#get:gameRam))
+ (export "OLC6502#set:gameRam" (func $OLC6502#set:gameRam))
+ (export "OLC6502#get:ioRegister1" (func $OLC6502#get:ioRegister1))
+ (export "OLC6502#set:ioRegister1" (func $OLC6502#set:ioRegister1))
+ (export "OLC6502#get:ioRegister2" (func $OLC6502#get:ioRegister2))
+ (export "OLC6502#set:ioRegister2" (func $OLC6502#set:ioRegister2))
+ (export "OLC6502#get:expansionROM" (func $OLC6502#get:expansionROM))
+ (export "OLC6502#set:expansionROM" (func $OLC6502#set:expansionROM))
+ (export "OLC6502#get:SRAM" (func $OLC6502#get:SRAM))
+ (export "OLC6502#set:SRAM" (func $OLC6502#set:SRAM))
+ (export "OLC6502#get:PRGLo" (func $OLC6502#get:PRGLo))
+ (export "OLC6502#set:PRGLo" (func $OLC6502#set:PRGLo))
+ (export "OLC6502#get:PRGHi" (func $OLC6502#get:PRGHi))
+ (export "OLC6502#set:PRGHi" (func $OLC6502#set:PRGHi))
  (export "OLC6502#constructor" (func $assembly/index/OLC6502#constructor))
  (export "OLC6502#reset" (func $assembly/index/OLC6502#reset))
  (export "OLC6502#setFlag" (func $assembly/index/OLC6502#setFlag))
  (export "OLC6502#getFlag" (func $assembly/index/OLC6502#getFlag))
  (export "OLC6502#push" (func $assembly/index/OLC6502#push))
- (export "OLC6502#push16be" (func $assembly/index/OLC6502#push16be))
  (export "OLC6502#irq" (func $assembly/index/OLC6502#irq))
  (export "OLC6502#nmi" (func $assembly/index/OLC6502#nmi))
  (export "OLC6502#write" (func $assembly/index/OLC6502#write))
  (export "__setargc" (func $~lib/setargc))
  (export "OLC6502#read" (func $assembly/index/OLC6502#read|trampoline))
- (export "OLC6502#read16be" (func $assembly/index/OLC6502#read16be))
- (export "OLC6502#writeu16be" (func $assembly/index/OLC6502#writeu16be))
  (export "OLC6502#fetch" (func $assembly/index/OLC6502#fetch))
  (export "OLC6502#clock" (func $assembly/index/OLC6502#clock))
  (export "OLC6502#setNZ" (func $assembly/index/OLC6502#setNZ))
  (export "OLC6502#pop" (func $assembly/index/OLC6502#pop))
- (export "OLC6502#pop16be" (func $assembly/index/OLC6502#pop16be))
  (start $start)
- (func $~lib/rt/tlsf/removeBlock (; 1 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/tlsf/removeBlock (; 2 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -305,7 +328,7 @@
    end
   end
  )
- (func $~lib/rt/tlsf/insertBlock (; 2 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/tlsf/insertBlock (; 3 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -655,7 +678,7 @@
   local.get $7
   i32.store offset=4
  )
- (func $~lib/rt/tlsf/addMemory (; 3 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/rt/tlsf/addMemory (; 4 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -803,7 +826,7 @@
   call $~lib/rt/tlsf/insertBlock
   i32.const 1
  )
- (func $~lib/rt/tlsf/initializeRoot (; 4 ;) (type $FUNCSIG$v)
+ (func $~lib/rt/tlsf/initializeRoot (; 5 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
@@ -948,7 +971,7 @@
   local.get $3
   global.set $~lib/rt/tlsf/ROOT
  )
- (func $~lib/rt/tlsf/prepareSize (; 5 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/rt/tlsf/prepareSize (; 6 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -977,7 +1000,7 @@
   i32.gt_u
   select
  )
- (func $~lib/rt/tlsf/searchBlock (; 6 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/tlsf/searchBlock (; 7 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -1160,7 +1183,7 @@
   end
   local.get $7
  )
- (func $~lib/rt/tlsf/growMemory (; 7 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/tlsf/growMemory (; 8 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -1244,7 +1267,7 @@
   call $~lib/rt/tlsf/addMemory
   drop
  )
- (func $~lib/rt/tlsf/prepareBlock (; 8 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/rt/tlsf/prepareBlock (; 9 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -1339,7 +1362,7 @@
    i32.store
   end
  )
- (func $~lib/rt/tlsf/allocateBlock (; 9 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/tlsf/allocateBlock (; 10 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -1400,7 +1423,7 @@
   call $~lib/rt/tlsf/prepareBlock
   local.get $3
  )
- (func $~lib/rt/tlsf/__alloc (; 10 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/rt/tlsf/__alloc (; 11 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   global.get $~lib/rt/tlsf/ROOT
@@ -1423,7 +1446,7 @@
   i32.const 16
   i32.add
  )
- (func $~lib/rt/pure/increment (; 11 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/increment (; 12 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.load offset=4
@@ -1466,7 +1489,7 @@
    unreachable
   end
  )
- (func $~lib/rt/pure/__retain (; 12 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/rt/pure/__retain (; 13 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   global.get $~lib/heap/__heap_base
   i32.gt_u
@@ -1478,7 +1501,7 @@
   end
   local.get $0
  )
- (func $~lib/rt/tlsf/freeBlock (; 13 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/tlsf/freeBlock (; 14 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   local.get $1
   i32.load
@@ -1505,7 +1528,7 @@
   local.get $1
   call $~lib/rt/tlsf/insertBlock
  )
- (func $~lib/rt/__typeinfo (; 14 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/rt/__typeinfo (; 15 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   global.get $~lib/rt/__rtti_base
   local.set $1
@@ -1530,7 +1553,7 @@
   i32.add
   i32.load
  )
- (func $~lib/util/memory/memcpy (; 15 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/util/memory/memcpy (; 16 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2558,7 +2581,7 @@
    i32.store8
   end
  )
- (func $~lib/memory/memory.copy (; 16 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/memory/memory.copy (; 17 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2783,7 +2806,7 @@
    end
   end
  )
- (func $~lib/rt/tlsf/__free (; 17 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/tlsf/__free (; 18 ;) (type $FUNCSIG$vi) (param $0 i32)
   global.get $~lib/rt/tlsf/ROOT
   i32.eqz
   if
@@ -2820,7 +2843,7 @@
   i32.sub
   call $~lib/rt/tlsf/freeBlock
  )
- (func $~lib/rt/pure/growRoots (; 18 ;) (type $FUNCSIG$v)
+ (func $~lib/rt/pure/growRoots (; 19 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
@@ -2870,7 +2893,7 @@
   i32.add
   global.set $~lib/rt/pure/END
  )
- (func $~lib/rt/pure/appendRoot (; 19 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/appendRoot (; 20 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   global.get $~lib/rt/pure/CUR
   local.set $1
@@ -2890,7 +2913,7 @@
   i32.add
   global.set $~lib/rt/pure/CUR
  )
- (func $~lib/rt/pure/decrement (; 20 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/decrement (; 21 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -2992,7 +3015,7 @@
    end
   end
  )
- (func $~lib/rt/pure/__release (; 21 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/__release (; 22 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   global.get $~lib/heap/__heap_base
   i32.gt_u
@@ -3003,7 +3026,7 @@
    call $~lib/rt/pure/decrement
   end
  )
- (func $~lib/rt/pure/markGray (; 22 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/markGray (; 23 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.load offset=4
@@ -3030,7 +3053,7 @@
    call $~lib/rt/__visit_members
   end
  )
- (func $~lib/rt/pure/scanBlack (; 23 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/scanBlack (; 24 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   local.get $0
   i32.load offset=4
@@ -3047,7 +3070,7 @@
   i32.const 4
   call $~lib/rt/__visit_members
  )
- (func $~lib/rt/pure/scan (; 24 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/scan (; 25 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.load offset=4
@@ -3084,7 +3107,7 @@
    end
   end
  )
- (func $~lib/rt/pure/collectWhite (; 25 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/rt/pure/collectWhite (; 26 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.load offset=4
@@ -3122,7 +3145,7 @@
    call $~lib/rt/tlsf/freeBlock
   end
  )
- (func $~lib/rt/pure/__collect (; 26 ;) (type $FUNCSIG$v)
+ (func $~lib/rt/pure/__collect (; 27 ;) (type $FUNCSIG$v)
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
@@ -3265,20 +3288,6 @@
   local.get $0
   global.set $~lib/rt/pure/CUR
  )
- (func $~lib/polyfills/bswap<u16> (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  i32.const 8
-  i32.shl
-  local.get $0
-  i32.const 65535
-  i32.and
-  i32.const 8
-  i32.shr_u
-  i32.const 255
-  i32.and
-  i32.or
-  return
- )
  (func $assembly/index/BRK (; 28 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
@@ -3323,43 +3332,336 @@
   i32.const 256
   local.get $2
   i32.add
-  i32.const 1
-  i32.sub
   local.set $4
   local.get $1
+  i32.const 65535
+  i32.and
+  i32.const 8
+  i32.shr_u
   local.set $3
-  local.get $5
-  i32.load offset=20
   local.get $4
   i32.const 65535
   i32.and
-  i32.add
-  local.get $3
-  call $~lib/polyfills/bswap<u16>
-  i32.store16
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $5
+   i32.load offset=20
+   local.get $4
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $3
+   i32.store8
+  else   
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $5
+    i32.load offset=24
+    local.get $4
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $3
+    i32.store8
+   else    
+    local.get $4
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $5
+     i32.load offset=28
+     local.get $4
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $3
+     i32.store8
+    else     
+     local.get $4
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $5
+      i32.load offset=32
+      local.get $4
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $3
+      i32.store8
+     else      
+      local.get $4
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $5
+       i32.load offset=36
+       local.get $4
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $3
+       i32.store8
+      else       
+       local.get $4
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $5
+        i32.load offset=40
+        local.get $4
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       else        
+        local.get $5
+        i32.load offset=44
+        local.get $4
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   local.get $0
   local.set $4
-  global.get $assembly/index/B
-  local.set $3
+  i32.const 256
+  local.get $2
   i32.const 1
+  i32.sub
+  i32.const 255
+  i32.and
+  i32.add
+  local.set $3
+  local.get $1
   local.set $6
-  local.get $4
-  i32.load8_u offset=6
+  local.get $3
+  i32.const 65535
+  i32.and
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $6
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $3
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $6
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $3
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $4
+   i32.load offset=20
+   local.get $3
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $6
+   i32.store8
+  else   
+   local.get $3
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=24
+    local.get $3
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $6
+    i32.store8
+   else    
+    local.get $3
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=28
+     local.get $3
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $6
+     i32.store8
+    else     
+     local.get $3
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=32
+      local.get $3
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $6
+      i32.store8
+     else      
+      local.get $3
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=36
+       local.get $3
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $6
+       i32.store8
+      else       
+       local.get $3
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=40
+        local.get $3
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       else        
+        local.get $4
+        i32.load offset=44
+        local.get $3
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
+  local.get $0
+  local.set $3
+  global.get $assembly/index/B
+  local.set $6
+  i32.const 1
   local.set $5
+  local.get $3
+  i32.load8_u offset=6
+  local.set $4
+  local.get $3
   local.get $4
-  local.get $5
-  local.get $3
+  local.get $6
   i32.or
-  local.get $5
-  local.get $3
+  local.get $4
+  local.get $6
   i32.const -1
   i32.xor
   i32.and
-  local.get $6
+  local.get $5
   select
   i32.store8 offset=6
   local.get $0
-  local.set $4
+  local.set $3
   i32.const 256
   local.get $2
   i32.const 2
@@ -3367,37 +3669,173 @@
   i32.const 255
   i32.and
   i32.add
-  local.set $3
+  local.set $6
   local.get $0
   i32.load8_u offset=6
-  local.set $6
-  local.get $4
-  i32.load offset=20
-  local.get $3
+  local.set $5
+  local.get $6
   i32.const 65535
   i32.and
-  i32.add
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $5
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
   local.get $6
-  i32.store8
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $5
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $6
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $3
+   i32.load offset=20
+   local.get $6
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $5
+   i32.store8
+  else   
+   local.get $6
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=24
+    local.get $6
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $5
+    i32.store8
+   else    
+    local.get $6
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=28
+     local.get $6
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $5
+     i32.store8
+    else     
+     local.get $6
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=32
+      local.get $6
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $5
+      i32.store8
+     else      
+      local.get $6
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=36
+       local.get $6
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $5
+       i32.store8
+      else       
+       local.get $6
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=40
+        local.get $6
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $5
+        i32.store8
+       else        
+        local.get $3
+        i32.load offset=44
+        local.get $6
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $5
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   local.get $0
-  local.set $3
-  global.get $assembly/index/B
   local.set $6
-  i32.const 0
+  global.get $assembly/index/B
   local.set $5
-  local.get $3
-  i32.load8_u offset=6
+  i32.const 0
   local.set $4
+  local.get $6
+  i32.load8_u offset=6
+  local.set $3
+  local.get $6
   local.get $3
-  local.get $4
-  local.get $6
+  local.get $5
   i32.or
-  local.get $4
-  local.get $6
+  local.get $3
+  local.get $5
   i32.const -1
   i32.xor
   i32.and
-  local.get $5
+  local.get $4
   select
   i32.store8 offset=6
   local.get $0
@@ -3406,24 +3844,247 @@
   i32.sub
   i32.store8 offset=5
   local.get $0
-  local.get $0
-  local.set $6
-  i32.const 65534
-  local.set $5
-  local.get $6
-  i32.load offset=20
-  local.get $5
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  block $assembly/index/OLC6502#read|inlined.0 (result i32)
+   local.get $0
+   local.set $5
+   i32.const 65534
+   local.set $4
+   i32.const 1
+   local.set $3
+   local.get $4
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $5
+    i32.load offset=20
+    local.get $4
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.0
+   else    
+    local.get $4
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $5
+     i32.load offset=24
+     local.get $4
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.0
+    else     
+     local.get $4
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $5
+      i32.load offset=28
+      local.get $4
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.0
+     else      
+      local.get $4
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $5
+       i32.load offset=32
+       local.get $4
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.0
+      else       
+       local.get $4
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $5
+        i32.load offset=36
+        local.get $4
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.0
+       else        
+        local.get $4
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $5
+         i32.load offset=40
+         local.get $4
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.0
+        else         
+         local.get $5
+         i32.load offset=44
+         local.get $4
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.0
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
   i32.and
+  block $assembly/index/OLC6502#read|inlined.1 (result i32)
+   local.get $0
+   local.set $4
+   i32.const 65535
+   local.set $6
+   i32.const 1
+   local.set $3
+   local.get $6
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=20
+    local.get $6
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.1
+   else    
+    local.get $6
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=24
+     local.get $6
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.1
+    else     
+     local.get $6
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=28
+      local.get $6
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.1
+     else      
+      local.get $6
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=32
+       local.get $6
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.1
+      else       
+       local.get $6
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=36
+        local.get $6
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.1
+       else        
+        local.get $6
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $4
+         i32.load offset=40
+         local.get $6
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.1
+        else         
+         local.get $4
+         i32.load offset=44
+         local.get $6
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.1
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
   i32.store16
   i32.const 0
-  local.set $6
+  local.set $3
   local.get $0
   call $~lib/rt/pure/__release
-  local.get $6
+  local.get $3
  )
  (func $assembly/index/IMP (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
@@ -3575,14 +4236,150 @@
   local.set $4
   local.get $1
   local.set $3
-  local.get $5
-  i32.load offset=20
   local.get $4
   i32.const 65535
   i32.and
-  i32.add
-  local.get $3
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $5
+   i32.load offset=20
+   local.get $4
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $3
+   i32.store8
+  else   
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $5
+    i32.load offset=24
+    local.get $4
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $3
+    i32.store8
+   else    
+    local.get $4
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $5
+     i32.load offset=28
+     local.get $4
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $3
+     i32.store8
+    else     
+     local.get $4
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $5
+      i32.load offset=32
+      local.get $4
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $3
+      i32.store8
+     else      
+      local.get $4
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $5
+       i32.load offset=36
+       local.get $4
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $3
+       i32.store8
+      else       
+       local.get $4
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $5
+        i32.load offset=40
+        local.get $4
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       else        
+        local.get $5
+        i32.load offset=44
+        local.get $4
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   local.get $0
   local.get $0
   i32.load8_u offset=6
@@ -3711,120 +4508,353 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.set $2
-  local.get $0
   i32.load16_u
-  i32.const 1
-  i32.sub
   local.set $1
-  local.get $2
+  local.get $0
+  local.set $3
+  local.get $1
+  i32.const 8
+  i32.shr_u
+  local.set $2
+  local.get $3
+  local.set $6
+  i32.const 256
+  local.get $3
+  local.get $3
   i32.load8_u offset=5
+  local.tee $4
   i32.const 1
   i32.sub
-  local.set $3
+  i32.store8 offset=5
+  local.get $4
+  i32.const 255
+  i32.and
+  i32.add
+  local.set $5
+  local.get $2
+  local.set $4
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $4
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $4
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $6
+   i32.load offset=20
+   local.get $5
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $4
+   i32.store8
+  else   
+   local.get $5
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $6
+    i32.load offset=24
+    local.get $5
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $4
+    i32.store8
+   else    
+    local.get $5
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $6
+     i32.load offset=28
+     local.get $5
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $4
+     i32.store8
+    else     
+     local.get $5
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $6
+      i32.load offset=32
+      local.get $5
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $4
+      i32.store8
+     else      
+      local.get $5
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $6
+       i32.load offset=36
+       local.get $5
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $4
+       i32.store8
+      else       
+       local.get $5
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $6
+        i32.load offset=40
+        local.get $5
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $4
+        i32.store8
+       else        
+        local.get $6
+        i32.load offset=44
+        local.get $5
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $4
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
+  local.get $0
+  local.set $5
+  local.get $1
+  local.set $4
+  local.get $5
+  local.set $7
+  i32.const 256
+  local.get $5
+  local.get $5
+  i32.load8_u offset=5
+  local.tee $3
+  i32.const 1
+  i32.sub
+  i32.store8 offset=5
   local.get $3
   i32.const 255
   i32.and
-  i32.const 0
+  i32.add
+  local.set $2
+  local.get $4
+  local.set $6
+  local.get $2
+  i32.const 65535
+  i32.and
+  i32.const 2
   i32.eq
   if
-   local.get $2
-   local.set $6
-   i32.const 256
-   local.set $5
-   local.get $1
-   i32.const 65535
-   i32.and
-   i32.const 8
-   i32.shr_u
-   local.set $4
-   local.get $6
-   i32.load offset=20
-   local.get $5
-   i32.add
-   local.get $4
-   i32.store8
-   local.get $2
-   local.set $6
-   i32.const 511
-   local.set $5
-   local.get $1
-   local.set $4
-   local.get $6
-   i32.load offset=20
-   local.get $5
-   i32.add
-   local.get $4
-   i32.store8
-   local.get $2
-   local.set $5
-   local.get $1
-   local.set $4
-   local.get $5
-   local.set $8
-   i32.const 256
-   local.get $5
-   local.get $5
-   i32.load8_u offset=5
-   local.tee $6
+   i32.const 272
    i32.const 1
-   i32.sub
-   i32.store8 offset=5
    local.get $6
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $7
-   local.get $4
-   local.set $6
-   local.get $8
-   i32.load offset=20
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $6
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
    local.get $7
-   i32.const 65535
+   i32.load offset=20
+   local.get $2
+   i32.const 2047
    i32.and
    i32.add
    local.get $6
    i32.store8
   else   
    local.get $2
-   local.set $8
-   i32.const 256
-   local.get $3
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $7
-   local.get $1
-   local.set $6
-   local.get $8
-   i32.load offset=20
-   local.get $7
    i32.const 65535
    i32.and
-   i32.add
-   local.get $6
-   call $~lib/polyfills/bswap<u16>
-   i32.store16
-   local.get $2
-   local.get $3
-   i32.const 2
-   i32.sub
-   i32.store8 offset=5
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $7
+    i32.load offset=24
+    local.get $2
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $6
+    i32.store8
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $7
+     i32.load offset=28
+     local.get $2
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $6
+     i32.store8
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $7
+      i32.load offset=32
+      local.get $2
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $6
+      i32.store8
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $7
+       i32.load offset=36
+       local.get $2
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $6
+       i32.store8
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $7
+        i32.load offset=40
+        local.get $2
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       else        
+        local.get $7
+        i32.load offset=44
+        local.get $2
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       end
+      end
+     end
+    end
+   end
   end
   local.get $0
   local.get $0
   i32.load16_u offset=8
   i32.store16
   i32.const 0
-  local.set $3
+  local.set $5
   local.get $0
   call $~lib/rt/pure/__release
-  local.get $3
+  local.get $5
  )
  (func $assembly/index/AND (; 39 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
@@ -3882,30 +4912,143 @@
   local.get $0
   local.get $0
   local.set $1
-  local.get $1
-  local.set $3
-  i32.const 256
-  local.get $1
-  local.get $1
-  i32.load8_u offset=5
-  i32.const 1
-  i32.add
-  local.tee $2
-  i32.store8 offset=5
-  local.get $2
-  i32.const 255
-  i32.and
-  i32.add
-  local.set $2
-  i32.const 1
-  local.set $4
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.8 (result i32)
+   local.get $1
+   local.set $3
+   i32.const 256
+   local.get $1
+   local.get $1
+   i32.load8_u offset=5
+   i32.const 1
+   i32.add
+   local.tee $2
+   i32.store8 offset=5
+   local.get $2
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.8
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.8
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.8
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.8
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.8
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.8
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.8
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   i32.store8 offset=6
@@ -4044,37 +5187,149 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
   local.get $0
   local.set $1
-  local.get $1
-  local.set $3
-  i32.const 256
-  local.get $1
-  local.get $1
-  i32.load8_u offset=5
-  i32.const 1
-  i32.add
-  local.tee $2
-  i32.store8 offset=5
-  local.get $2
-  i32.const 255
-  i32.and
-  i32.add
-  local.set $2
-  i32.const 1
-  local.set $4
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.10 (result i32)
+   local.get $1
+   local.set $3
+   i32.const 256
+   local.get $1
+   local.get $1
+   i32.load8_u offset=5
+   i32.const 1
+   i32.add
+   local.tee $2
+   i32.store8 offset=5
+   local.get $2
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.10
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.10
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.10
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.10
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.10
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.10
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.10
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   global.get $assembly/index/B
@@ -4089,73 +5344,299 @@
   local.get $0
   local.get $0
   local.set $2
-  local.get $2
-  i32.load8_u offset=5
-  local.set $1
-  local.get $2
-  local.get $1
-  i32.const 2
-  i32.add
-  i32.store8 offset=5
-  local.get $1
-  i32.const 254
-  i32.eq
-  if (result i32)
-   local.get $2
-   local.set $4
-   i32.const 511
-   local.set $3
-   i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $3
-   i32.add
-   i32.load8_u
-   i32.const 255
-   i32.and
+  block $assembly/index/OLC6502#read|inlined.11 (result i32)
    local.get $2
    local.set $4
    i32.const 256
-   local.set $3
-   i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $3
-   i32.add
-   i32.load8_u
-   i32.const 255
-   i32.and
-   i32.const 8
-   i32.shl
-   i32.or
-  else   
    local.get $2
-   local.set $4
-   local.get $1
+   local.get $2
+   i32.load8_u offset=5
    i32.const 1
    i32.add
+   local.tee $1
+   i32.store8 offset=5
+   local.get $1
    i32.const 255
    i32.and
-   local.set $3
-   local.get $4
-   i32.load offset=20
-   local.get $3
    i32.add
-   i32.load16_u
-   call $~lib/polyfills/bswap<u16>
+   local.set $3
+   i32.const 1
+   local.set $1
+   local.get $3
    i32.const 65535
    i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=20
+    local.get $3
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.11
+   else    
+    local.get $3
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=24
+     local.get $3
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.11
+    else     
+     local.get $3
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=28
+      local.get $3
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.11
+     else      
+      local.get $3
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=32
+       local.get $3
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.11
+      else       
+       local.get $3
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=36
+        local.get $3
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.11
+       else        
+        local.get $3
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $4
+         i32.load offset=40
+         local.get $3
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.11
+        else         
+         local.get $4
+         i32.load offset=44
+         local.get $3
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.11
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
   end
-  i32.const 65535
+  i32.const 255
   i32.and
+  i32.const 255
+  i32.and
+  local.get $0
+  local.set $3
+  block $assembly/index/OLC6502#read|inlined.12 (result i32)
+   local.get $3
+   local.set $1
+   i32.const 256
+   local.get $3
+   local.get $3
+   i32.load8_u offset=5
+   i32.const 1
+   i32.add
+   local.tee $2
+   i32.store8 offset=5
+   local.get $2
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $4
+   i32.const 1
+   local.set $2
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $1
+    i32.load offset=20
+    local.get $4
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.12
+   else    
+    local.get $4
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $1
+     i32.load offset=24
+     local.get $4
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.12
+    else     
+     local.get $4
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $1
+      i32.load offset=28
+      local.get $4
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.12
+     else      
+      local.get $4
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $1
+       i32.load offset=32
+       local.get $4
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.12
+      else       
+       local.get $4
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $1
+        i32.load offset=36
+        local.get $4
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.12
+       else        
+        local.get $4
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $1
+         i32.load offset=40
+         local.get $4
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.12
+        else         
+         local.get $1
+         i32.load offset=44
+         local.get $4
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.12
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
   i32.store16
   i32.const 0
-  local.set $1
+  local.set $3
   local.get $0
   call $~lib/rt/pure/__release
-  local.get $1
+  local.get $3
  )
  (func $assembly/index/EOR (; 47 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
@@ -4220,14 +5701,150 @@
   local.set $4
   local.get $1
   local.set $3
-  local.get $5
-  i32.load offset=20
   local.get $4
   i32.const 65535
   i32.and
-  i32.add
-  local.get $3
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $3
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $4
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $5
+   i32.load offset=20
+   local.get $4
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $3
+   i32.store8
+  else   
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $5
+    i32.load offset=24
+    local.get $4
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $3
+    i32.store8
+   else    
+    local.get $4
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $5
+     i32.load offset=28
+     local.get $4
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $3
+     i32.store8
+    else     
+     local.get $4
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $5
+      i32.load offset=32
+      local.get $4
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $3
+      i32.store8
+     else      
+      local.get $4
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $5
+       i32.load offset=36
+       local.get $4
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $3
+       i32.store8
+      else       
+       local.get $4
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $5
+        i32.load offset=40
+        local.get $4
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       else        
+        local.get $5
+        i32.load offset=44
+        local.get $4
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   i32.const 0
   local.set $2
   local.get $0
@@ -4360,74 +5977,299 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
   local.get $0
   local.set $1
-  local.get $1
-  i32.load8_u offset=5
-  local.set $2
-  local.get $1
-  local.get $2
-  i32.const 2
-  i32.add
-  i32.store8 offset=5
-  local.get $2
-  i32.const 254
-  i32.eq
-  if (result i32)
+  block $assembly/index/OLC6502#read|inlined.16 (result i32)
    local.get $1
-   local.set $4
-   i32.const 511
    local.set $3
-   i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $3
-   i32.add
-   i32.load8_u
-   i32.const 255
-   i32.and
-   local.get $1
-   local.set $4
    i32.const 256
-   local.set $3
+   local.get $1
+   local.get $1
+   i32.load8_u offset=5
    i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $3
    i32.add
-   i32.load8_u
+   local.tee $2
+   i32.store8 offset=5
+   local.get $2
    i32.const 255
    i32.and
-   i32.const 8
-   i32.shl
-   i32.or
-  else   
-   local.get $1
+   i32.add
+   local.set $2
+   i32.const 1
    local.set $4
    local.get $2
-   i32.const 1
-   i32.add
-   i32.const 255
-   i32.and
-   local.set $3
-   local.get $4
-   i32.load offset=20
-   local.get $3
-   i32.add
-   i32.load16_u
-   call $~lib/polyfills/bswap<u16>
    i32.const 65535
    i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.16
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.16
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.16
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.16
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.16
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.16
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.16
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
   end
-  i32.const 65535
+  i32.const 255
   i32.and
+  i32.const 255
+  i32.and
+  local.get $0
+  local.set $2
+  block $assembly/index/OLC6502#read|inlined.17 (result i32)
+   local.get $2
+   local.set $4
+   i32.const 256
+   local.get $2
+   local.get $2
+   i32.load8_u offset=5
+   i32.const 1
+   i32.add
+   local.tee $1
+   i32.store8 offset=5
+   local.get $1
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $3
+   i32.const 1
+   local.set $1
+   local.get $3
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=20
+    local.get $3
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.17
+   else    
+    local.get $3
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=24
+     local.get $3
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.17
+    else     
+     local.get $3
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=28
+      local.get $3
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.17
+     else      
+      local.get $3
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=32
+       local.get $3
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.17
+      else       
+       local.get $3
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=36
+        local.get $3
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.17
+       else        
+        local.get $3
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $4
+         i32.load offset=40
+         local.get $3
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.17
+        else         
+         local.get $4
+         i32.load offset=44
+         local.get $3
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.17
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
   i32.store16
   i32.const 0
   local.set $2
@@ -4475,30 +6317,143 @@
   local.set $5
   local.get $0
   local.set $1
-  local.get $1
-  local.set $3
-  i32.const 256
-  local.get $1
-  local.get $1
-  i32.load8_u offset=5
-  i32.const 1
-  i32.add
-  local.tee $2
-  i32.store8 offset=5
-  local.get $2
-  i32.const 255
-  i32.and
-  i32.add
-  local.set $2
-  i32.const 1
-  local.set $4
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.20 (result i32)
+   local.get $1
+   local.set $3
+   i32.const 256
+   local.get $1
+   local.get $1
+   i32.load8_u offset=5
+   i32.const 1
+   i32.add
+   local.tee $2
+   i32.store8 offset=5
+   local.get $2
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.20
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.20
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.20
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.20
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.20
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.20
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.20
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   local.set $2
@@ -4654,12 +6609,134 @@
   local.get $0
   i32.load8_u offset=2
   local.set $1
-  local.get $3
-  i32.load offset=20
   local.get $2
-  i32.add
-  local.get $1
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $1
+   i32.store8
+  else   
+   local.get $2
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=24
+    local.get $2
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $1
+    i32.store8
+   else    
+    local.get $2
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=28
+     local.get $2
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $1
+     i32.store8
+    else     
+     local.get $2
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=32
+      local.get $2
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $1
+      i32.store8
+     else      
+      local.get $2
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=36
+       local.get $2
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $1
+       i32.store8
+      else       
+       local.get $2
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=40
+        local.get $2
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       else        
+        local.get $3
+        i32.load offset=44
+        local.get $2
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   i32.const 0
   local.set $3
   local.get $0
@@ -4681,12 +6758,134 @@
   local.get $0
   i32.load8_u offset=4
   local.set $1
-  local.get $3
-  i32.load offset=20
   local.get $2
-  i32.add
-  local.get $1
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $1
+   i32.store8
+  else   
+   local.get $2
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=24
+    local.get $2
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $1
+    i32.store8
+   else    
+    local.get $2
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=28
+     local.get $2
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $1
+     i32.store8
+    else     
+     local.get $2
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=32
+      local.get $2
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $1
+      i32.store8
+     else      
+      local.get $2
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=36
+       local.get $2
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $1
+       i32.store8
+      else       
+       local.get $2
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=40
+        local.get $2
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       else        
+        local.get $3
+        i32.load offset=44
+        local.get $2
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   i32.const 0
   local.set $3
   local.get $0
@@ -4708,12 +6907,134 @@
   local.get $0
   i32.load8_u offset=3
   local.set $1
-  local.get $3
-  i32.load offset=20
   local.get $2
-  i32.add
-  local.get $1
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $1
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $3
+   i32.load offset=20
+   local.get $2
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $1
+   i32.store8
+  else   
+   local.get $2
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=24
+    local.get $2
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $1
+    i32.store8
+   else    
+    local.get $2
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=28
+     local.get $2
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $1
+     i32.store8
+    else     
+     local.get $2
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=32
+      local.get $2
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $1
+      i32.store8
+     else      
+      local.get $2
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=36
+       local.get $2
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $1
+       i32.store8
+      else       
+       local.get $2
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=40
+        local.get $2
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       else        
+        local.get $3
+        i32.load offset=44
+        local.get $2
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   i32.const 0
   local.set $3
   local.get $0
@@ -5679,66 +8000,385 @@
   local.get $0
   call $~lib/rt/pure/__retain
   drop
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.31 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.31
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.31
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.31
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.31
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.31
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.31
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.31
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   local.set $3
-  local.get $0
-  local.set $2
-  local.get $3
-  local.get $0
-  i32.load8_u offset=3
-  i32.add
+  block $assembly/index/OLC6502#read|inlined.32 (result i32)
+   local.get $0
+   local.set $2
+   local.get $3
+   local.get $0
+   i32.load8_u offset=3
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $1
+   i32.const 1
+   local.set $4
+   local.get $1
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.32
+   else    
+    local.get $1
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.32
+    else     
+     local.get $1
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.32
+     else      
+      local.get $1
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.32
+      else       
+       local.get $1
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.32
+       else        
+        local.get $1
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.32
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.32
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
-  local.set $1
-  i32.const 1
   local.set $4
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load8_u
-  i32.const 255
-  i32.and
-  local.set $4
-  local.get $0
-  local.set $2
-  local.get $3
-  local.get $0
-  i32.load8_u offset=3
-  i32.add
-  i32.const 1
-  i32.add
-  i32.const 255
-  i32.and
-  local.set $1
-  i32.const 1
-  local.set $5
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.33 (result i32)
+   local.get $0
+   local.set $2
+   local.get $3
+   local.get $0
+   i32.load8_u offset=3
+   i32.add
+   i32.const 1
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $1
+   i32.const 1
+   local.set $5
+   local.get $1
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.33
+   else    
+    local.get $1
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.33
+    else     
+     local.get $1
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.33
+     else      
+      local.get $1
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.33
+      else       
+       local.get $1
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.33
+       else        
+        local.get $1
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.33
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.33
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   local.set $5
@@ -5763,26 +8403,139 @@
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.34 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.34
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.34
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.34
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.34
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.34
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.34
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.34
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   i32.store16 offset=8
@@ -5795,35 +8548,271 @@
  (func $assembly/index/ABS (; 94 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.get $0
-  local.set $2
-  local.get $0
   i32.load16_u
   local.set $1
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  local.get $0
+  block $assembly/index/OLC6502#read|inlined.35 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.35
+   else    
+    local.get $2
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.35
+    else     
+     local.get $2
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.35
+     else      
+      local.get $2
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.35
+      else       
+       local.get $2
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.35
+       else        
+        local.get $2
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.35
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.35
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  block $assembly/index/OLC6502#read|inlined.36 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   i32.const 1
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.36
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.36
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.36
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.36
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.36
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.36
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.36
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.or
+  i32.const 255
   i32.and
   i32.store16 offset=8
   local.get $0
-  local.get $0
-  i32.load16_u
+  local.get $1
   i32.const 2
   i32.add
   i32.store16
   i32.const 0
-  local.set $2
+  local.set $4
   local.get $0
   call $~lib/rt/pure/__release
-  local.get $2
+  local.get $4
  )
  (func $assembly/index/REL (; 95 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
@@ -5835,26 +8824,139 @@
   local.get $0
   i32.const 65280
   i32.const 0
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.37 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.37
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.37
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.37
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.37
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.37
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.37
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.37
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   select
@@ -5875,56 +8977,375 @@
   local.get $0
   call $~lib/rt/pure/__retain
   drop
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
+  block $assembly/index/OLC6502#read|inlined.38 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.38
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.38
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.38
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.38
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.38
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.38
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.38
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
-  local.set $3
-  local.get $0
-  local.set $2
-  local.get $3
-  i32.const 255
-  i32.and
-  local.set $1
-  i32.const 1
+  block $assembly/index/OLC6502#read|inlined.39 (result i32)
+   local.get $0
+   local.set $2
+   local.get $3
+   i32.const 255
+   i32.and
+   local.set $1
+   i32.const 1
+   local.set $4
+   local.get $1
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.39
+   else    
+    local.get $1
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.39
+    else     
+     local.get $1
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.39
+     else      
+      local.get $1
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.39
+      else       
+       local.get $1
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.39
+       else        
+        local.get $1
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.39
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.39
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   local.set $4
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load8_u
-  local.set $4
-  local.get $0
-  local.set $2
-  local.get $3
-  i32.const 1
-  i32.add
-  i32.const 255
-  i32.and
-  local.set $1
-  i32.const 1
-  local.set $5
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.40 (result i32)
+   local.get $0
+   local.set $2
+   local.get $3
+   i32.const 1
+   i32.add
+   i32.const 255
+   i32.and
+   local.set $1
+   i32.const 1
+   local.set $5
+   local.get $1
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.40
+   else    
+    local.get $1
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.40
+    else     
+     local.get $1
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.40
+     else      
+      local.get $1
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.40
+      else       
+       local.get $1
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.40
+       else        
+        local.get $1
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.40
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.40
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 8
   i32.shl
   local.set $5
@@ -5972,26 +9393,139 @@
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.41 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.41
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.41
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.41
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.41
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.41
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.41
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.41
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   local.get $0
   i32.load8_u offset=3
   i32.add
@@ -6009,60 +9543,299 @@
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
+  (local $5 i32)
   local.get $0
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.set $2
-  local.get $0
   i32.load16_u
   local.set $1
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  block $assembly/index/OLC6502#read|inlined.42 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.42
+   else    
+    local.get $2
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.42
+    else     
+     local.get $2
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.42
+     else      
+      local.get $2
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.42
+      else       
+       local.get $2
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.42
+       else        
+        local.get $2
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.42
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.42
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
   i32.and
-  local.set $2
+  block $assembly/index/OLC6502#read|inlined.43 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   i32.const 1
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.43
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.43
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.43
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.43
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.43
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.43
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.43
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
+  local.set $4
   local.get $0
-  local.get $2
+  local.get $4
   local.get $0
   i32.load8_u offset=4
   i32.add
-  local.tee $1
+  local.tee $3
   i32.store16 offset=8
+  local.get $3
+  local.set $3
+  local.get $0
   local.get $1
-  local.set $1
-  local.get $0
-  local.get $0
-  i32.load16_u
   i32.const 2
   i32.add
   i32.store16
   i32.const 0
   i32.const 1
-  local.get $1
-  local.set $4
-  local.get $2
-  local.set $3
+  local.get $3
+  local.set $5
   local.get $4
+  local.set $2
+  local.get $5
   i32.const 65535
   i32.and
   i32.const 8
   i32.shr_u
-  local.get $3
+  local.get $2
   i32.const 65535
   i32.and
   i32.const 8
   i32.shr_u
   i32.eq
   select
-  local.set $4
+  local.set $5
   local.get $0
   call $~lib/rt/pure/__release
-  local.get $4
+  local.get $5
  )
  (func $assembly/index/ABX (; 99 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
@@ -6076,29 +9849,265 @@
   local.get $0
   i32.load16_u
   local.set $1
-  local.get $0
-  local.set $3
-  local.get $0
-  i32.load16_u
-  local.set $2
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  block $assembly/index/OLC6502#read|inlined.44 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.44
+   else    
+    local.get $2
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.44
+    else     
+     local.get $2
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.44
+     else      
+      local.get $2
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.44
+      else       
+       local.get $2
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.44
+       else        
+        local.get $2
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.44
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.44
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
   i32.and
-  local.set $3
+  block $assembly/index/OLC6502#read|inlined.45 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   i32.const 1
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.45
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.45
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.45
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.45
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.45
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.45
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.45
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
+  local.set $4
   local.get $0
-  local.get $3
+  local.get $4
   local.get $0
   i32.load8_u offset=3
   i32.add
-  local.tee $2
+  local.tee $3
   i32.store16 offset=8
-  local.get $2
-  local.set $2
+  local.get $3
+  local.set $3
   local.get $0
   local.get $1
   i32.const 2
@@ -6106,16 +10115,16 @@
   i32.store16
   i32.const 0
   i32.const 1
-  local.get $2
-  local.set $5
   local.get $3
-  local.set $4
+  local.set $5
+  local.get $4
+  local.set $2
   local.get $5
   i32.const 65535
   i32.and
   i32.const 8
   i32.shr_u
-  local.get $4
+  local.get $2
   i32.const 65535
   i32.and
   i32.const 8
@@ -6140,62 +10149,514 @@
   local.get $0
   i32.load16_u
   local.set $1
-  local.get $0
-  local.set $3
-  local.get $0
-  i32.load16_u
-  local.set $2
-  local.get $3
-  i32.load offset=20
-  local.get $2
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  block $assembly/index/OLC6502#read|inlined.46 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.46
+   else    
+    local.get $2
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.46
+    else     
+     local.get $2
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.46
+     else      
+      local.get $2
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.46
+      else       
+       local.get $2
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.46
+       else        
+        local.get $2
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.46
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.46
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
   i32.and
-  local.set $3
+  block $assembly/index/OLC6502#read|inlined.47 (result i32)
+   local.get $0
+   local.set $3
+   local.get $1
+   i32.const 1
+   i32.add
+   local.set $2
+   i32.const 1
+   local.set $4
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.47
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.47
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.47
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.47
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.47
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.47
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.47
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
+  local.set $4
   local.get $0
   local.get $1
   i32.const 2
   i32.add
   i32.store16
-  local.get $3
+  local.get $4
   i32.const 255
   i32.and
   i32.const 255
   i32.eq
   if (result i32)
-   local.get $0
-   local.set $4
-   local.get $3
-   i32.const 65280
-   i32.and
-   local.set $2
-   i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $2
-   i32.add
-   i32.load8_u
+   block $assembly/index/OLC6502#read|inlined.48 (result i32)
+    local.get $0
+    local.set $3
+    local.get $4
+    i32.const 65280
+    i32.and
+    local.set $2
+    i32.const 1
+    local.set $5
+    local.get $2
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=20
+     local.get $2
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.48
+    else     
+     local.get $2
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=24
+      local.get $2
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.48
+     else      
+      local.get $2
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=28
+       local.get $2
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.48
+      else       
+       local.get $2
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=32
+        local.get $2
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.48
+       else        
+        local.get $2
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=36
+         local.get $2
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.48
+        else         
+         local.get $2
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $3
+          i32.load offset=40
+          local.get $2
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.48
+         else          
+          local.get $3
+          i32.load offset=44
+          local.get $2
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.48
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
    i32.const 255
    i32.and
   else   
-   local.get $0
-   local.set $4
-   local.get $3
-   i32.const 1
-   i32.add
-   local.set $2
-   i32.const 1
-   local.set $5
-   local.get $4
-   i32.load offset=20
-   local.get $2
-   i32.const 65535
-   i32.and
-   i32.add
-   i32.load8_u
+   block $assembly/index/OLC6502#read|inlined.49 (result i32)
+    local.get $0
+    local.set $3
+    local.get $4
+    i32.const 1
+    i32.add
+    local.set $2
+    i32.const 1
+    local.set $5
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=20
+     local.get $2
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.49
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=24
+      local.get $2
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.49
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=28
+       local.get $2
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.49
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=32
+        local.get $2
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.49
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=36
+         local.get $2
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.49
+        else         
+         local.get $2
+         i32.const 65535
+         i32.and
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $3
+          i32.load offset=40
+          local.get $2
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.49
+         else          
+          local.get $3
+          i32.load offset=44
+          local.get $2
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.49
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
    i32.const 255
    i32.and
   end
@@ -6204,19 +10665,132 @@
   local.get $5
   i32.const 8
   i32.shl
-  local.get $0
-  local.set $4
-  local.get $3
-  local.set $2
-  i32.const 1
-  local.set $6
-  local.get $4
-  i32.load offset=20
-  local.get $2
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.50 (result i32)
+   local.get $0
+   local.set $3
+   local.get $4
+   local.set $2
+   i32.const 1
+   local.set $6
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $2
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.50
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $2
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.50
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $2
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.50
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $2
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.50
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $2
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.50
+       else        
+        local.get $2
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $2
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.50
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $2
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.50
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   i32.const 255
   i32.and
   i32.or
@@ -6235,26 +10809,139 @@
   call $~lib/rt/pure/__retain
   drop
   local.get $0
-  local.get $0
-  local.set $2
-  local.get $0
-  local.get $0
-  i32.load16_u
-  local.tee $1
-  i32.const 1
-  i32.add
-  i32.store16
-  local.get $1
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
+  block $assembly/index/OLC6502#read|inlined.51 (result i32)
+   local.get $0
+   local.set $2
+   local.get $0
+   local.get $0
+   i32.load16_u
+   local.tee $1
+   i32.const 1
+   i32.add
+   i32.store16
+   local.get $1
+   local.set $1
+   i32.const 1
+   local.set $3
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.51
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.51
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.51
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.51
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.51
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.51
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.51
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
   local.get $0
   i32.load8_u offset=4
   i32.add
@@ -6275,7 +10962,7 @@
   i32.const 256
   i32.const 2
   i32.const 4
-  i32.const 272
+  i32.const 304
   call $~lib/rt/__allocArray
   call $~lib/rt/pure/__retain
   local.tee $1
@@ -6284,7 +10971,7 @@
   i32.const 256
   i32.const 2
   i32.const 4
-  i32.const 1312
+  i32.const 1344
   call $~lib/rt/__allocArray
   call $~lib/rt/pure/__retain
   local.tee $2
@@ -6293,7 +10980,7 @@
   i32.const 256
   i32.const 0
   i32.const 6
-  i32.const 2352
+  i32.const 2384
   call $~lib/rt/__allocArray
   call $~lib/rt/pure/__retain
   local.tee $3
@@ -6576,8 +11263,8 @@
   i32.const 1073741808
   i32.gt_u
   if
-   i32.const 2624
-   i32.const 2672
+   i32.const 2656
+   i32.const 2704
    i32.const 57
    i32.const 42
    call $~lib/builtins/abort
@@ -6602,7 +11289,7 @@
   local.get $0
   i32.eqz
   if
-   i32.const 24
+   i32.const 48
    i32.const 3
    call $~lib/rt/tlsf/__alloc
    call $~lib/rt/pure/__retain
@@ -6646,9 +11333,35 @@
   i32.store offset=16
   local.get $0
   i32.const 0
-  i32.const 65535
+  i32.const 2047
   call $~lib/arraybuffer/ArrayBuffer#constructor
   i32.store offset=20
+  local.get $0
+  i32.const 0
+  i32.const 8
+  call $~lib/arraybuffer/ArrayBuffer#constructor
+  i32.store offset=24
+  local.get $0
+  i32.const 0
+  i32.const 32
+  call $~lib/arraybuffer/ArrayBuffer#constructor
+  i32.store offset=28
+  local.get $0
+  i32.const 0
+  i32.const 8160
+  call $~lib/arraybuffer/ArrayBuffer#constructor
+  i32.store offset=32
+  local.get $0
+  i32.const 0
+  i32.const 8192
+  call $~lib/arraybuffer/ArrayBuffer#constructor
+  i32.store offset=36
+  local.get $0
+  i32.const 0
+  i32.store offset=40
+  local.get $0
+  i32.const 0
+  i32.store offset=44
   local.get $0
   local.set $3
   global.get $assembly/index/U
@@ -6672,7 +11385,21 @@
   i32.store8 offset=6
   local.get $0
  )
- (func $assembly/index/OLC6502#reset (; 106 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/polyfills/bswap<u16> (; 106 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.const 8
+  i32.shl
+  local.get $0
+  i32.const 65535
+  i32.and
+  i32.const 8
+  i32.shr_u
+  i32.const 255
+  i32.and
+  i32.or
+  return
+ )
+ (func $assembly/index/OLC6502#reset (; 107 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.const 65532
@@ -6705,7 +11432,7 @@
   i32.const 8
   i32.store8 offset=13
  )
- (func $assembly/index/OLC6502#setFlag (; 107 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $assembly/index/OLC6502#setFlag (; 108 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   local.get $0
   i32.load8_u offset=6
@@ -6723,7 +11450,7 @@
   select
   i32.store8 offset=6
  )
- (func $assembly/index/OLC6502#getFlag (; 108 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/index/OLC6502#getFlag (; 109 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.load8_u offset=6
   local.get $1
@@ -6731,7 +11458,7 @@
   i32.const 0
   i32.gt_u
  )
- (func $assembly/index/OLC6502#push (; 109 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/index/OLC6502#push (; 110 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -6752,115 +11479,149 @@
   local.set $3
   local.get $1
   local.set $2
-  local.get $4
-  i32.load offset=20
   local.get $3
   i32.const 65535
   i32.and
-  i32.add
-  local.get $2
-  i32.store8
- )
- (func $assembly/index/OLC6502#push16be (; 110 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  local.get $0
-  i32.load8_u offset=5
-  i32.const 1
-  i32.sub
-  local.set $2
-  local.get $2
-  i32.const 255
-  i32.and
-  i32.const 0
+  i32.const 2
   i32.eq
   if
-   local.get $0
-   local.set $5
-   i32.const 256
-   local.set $4
-   local.get $1
-   i32.const 65535
-   i32.and
-   i32.const 8
-   i32.shr_u
-   local.set $3
-   local.get $5
-   i32.load offset=20
-   local.get $4
-   i32.add
-   local.get $3
-   i32.store8
-   local.get $0
-   local.set $5
-   i32.const 511
-   local.set $4
-   local.get $1
-   local.set $3
-   local.get $5
-   i32.load offset=20
-   local.get $4
-   i32.add
-   local.get $3
-   i32.store8
-   local.get $0
-   local.set $4
-   local.get $1
-   local.set $3
-   local.get $4
-   local.set $7
-   i32.const 256
-   local.get $4
-   local.get $4
-   i32.load8_u offset=5
-   local.tee $5
+   i32.const 272
    i32.const 1
-   i32.sub
-   i32.store8 offset=5
-   local.get $5
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $6
-   local.get $3
-   local.set $5
-   local.get $7
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $3
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $3
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $4
    i32.load offset=20
-   local.get $6
-   i32.const 65535
+   local.get $3
+   i32.const 2047
    i32.and
    i32.add
-   local.get $5
+   local.get $2
    i32.store8
   else   
-   local.get $0
-   local.set $7
-   i32.const 256
-   local.get $2
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $6
-   local.get $1
-   local.set $5
-   local.get $7
-   i32.load offset=20
-   local.get $6
+   local.get $3
    i32.const 65535
    i32.and
-   i32.add
-   local.get $5
-   call $~lib/polyfills/bswap<u16>
-   i32.store16
-   local.get $0
-   local.get $2
-   i32.const 2
-   i32.sub
-   i32.store8 offset=5
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=24
+    local.get $3
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $2
+    i32.store8
+   else    
+    local.get $3
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=28
+     local.get $3
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $2
+     i32.store8
+    else     
+     local.get $3
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=32
+      local.get $3
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $2
+      i32.store8
+     else      
+      local.get $3
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=36
+       local.get $3
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $2
+       i32.store8
+      else       
+       local.get $3
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=40
+        local.get $3
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       else        
+        local.get $4
+        i32.load offset=44
+        local.get $3
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       end
+      end
+     end
+    end
+   end
   end
  )
  (func $assembly/index/OLC6502#irq (; 111 ;) (type $FUNCSIG$vi) (param $0 i32)
@@ -6870,8 +11631,6 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
   local.get $0
   local.set $2
   i32.const 4
@@ -6890,172 +11649,14 @@
    local.set $2
    local.get $0
    i32.load16_u
+   i32.const 8
+   i32.shr_u
    local.set $1
    local.get $2
-   i32.load8_u offset=5
-   i32.const 1
-   i32.sub
-   local.set $3
-   local.get $3
-   i32.const 255
-   i32.and
-   i32.const 0
-   i32.eq
-   if
-    local.get $2
-    local.set $6
-    i32.const 256
-    local.set $5
-    local.get $1
-    i32.const 8
-    i32.shr_u
-    local.set $4
-    local.get $6
-    i32.load offset=20
-    local.get $5
-    i32.add
-    local.get $4
-    i32.store8
-    local.get $2
-    local.set $6
-    i32.const 511
-    local.set $5
-    local.get $1
-    local.set $4
-    local.get $6
-    i32.load offset=20
-    local.get $5
-    i32.add
-    local.get $4
-    i32.store8
-    local.get $2
-    local.set $5
-    local.get $1
-    local.set $4
-    local.get $5
-    local.set $8
-    i32.const 256
-    local.get $5
-    local.get $5
-    i32.load8_u offset=5
-    local.tee $6
-    i32.const 1
-    i32.sub
-    i32.store8 offset=5
-    local.get $6
-    i32.const 255
-    i32.and
-    i32.add
-    local.set $7
-    local.get $4
-    local.set $6
-    local.get $8
-    i32.load offset=20
-    local.get $7
-    i32.const 65535
-    i32.and
-    i32.add
-    local.get $6
-    i32.store8
-   else    
-    local.get $2
-    local.set $8
-    i32.const 256
-    local.get $3
-    i32.const 255
-    i32.and
-    i32.add
-    local.set $7
-    local.get $1
-    local.set $6
-    local.get $8
-    i32.load offset=20
-    local.get $7
-    i32.const 65535
-    i32.and
-    i32.add
-    local.get $6
-    call $~lib/polyfills/bswap<u16>
-    i32.store16
-    local.get $2
-    local.get $3
-    i32.const 2
-    i32.sub
-    i32.store8 offset=5
-   end
-   local.get $0
-   local.set $6
-   global.get $assembly/index/B
    local.set $5
-   i32.const 0
-   local.set $4
-   local.get $6
-   i32.load8_u offset=6
-   local.set $3
-   local.get $6
-   local.get $3
-   local.get $5
-   i32.or
-   local.get $3
-   local.get $5
-   i32.const -1
-   i32.xor
-   i32.and
-   local.get $4
-   select
-   i32.store8 offset=6
-   local.get $0
-   local.set $1
-   global.get $assembly/index/U
-   local.set $8
-   i32.const 0
-   local.set $7
-   local.get $1
-   i32.load8_u offset=6
-   local.set $3
-   local.get $1
-   local.get $3
-   local.get $8
-   i32.or
-   local.get $3
-   local.get $8
-   i32.const -1
-   i32.xor
-   i32.and
-   local.get $7
-   select
-   i32.store8 offset=6
-   local.get $0
-   local.set $5
-   global.get $assembly/index/I
-   local.set $4
-   i32.const 0
-   local.set $2
-   local.get $5
-   i32.load8_u offset=6
-   local.set $3
-   local.get $5
-   local.get $3
-   local.get $4
-   i32.or
-   local.get $3
-   local.get $4
-   i32.const -1
-   i32.xor
-   i32.and
-   local.get $2
-   select
-   i32.store8 offset=6
-   local.get $0
-   local.set $7
-   local.get $0
-   i32.load8_u offset=6
-   local.set $6
-   local.get $7
-   local.set $2
    i32.const 256
-   local.get $7
-   local.get $7
+   local.get $2
+   local.get $2
    i32.load8_u offset=5
    local.tee $3
    i32.const 1
@@ -7065,34 +11666,732 @@
    i32.const 255
    i32.and
    i32.add
-   local.set $1
-   local.get $6
-   local.set $8
+   local.set $4
+   local.get $1
+   local.set $3
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 2
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $3
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 3
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $3
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $4
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $5
+    i32.load offset=20
+    local.get $4
+    i32.const 2047
+    i32.and
+    i32.add
+    local.get $3
+    i32.store8
+   else    
+    local.get $4
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $5
+     i32.load offset=24
+     local.get $4
+     i32.const 15
+     i32.and
+     i32.add
+     local.get $3
+     i32.store8
+    else     
+     local.get $4
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $5
+      i32.load offset=28
+      local.get $4
+      i32.const 31
+      i32.and
+      i32.add
+      local.get $3
+      i32.store8
+     else      
+      local.get $4
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $5
+       i32.load offset=32
+       local.get $4
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $3
+       i32.store8
+      else       
+       local.get $4
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $5
+        i32.load offset=36
+        local.get $4
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $3
+        i32.store8
+       else        
+        local.get $4
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $5
+         i32.load offset=40
+         local.get $4
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $3
+         i32.store8
+        else         
+         local.get $5
+         i32.load offset=44
+         local.get $4
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $3
+         i32.store8
+        end
+       end
+      end
+     end
+    end
+   end
+   local.get $0
+   local.set $4
+   local.get $0
+   i32.load16_u
+   i32.const 255
+   i32.and
+   local.set $3
+   local.get $4
+   local.set $6
+   i32.const 256
+   local.get $4
+   local.get $4
+   i32.load8_u offset=5
+   local.tee $2
+   i32.const 1
+   i32.sub
+   i32.store8 offset=5
    local.get $2
-   i32.load offset=20
+   i32.const 255
+   i32.and
+   i32.add
+   local.set $1
+   local.get $3
+   local.set $5
    local.get $1
    i32.const 65535
    i32.and
-   i32.add
-   local.get $8
-   i32.store8
+   i32.const 2
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $5
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 3
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $5
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $6
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    local.get $5
+    i32.store8
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $6
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     local.get $5
+     i32.store8
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $6
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      local.get $5
+      i32.store8
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $6
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $5
+       i32.store8
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $6
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $5
+        i32.store8
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $6
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $5
+         i32.store8
+        else         
+         local.get $6
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $5
+         i32.store8
+        end
+       end
+      end
+     end
+    end
+   end
    local.get $0
+   local.get $0
+   i32.load8_u offset=6
+   i32.const 203
+   i32.and
+   i32.store8 offset=6
    local.get $0
    local.set $5
    local.get $0
-   i32.const 65534
-   local.tee $7
-   i32.store16 offset=8
-   local.get $7
-   local.set $4
+   i32.load8_u offset=6
+   local.set $2
    local.get $5
-   i32.load offset=20
+   local.set $3
+   i32.const 256
+   local.get $5
+   local.get $5
+   i32.load8_u offset=5
+   local.tee $4
+   i32.const 1
+   i32.sub
+   i32.store8 offset=5
    local.get $4
+   i32.const 255
+   i32.and
    i32.add
-   i32.load16_u
-   call $~lib/polyfills/bswap<u16>
+   local.set $6
+   local.get $2
+   local.set $1
+   local.get $6
    i32.const 65535
    i32.and
+   i32.const 2
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $1
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $6
+   i32.const 65535
+   i32.and
+   i32.const 3
+   i32.eq
+   if
+    i32.const 272
+    i32.const 1
+    local.get $1
+    f64.convert_i32_u
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    f64.const 0
+    call $~lib/builtins/trace
+   end
+   local.get $6
+   i32.const 65535
+   i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $3
+    i32.load offset=20
+    local.get $6
+    i32.const 2047
+    i32.and
+    i32.add
+    local.get $1
+    i32.store8
+   else    
+    local.get $6
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=24
+     local.get $6
+     i32.const 15
+     i32.and
+     i32.add
+     local.get $1
+     i32.store8
+    else     
+     local.get $6
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=28
+      local.get $6
+      i32.const 31
+      i32.and
+      i32.add
+      local.get $1
+      i32.store8
+     else      
+      local.get $6
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=32
+       local.get $6
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $1
+       i32.store8
+      else       
+       local.get $6
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=36
+        local.get $6
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $1
+        i32.store8
+       else        
+        local.get $6
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=40
+         local.get $6
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $1
+         i32.store8
+        else         
+         local.get $3
+         i32.load offset=44
+         local.get $6
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         local.get $1
+         i32.store8
+        end
+       end
+      end
+     end
+    end
+   end
+   local.get $0
+   i32.const 65534
+   i32.store16 offset=8
+   local.get $0
+   block $assembly/index/OLC6502#read|inlined.52 (result i32)
+    local.get $0
+    local.set $1
+    i32.const 65534
+    local.set $4
+    i32.const 1
+    local.set $5
+    local.get $4
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $1
+     i32.load offset=20
+     local.get $4
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.52
+    else     
+     local.get $4
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $1
+      i32.load offset=24
+      local.get $4
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.52
+     else      
+      local.get $4
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $1
+       i32.load offset=28
+       local.get $4
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.52
+      else       
+       local.get $4
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $1
+        i32.load offset=32
+        local.get $4
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.52
+       else        
+        local.get $4
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $1
+         i32.load offset=36
+         local.get $4
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.52
+        else         
+         local.get $4
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $1
+          i32.load offset=40
+          local.get $4
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.52
+         else          
+          local.get $1
+          i32.load offset=44
+          local.get $4
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.52
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   i32.const 255
+   i32.and
+   block $assembly/index/OLC6502#read|inlined.53 (result i32)
+    local.get $0
+    local.set $3
+    i32.const 65535
+    local.set $6
+    i32.const 1
+    local.set $5
+    local.get $6
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $3
+     i32.load offset=20
+     local.get $6
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.53
+    else     
+     local.get $6
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $3
+      i32.load offset=24
+      local.get $6
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.53
+     else      
+      local.get $6
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $3
+       i32.load offset=28
+       local.get $6
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.53
+      else       
+       local.get $6
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $3
+        i32.load offset=32
+        local.get $6
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.53
+       else        
+        local.get $6
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $3
+         i32.load offset=36
+         local.get $6
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.53
+        else         
+         local.get $6
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $3
+          i32.load offset=40
+          local.get $6
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.53
+         else          
+          local.get $3
+          i32.load offset=44
+          local.get $6
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.53
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   i32.const 255
+   i32.and
+   i32.const 8
+   i32.shl
+   i32.or
    i32.store16
    local.get $0
    i32.const 7
@@ -7107,177 +12406,185 @@
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
-  (local $8 i32)
-  local.get $0
-  local.set $2
   local.get $0
   i32.load16_u
   local.set $1
-  local.get $2
+  local.get $0
+  local.set $3
+  local.get $1
+  local.set $2
+  local.get $3
+  local.set $6
+  i32.const 256
+  local.get $3
+  local.get $3
   i32.load8_u offset=5
+  local.tee $4
   i32.const 1
   i32.sub
-  local.set $3
-  local.get $3
+  i32.store8 offset=5
+  local.get $4
   i32.const 255
   i32.and
-  i32.const 0
+  i32.add
+  local.set $5
+  local.get $2
+  local.set $4
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 2
   i32.eq
   if
-   local.get $2
-   local.set $6
-   i32.const 256
-   local.set $5
-   local.get $1
-   i32.const 8
-   i32.shr_u
-   local.set $4
-   local.get $6
-   i32.load offset=20
-   local.get $5
-   i32.add
-   local.get $4
-   i32.store8
-   local.get $2
-   local.set $6
-   i32.const 511
-   local.set $5
-   local.get $1
-   local.set $4
-   local.get $6
-   i32.load offset=20
-   local.get $5
-   i32.add
-   local.get $4
-   i32.store8
-   local.get $2
-   local.set $5
-   local.get $1
-   local.set $4
-   local.get $5
-   local.set $8
-   i32.const 256
-   local.get $5
-   local.get $5
-   i32.load8_u offset=5
-   local.tee $6
+   i32.const 272
    i32.const 1
-   i32.sub
-   i32.store8 offset=5
-   local.get $6
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $7
    local.get $4
-   local.set $6
-   local.get $8
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $4
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $5
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $6
    i32.load offset=20
-   local.get $7
-   i32.const 65535
+   local.get $5
+   i32.const 2047
    i32.and
    i32.add
-   local.get $6
+   local.get $4
    i32.store8
   else   
-   local.get $2
-   local.set $8
-   i32.const 256
-   local.get $3
-   i32.const 255
-   i32.and
-   i32.add
-   local.set $7
-   local.get $1
-   local.set $6
-   local.get $8
-   i32.load offset=20
-   local.get $7
+   local.get $5
    i32.const 65535
    i32.and
-   i32.add
-   local.get $6
-   call $~lib/polyfills/bswap<u16>
-   i32.store16
-   local.get $2
-   local.get $3
-   i32.const 2
-   i32.sub
-   i32.store8 offset=5
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $6
+    i32.load offset=24
+    local.get $5
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $4
+    i32.store8
+   else    
+    local.get $5
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $6
+     i32.load offset=28
+     local.get $5
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $4
+     i32.store8
+    else     
+     local.get $5
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $6
+      i32.load offset=32
+      local.get $5
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $4
+      i32.store8
+     else      
+      local.get $5
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $6
+       i32.load offset=36
+       local.get $5
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $4
+       i32.store8
+      else       
+       local.get $5
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $6
+        i32.load offset=40
+        local.get $5
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $4
+        i32.store8
+       else        
+        local.get $6
+        i32.load offset=44
+        local.get $5
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $4
+        i32.store8
+       end
+      end
+     end
+    end
+   end
   end
   local.get $0
-  local.set $6
-  global.get $assembly/index/B
   local.set $5
-  i32.const 0
-  local.set $4
-  local.get $6
-  i32.load8_u offset=6
-  local.set $3
-  local.get $6
-  local.get $3
-  local.get $5
-  i32.or
-  local.get $3
-  local.get $5
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $4
-  select
-  i32.store8 offset=6
-  local.get $0
-  local.set $1
-  global.get $assembly/index/U
-  local.set $8
-  i32.const 0
-  local.set $7
   local.get $1
-  i32.load8_u offset=6
-  local.set $3
-  local.get $1
-  local.get $3
-  local.get $8
-  i32.or
-  local.get $3
-  local.get $8
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $7
-  select
-  i32.store8 offset=6
-  local.get $0
-  local.set $5
-  global.get $assembly/index/I
+  i32.const 8
+  i32.shr_u
   local.set $4
-  i32.const 0
-  local.set $2
   local.get $5
-  i32.load8_u offset=6
-  local.set $3
-  local.get $5
-  local.get $3
-  local.get $4
-  i32.or
-  local.get $3
-  local.get $4
-  i32.const -1
-  i32.xor
-  i32.and
-  local.get $2
-  select
-  i32.store8 offset=6
-  local.get $0
   local.set $7
-  local.get $0
-  i32.load8_u offset=6
-  local.set $6
-  local.get $7
-  local.set $2
   i32.const 256
-  local.get $7
-  local.get $7
+  local.get $5
+  local.get $5
   i32.load8_u offset=5
   local.tee $3
   i32.const 1
@@ -7287,82 +12594,836 @@
   i32.const 255
   i32.and
   i32.add
-  local.set $1
-  local.get $6
-  local.set $8
+  local.set $2
+  local.get $4
+  local.set $6
   local.get $2
-  i32.load offset=20
-  local.get $1
   i32.const 65535
   i32.and
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $6
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $6
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $2
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $7
+   i32.load offset=20
+   local.get $2
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $6
+   i32.store8
+  else   
+   local.get $2
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $7
+    i32.load offset=24
+    local.get $2
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $6
+    i32.store8
+   else    
+    local.get $2
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $7
+     i32.load offset=28
+     local.get $2
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $6
+     i32.store8
+    else     
+     local.get $2
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $7
+      i32.load offset=32
+      local.get $2
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $6
+      i32.store8
+     else      
+      local.get $2
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $7
+       i32.load offset=36
+       local.get $2
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $6
+       i32.store8
+      else       
+       local.get $2
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $7
+        i32.load offset=40
+        local.get $2
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       else        
+        local.get $7
+        i32.load offset=44
+        local.get $2
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $6
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
+  local.get $0
+  local.get $0
+  i32.load8_u offset=6
+  i32.const 203
+  i32.and
+  i32.store8 offset=6
+  local.get $0
+  local.set $6
+  local.get $0
+  i32.load8_u offset=6
+  local.set $3
+  local.get $6
+  local.set $4
+  i32.const 256
+  local.get $6
+  local.get $6
+  i32.load8_u offset=5
+  local.tee $5
+  i32.const 1
+  i32.sub
+  i32.store8 offset=5
+  local.get $5
+  i32.const 255
+  i32.and
   i32.add
-  local.get $8
-  i32.store8
-  local.get $0
-  local.get $0
-  local.set $5
+  local.set $7
+  local.get $3
+  local.set $2
+  local.get $7
+  i32.const 65535
+  i32.and
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $7
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $7
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $4
+   i32.load offset=20
+   local.get $7
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $2
+   i32.store8
+  else   
+   local.get $7
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=24
+    local.get $7
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $2
+    i32.store8
+   else    
+    local.get $7
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=28
+     local.get $7
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $2
+     i32.store8
+    else     
+     local.get $7
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=32
+      local.get $7
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $2
+      i32.store8
+     else      
+      local.get $7
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=36
+       local.get $7
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $2
+       i32.store8
+      else       
+       local.get $7
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=40
+        local.get $7
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       else        
+        local.get $4
+        i32.load offset=44
+        local.get $7
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
   local.get $0
   i32.const 65530
-  local.tee $7
   i32.store16 offset=8
-  local.get $7
-  local.set $4
-  local.get $5
-  i32.load offset=20
-  local.get $4
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
+  local.get $0
+  block $assembly/index/OLC6502#read|inlined.54 (result i32)
+   local.get $0
+   local.set $2
+   i32.const 65530
+   local.set $5
+   i32.const 1
+   local.set $6
+   local.get $5
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $5
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.54
+   else    
+    local.get $5
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $5
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.54
+    else     
+     local.get $5
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $5
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.54
+     else      
+      local.get $5
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $5
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.54
+      else       
+       local.get $5
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $5
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.54
+       else        
+        local.get $5
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $5
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.54
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $5
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.54
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
   i32.and
+  block $assembly/index/OLC6502#read|inlined.55 (result i32)
+   local.get $0
+   local.set $4
+   i32.const 65531
+   local.set $7
+   i32.const 1
+   local.set $6
+   local.get $7
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $4
+    i32.load offset=20
+    local.get $7
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.55
+   else    
+    local.get $7
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $4
+     i32.load offset=24
+     local.get $7
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.55
+    else     
+     local.get $7
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $4
+      i32.load offset=28
+      local.get $7
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.55
+     else      
+      local.get $7
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $4
+       i32.load offset=32
+       local.get $7
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.55
+      else       
+       local.get $7
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $4
+        i32.load offset=36
+        local.get $7
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.55
+       else        
+        local.get $7
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $4
+         i32.load offset=40
+         local.get $7
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.55
+        else         
+         local.get $4
+         i32.load offset=44
+         local.get $7
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.55
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  i32.const 255
+  i32.and
+  i32.const 8
+  i32.shl
+  i32.or
   i32.store16
   local.get $0
   i32.const 8
   i32.store8 offset=13
  )
  (func $assembly/index/OLC6502#write (; 113 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
-  local.get $0
-  i32.load offset=20
   local.get $1
   i32.const 65535
   i32.and
-  i32.add
-  local.get $2
-  i32.store8
+  i32.const 2
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $1
+  i32.const 65535
+  i32.and
+  i32.const 3
+  i32.eq
+  if
+   i32.const 272
+   i32.const 1
+   local.get $2
+   f64.convert_i32_u
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   f64.const 0
+   call $~lib/builtins/trace
+  end
+  local.get $1
+  i32.const 65535
+  i32.and
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $0
+   i32.load offset=20
+   local.get $1
+   i32.const 2047
+   i32.and
+   i32.add
+   local.get $2
+   i32.store8
+  else   
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $0
+    i32.load offset=24
+    local.get $1
+    i32.const 15
+    i32.and
+    i32.add
+    local.get $2
+    i32.store8
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $0
+     i32.load offset=28
+     local.get $1
+     i32.const 31
+     i32.and
+     i32.add
+     local.get $2
+     i32.store8
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $0
+      i32.load offset=32
+      local.get $1
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      local.get $2
+      i32.store8
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $0
+       i32.load offset=36
+       local.get $1
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       local.get $2
+       i32.store8
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $0
+        i32.load offset=40
+        local.get $1
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       else        
+        local.get $0
+        i32.load offset=44
+        local.get $1
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        local.get $2
+        i32.store8
+       end
+      end
+     end
+    end
+   end
+  end
  )
  (func $assembly/index/OLC6502#read (; 114 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  local.get $0
-  i32.load offset=20
   local.get $1
   i32.const 65535
   i32.and
-  i32.add
-  i32.load8_u
+  i32.const 8192
+  i32.lt_u
+  if
+   local.get $0
+   i32.load offset=20
+   local.get $1
+   i32.const 2047
+   i32.and
+   i32.add
+   i32.load8_u
+   return
+  else   
+   local.get $1
+   i32.const 65535
+   i32.and
+   i32.const 16384
+   i32.lt_u
+   if
+    local.get $0
+    i32.load offset=24
+    local.get $1
+    i32.const 15
+    i32.and
+    i32.add
+    i32.load8_u
+    return
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16416
+    i32.lt_u
+    if
+     local.get $0
+     i32.load offset=28
+     local.get $1
+     i32.const 31
+     i32.and
+     i32.add
+     i32.load8_u
+     return
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 24576
+     i32.lt_u
+     if
+      local.get $0
+      i32.load offset=32
+      local.get $1
+      i32.const 16416
+      i32.sub
+      i32.const 65535
+      i32.and
+      i32.add
+      i32.load8_u
+      return
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 32768
+      i32.lt_u
+      if
+       local.get $0
+       i32.load offset=36
+       local.get $1
+       i32.const 24576
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       return
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 49152
+       i32.lt_u
+       if
+        local.get $0
+        i32.load offset=40
+        local.get $1
+        i32.const 32768
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        return
+       else        
+        local.get $0
+        i32.load offset=44
+        local.get $1
+        i32.const 49152
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        return
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
+  end
+  unreachable
  )
- (func $assembly/index/OLC6502#read16be (; 115 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  local.get $0
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load16_u
-  call $~lib/polyfills/bswap<u16>
-  i32.const 65535
-  i32.and
- )
- (func $assembly/index/OLC6502#writeu16be (; 116 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
-  local.get $0
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  local.get $2
-  call $~lib/polyfills/bswap<u16>
-  i32.store16
- )
- (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__unchecked_get" (; 117 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__unchecked_get" (; 115 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.load offset=4
   local.get $1
@@ -7371,14 +13432,14 @@
   i32.add
   i32.load
  )
- (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__get" (; 118 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__get" (; 116 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   local.get $0
   i32.load offset=12
   i32.ge_u
   if
-   i32.const 2728
-   i32.const 2840
+   i32.const 2760
+   i32.const 2872
    i32.const 106
    i32.const 45
    call $~lib/builtins/abort
@@ -7392,7 +13453,7 @@
   i32.ge_u
   if
    i32.const 176
-   i32.const 2840
+   i32.const 2872
    i32.const 109
    i32.const 61
    call $~lib/builtins/abort
@@ -7402,7 +13463,7 @@
   local.get $1
   call "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__unchecked_get"
  )
- (func $assembly/index/OLC6502#fetch (; 119 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/index/OLC6502#fetch (; 117 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -7414,18 +13475,121 @@
   i32.eq
   if (result i32)
    local.get $0
-   local.get $0
-   local.set $2
-   local.get $0
-   i32.load16_u offset=8
-   local.set $1
-   i32.const 1
-   local.set $3
-   local.get $2
-   i32.load offset=20
-   local.get $1
-   i32.add
-   i32.load8_u
+   block $assembly/index/OLC6502#read|inlined.56 (result i32)
+    local.get $0
+    local.set $2
+    local.get $0
+    i32.load16_u offset=8
+    local.set $1
+    i32.const 1
+    local.set $3
+    local.get $1
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=20
+     local.get $1
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.56
+    else     
+     local.get $1
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=24
+      local.get $1
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.56
+     else      
+      local.get $1
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=28
+       local.get $1
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.56
+      else       
+       local.get $1
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=32
+        local.get $1
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.56
+       else        
+        local.get $1
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=36
+         local.get $1
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.56
+        else         
+         local.get $1
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $2
+          i32.load offset=40
+          local.get $1
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.56
+         else          
+          local.get $2
+          i32.load offset=44
+          local.get $1
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.56
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
    local.tee $3
    i32.store8 offset=7
    local.get $3
@@ -7436,7 +13600,7 @@
   i32.const 255
   i32.and
  )
- (func $~lib/array/Array<u8>#__unchecked_get (; 120 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/array/Array<u8>#__unchecked_get (; 118 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.load offset=4
   local.get $1
@@ -7445,7 +13609,7 @@
   i32.add
   i32.load8_u
  )
- (func $assembly/index/OLC6502#clock (; 121 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/index/OLC6502#clock (; 119 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -7455,26 +13619,139 @@
   i32.const 0
   i32.eq
   if
-   local.get $0
-   local.set $2
-   local.get $0
-   local.get $0
-   i32.load16_u
-   local.tee $1
-   i32.const 1
-   i32.add
-   i32.store16
-   local.get $1
-   local.set $1
-   i32.const 1
-   local.set $3
-   local.get $2
-   i32.load offset=20
-   local.get $1
-   i32.const 65535
-   i32.and
-   i32.add
-   i32.load8_u
+   block $assembly/index/OLC6502#read|inlined.57 (result i32)
+    local.get $0
+    local.set $2
+    local.get $0
+    local.get $0
+    i32.load16_u
+    local.tee $1
+    i32.const 1
+    i32.add
+    i32.store16
+    local.get $1
+    local.set $1
+    i32.const 1
+    local.set $3
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 8192
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=20
+     local.get $1
+     i32.const 2047
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.57
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16384
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=24
+      local.get $1
+      i32.const 15
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.57
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 16416
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=28
+       local.get $1
+       i32.const 31
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.57
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 24576
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=32
+        local.get $1
+        i32.const 16416
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.57
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 32768
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=36
+         local.get $1
+         i32.const 24576
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.57
+        else         
+         local.get $1
+         i32.const 65535
+         i32.and
+         i32.const 49152
+         i32.lt_u
+         if
+          local.get $2
+          i32.load offset=40
+          local.get $1
+          i32.const 32768
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.57
+         else          
+          local.get $2
+          i32.load offset=44
+          local.get $1
+          i32.const 49152
+          i32.sub
+          i32.const 65535
+          i32.and
+          i32.add
+          i32.load8_u
+          br $assembly/index/OLC6502#read|inlined.57
+         end
+         unreachable
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
    local.set $3
    local.get $0
    local.get $0
@@ -7538,7 +13815,7 @@
   i32.sub
   i32.store8 offset=13
  )
- (func $assembly/index/OLC6502#setNZ (; 122 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/index/OLC6502#setNZ (; 120 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   local.get $0
   i32.load8_u offset=6
@@ -7567,117 +13844,163 @@
   i32.const 255
   i32.and
  )
- (func $assembly/index/OLC6502#pop (; 123 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/index/OLC6502#pop (; 121 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
-  local.get $0
-  local.set $2
-  i32.const 256
-  local.get $0
-  local.get $0
-  i32.load8_u offset=5
-  i32.const 1
-  i32.add
-  local.tee $1
-  i32.store8 offset=5
-  local.get $1
-  i32.const 255
-  i32.and
-  i32.add
-  local.set $1
-  i32.const 1
-  local.set $3
-  local.get $2
-  i32.load offset=20
-  local.get $1
-  i32.const 65535
-  i32.and
-  i32.add
-  i32.load8_u
-  i32.const 255
-  i32.and
- )
- (func $assembly/index/OLC6502#pop16be (; 124 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  local.get $0
-  i32.load8_u offset=5
-  local.set $1
-  local.get $0
-  local.get $1
-  i32.const 2
-  i32.add
-  i32.store8 offset=5
-  local.get $1
-  i32.const 254
-  i32.eq
-  if (result i32)
+  block $assembly/index/OLC6502#read|inlined.58 (result i32)
    local.get $0
-   local.set $3
-   i32.const 511
    local.set $2
-   i32.const 1
-   local.set $4
-   local.get $3
-   i32.load offset=20
-   local.get $2
-   i32.add
-   i32.load8_u
-   i32.const 255
-   i32.and
-   local.get $0
-   local.set $3
    i32.const 256
-   local.set $2
+   local.get $0
+   local.get $0
+   i32.load8_u offset=5
    i32.const 1
-   local.set $4
-   local.get $3
-   i32.load offset=20
-   local.get $2
    i32.add
-   i32.load8_u
+   local.tee $1
+   i32.store8 offset=5
+   local.get $1
    i32.const 255
    i32.and
-   i32.const 8
-   i32.shl
-   i32.or
-  else   
-   local.get $0
+   i32.add
+   local.set $1
+   i32.const 1
    local.set $3
    local.get $1
-   i32.const 1
-   i32.add
-   i32.const 255
-   i32.and
-   local.set $2
-   local.get $3
-   i32.load offset=20
-   local.get $2
-   i32.add
-   i32.load16_u
-   call $~lib/polyfills/bswap<u16>
    i32.const 65535
    i32.and
+   i32.const 8192
+   i32.lt_u
+   if
+    local.get $2
+    i32.load offset=20
+    local.get $1
+    i32.const 2047
+    i32.and
+    i32.add
+    i32.load8_u
+    br $assembly/index/OLC6502#read|inlined.58
+   else    
+    local.get $1
+    i32.const 65535
+    i32.and
+    i32.const 16384
+    i32.lt_u
+    if
+     local.get $2
+     i32.load offset=24
+     local.get $1
+     i32.const 15
+     i32.and
+     i32.add
+     i32.load8_u
+     br $assembly/index/OLC6502#read|inlined.58
+    else     
+     local.get $1
+     i32.const 65535
+     i32.and
+     i32.const 16416
+     i32.lt_u
+     if
+      local.get $2
+      i32.load offset=28
+      local.get $1
+      i32.const 31
+      i32.and
+      i32.add
+      i32.load8_u
+      br $assembly/index/OLC6502#read|inlined.58
+     else      
+      local.get $1
+      i32.const 65535
+      i32.and
+      i32.const 24576
+      i32.lt_u
+      if
+       local.get $2
+       i32.load offset=32
+       local.get $1
+       i32.const 16416
+       i32.sub
+       i32.const 65535
+       i32.and
+       i32.add
+       i32.load8_u
+       br $assembly/index/OLC6502#read|inlined.58
+      else       
+       local.get $1
+       i32.const 65535
+       i32.and
+       i32.const 32768
+       i32.lt_u
+       if
+        local.get $2
+        i32.load offset=36
+        local.get $1
+        i32.const 24576
+        i32.sub
+        i32.const 65535
+        i32.and
+        i32.add
+        i32.load8_u
+        br $assembly/index/OLC6502#read|inlined.58
+       else        
+        local.get $1
+        i32.const 65535
+        i32.and
+        i32.const 49152
+        i32.lt_u
+        if
+         local.get $2
+         i32.load offset=40
+         local.get $1
+         i32.const 32768
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.58
+        else         
+         local.get $2
+         i32.load offset=44
+         local.get $1
+         i32.const 49152
+         i32.sub
+         i32.const 65535
+         i32.and
+         i32.add
+         i32.load8_u
+         br $assembly/index/OLC6502#read|inlined.58
+        end
+        unreachable
+       end
+       unreachable
+      end
+      unreachable
+     end
+     unreachable
+    end
+    unreachable
+   end
+   unreachable
   end
-  i32.const 65535
+  i32.const 255
   i32.and
  )
- (func $start (; 125 ;) (type $FUNCSIG$v)
+ (func $start (; 122 ;) (type $FUNCSIG$v)
   call $start:assembly/index
  )
- (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__visit_impl" (; 126 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func "$~lib/array/Array<(olc: assembly/index/OLC6502) => u8>#__visit_impl" (; 123 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   nop
  )
- (func $~lib/array/Array<i32>#__visit_impl (; 127 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/array/Array<i32>#__visit_impl (; 124 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   nop
  )
- (func $~lib/array/Array<u8>#__visit_impl (; 128 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/array/Array<u8>#__visit_impl (; 125 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   nop
  )
- (func $~lib/rt/pure/__visit (; 129 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/pure/__visit (; 126 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   local.get $0
@@ -7807,7 +14130,7 @@
    end
   end
  )
- (func $~lib/rt/__visit_members (; 130 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/rt/__visit_members (; 127 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   block $block$4$break
    block $switch$1$default
@@ -7829,6 +14152,38 @@
        end
        local.get $0
        i32.load offset=20
+       local.tee $2
+       if
+        local.get $2
+        local.get $1
+        call $~lib/rt/pure/__visit
+       end
+       local.get $0
+       i32.load offset=24
+       local.tee $2
+       if
+        local.get $2
+        local.get $1
+        call $~lib/rt/pure/__visit
+       end
+       local.get $0
+       i32.load offset=28
+       local.tee $2
+       if
+        local.get $2
+        local.get $1
+        call $~lib/rt/pure/__visit
+       end
+       local.get $0
+       i32.load offset=32
+       local.tee $2
+       if
+        local.get $2
+        local.get $1
+        call $~lib/rt/pure/__visit
+       end
+       local.get $0
+       i32.load offset=36
        local.tee $2
        if
         local.get $2
@@ -7864,113 +14219,122 @@
   end
   return
  )
- (func $null (; 131 ;) (type $FUNCSIG$v)
+ (func $null (; 128 ;) (type $FUNCSIG$v)
  )
- (func $OLC6502#get:pc (; 132 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:pc (; 129 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load16_u
  )
- (func $OLC6502#set:pc (; 133 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:pc (; 130 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store16
  )
- (func $OLC6502#get:a (; 134 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:a (; 131 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=2
  )
- (func $OLC6502#set:a (; 135 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:a (; 132 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=2
  )
- (func $OLC6502#get:x (; 136 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:x (; 133 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=3
  )
- (func $OLC6502#set:x (; 137 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:x (; 134 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=3
  )
- (func $OLC6502#get:y (; 138 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:y (; 135 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=4
  )
- (func $OLC6502#set:y (; 139 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:y (; 136 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=4
  )
- (func $OLC6502#get:stkp (; 140 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:stkp (; 137 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=5
  )
- (func $OLC6502#set:stkp (; 141 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:stkp (; 138 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=5
  )
- (func $OLC6502#get:status (; 142 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:status (; 139 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=6
  )
- (func $OLC6502#set:status (; 143 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:status (; 140 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=6
  )
- (func $OLC6502#get:fetched (; 144 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:fetched (; 141 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=7
  )
- (func $OLC6502#set:fetched (; 145 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:fetched (; 142 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=7
  )
- (func $OLC6502#get:addr_abs (; 146 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:addr_abs (; 143 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load16_u offset=8
  )
- (func $OLC6502#set:addr_abs (; 147 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:addr_abs (; 144 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store16 offset=8
  )
- (func $OLC6502#get:addr_rel (; 148 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:addr_rel (; 145 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load16_u offset=10
  )
- (func $OLC6502#set:addr_rel (; 149 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:addr_rel (; 146 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store16 offset=10
  )
- (func $OLC6502#get:opcode (; 150 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:opcode (; 147 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=12
  )
- (func $OLC6502#set:opcode (; 151 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:opcode (; 148 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=12
  )
- (func $OLC6502#get:cycles (; 152 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:cycles (; 149 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load8_u offset=13
  )
- (func $OLC6502#set:cycles (; 153 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:cycles (; 150 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   i32.store8 offset=13
  )
- (func $OLC6502#get:bus (; 154 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $OLC6502#get:clockCount (; 151 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=16
+ )
+ (func $OLC6502#set:clockCount (; 152 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  i32.store offset=16
+ )
+ (func $OLC6502#get:gameRam (; 153 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load offset=20
   call $~lib/rt/pure/__retain
  )
- (func $OLC6502#set:bus (; 155 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $OLC6502#set:gameRam (; 154 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   local.get $1
   local.tee $0
@@ -7988,7 +14352,117 @@
   local.get $0
   i32.store offset=20
  )
- (func $assembly/index/OLC6502#read|trampoline (; 156 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $OLC6502#get:ioRegister1 (; 155 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=24
+  call $~lib/rt/pure/__retain
+ )
+ (func $OLC6502#set:ioRegister1 (; 156 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  local.tee $1
+  local.get $0
+  i32.load offset=24
+  local.tee $0
+  i32.ne
+  if
+   local.get $1
+   call $~lib/rt/pure/__retain
+   drop
+   local.get $0
+   call $~lib/rt/pure/__release
+  end
+  local.get $1
+  i32.store offset=24
+ )
+ (func $OLC6502#get:ioRegister2 (; 157 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=28
+  call $~lib/rt/pure/__retain
+ )
+ (func $OLC6502#set:ioRegister2 (; 158 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  local.tee $1
+  local.get $0
+  i32.load offset=28
+  local.tee $0
+  i32.ne
+  if
+   local.get $1
+   call $~lib/rt/pure/__retain
+   drop
+   local.get $0
+   call $~lib/rt/pure/__release
+  end
+  local.get $1
+  i32.store offset=28
+ )
+ (func $OLC6502#get:expansionROM (; 159 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=32
+  call $~lib/rt/pure/__retain
+ )
+ (func $OLC6502#set:expansionROM (; 160 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  local.tee $1
+  local.get $0
+  i32.load offset=32
+  local.tee $0
+  i32.ne
+  if
+   local.get $1
+   call $~lib/rt/pure/__retain
+   drop
+   local.get $0
+   call $~lib/rt/pure/__release
+  end
+  local.get $1
+  i32.store offset=32
+ )
+ (func $OLC6502#get:SRAM (; 161 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=36
+  call $~lib/rt/pure/__retain
+ )
+ (func $OLC6502#set:SRAM (; 162 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  local.tee $1
+  local.get $0
+  i32.load offset=36
+  local.tee $0
+  i32.ne
+  if
+   local.get $1
+   call $~lib/rt/pure/__retain
+   drop
+   local.get $0
+   call $~lib/rt/pure/__release
+  end
+  local.get $1
+  i32.store offset=36
+ )
+ (func $OLC6502#get:PRGLo (; 163 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=40
+ )
+ (func $OLC6502#set:PRGLo (; 164 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  i32.store offset=40
+ )
+ (func $OLC6502#get:PRGHi (; 165 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=44
+ )
+ (func $OLC6502#set:PRGHi (; 166 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  local.get $0
+  local.get $1
+  i32.store offset=44
+ )
+ (func $assembly/index/OLC6502#read|trampoline (; 167 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   block $1of1
    block $0of1
     block $outOfRange
@@ -8007,7 +14481,7 @@
   local.get $2
   call $assembly/index/OLC6502#read
  )
- (func $~lib/setargc (; 157 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/setargc (; 168 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   global.set $~lib/argc
  )

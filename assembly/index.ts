@@ -1,12 +1,14 @@
 
-const C = <u8>0b00000001; // Carry Bit
-const Z = <u8>0b00000010; // Zero
-const I = <u8>0b00000100; // Disable Interrupts
-const D = <u8>0b00001000; // Decimal Mode (unused in this implementation)
-const B = <u8>0b00010000; // Break
-const U = <u8>0b00100000; // Unused
-const V = <u8>0b01000000; // Overflow
-const N = <u8>0b10000000; // Negative
+export const C = <u8>0b00000001; // Carry Bit
+export const Z = <u8>0b00000010; // Zero
+export const I = <u8>0b00000100; // Disable Interrupts
+export const D = <u8>0b00001000; // Decimal Mode (unused in this implementation)
+export const B = <u8>0b00010000; // Break
+export const U = <u8>0b00100000; // Unused
+export const V = <u8>0b01000000; // Overflow
+export const N = <u8>0b10000000; // Negative
+
+export const abid = idof<ArrayBuffer>();
 
 type OPCODE_LIST = Array<(olc: OLC6502) => u8>;
 
@@ -82,9 +84,17 @@ class OLC6502 {
   addr_rel: u16;
   opcode: u8;
   cycles: u8;
-  private clockCount: u32;
+  clockCount: u32;
 
-  bus: ArrayBuffer = new ArrayBuffer(0xFFFF)
+  gameRam: ArrayBuffer = new ArrayBuffer(0x7FF);
+  ioRegister1: ArrayBuffer = new ArrayBuffer(8);
+  ioRegister2: ArrayBuffer = new ArrayBuffer(32);
+  expansionROM: ArrayBuffer = new ArrayBuffer(8160);
+  SRAM: ArrayBuffer = new ArrayBuffer(8192);
+  // @ts-ignore: These pointers will be set upon load
+  PRGLo: usize = <usize>null;
+  // @ts-ignore: These pointers will be set upon load
+  PRGHi: usize = <usize>null;
 
   constructor() {
     this.setFlag(U, true);
@@ -117,59 +127,51 @@ class OLC6502 {
     this.write(0x0100 + this.stkp--, value);
   }
 
-  @inline
-  push16be(value: u16): void {
-    let stkp = this.stkp - 1;
-    if (stkp == 0) {
-      this.write(0x0100, <u8>(value >> 8));
-      this.write(0x01FF, <u8>value);
-      this.push(<u8>value);
-    } else {
-      this.writeu16be(0x0100 + stkp, value);
-      this.stkp = stkp - 2;
-    }
-  }
-
   irq(): void {
     if (!this.getFlag(I)) {
-      this.push16be(this.pc);
-      this.setFlag(B, false);
-      this.setFlag(U, false);
-      this.setFlag(I, false);
+      this.push(<u8>(this.pc >> 8))
+      this.push(<u8>(this.pc & 0xFF));
+      this.status &= 0b11001011;
       this.push(this.status);
-      this.pc = this.read16be(this.addr_abs = 0xFFFE);
+      this.addr_abs = 0xFFFE;
+      this.pc = <u16>this.read(0xFFFE) | (<u16>this.read(0xFFFF) << 8);
       this.cycles = 7;
     }
   }
 
   nmi(): void {
-    this.push16be(this.pc);
-    this.setFlag(B, false);
-    this.setFlag(U, false);
-    this.setFlag(I, false);
+    let pc = this.pc;
+    this.push(<u8>pc)
+    this.push(<u8>(pc >>> 8));
+    this.status &= 0b11001011;
     this.push(this.status);
-    this.pc = this.read16be(this.addr_abs = 0xFFFA);
+    this.addr_abs = 0xFFFA;
+    this.pc = <u16>this.read(0xFFFA) | (<u16>this.read(0xFFFB) << 8);
     this.cycles = 8;
   }
 
   @inline
   write(addr: u16, value: u8): void {
-    store<u8>(changetype<usize>(this.bus) + <usize>addr, value);
+    if (addr == 0x0002) trace("Fail at", 1, value);
+    if (addr == 0x0003) trace("Fail at", 1, value);
+    if      (addr < 0x2000) store<u8>(changetype<usize>(this.gameRam) + <usize>(addr & 0x07FF), value);
+    else if (addr < 0x4000) store<u8>(changetype<usize>(this.ioRegister1) + <usize>(addr & 0x000F), value);
+    else if (addr < 0x4020) store<u8>(changetype<usize>(this.ioRegister2) + <usize>(addr & 0x001F), value);
+    else if (addr < 0x6000) store<u8>(changetype<usize>(this.expansionROM) + <usize>(addr - 0x4020), value);
+    else if (addr < 0x8000) store<u8>(changetype<usize>(this.SRAM) + <usize>(addr - 0x6000), value);
+    else if (addr < 0xC000) store<u8>(changetype<usize>(this.PRGLo) + <usize>(addr - 0x8000), value);
+    else store<u8>(changetype<usize>(this.PRGHi) + <usize>(addr - 0xC000), value);
   }
 
   @inline
   read(addr: u16, readonly: bool = true): u8 {
-    return load<u8>(changetype<usize>(this.bus) + <usize>addr);
-  }
-
-  @inline
-  read16be(addr: u16): u16 {
-    return bswap(load<u16>(changetype<usize>(this.bus) + <usize>addr));
-  }
-
-  @inline
-  writeu16be(addr: u16, value: u16): void {
-    store<u16>(changetype<usize>(this.bus) + <usize>addr, bswap(value));
+    if      (addr < 0x2000) return load<u8>(changetype<usize>(this.gameRam) + <usize>(addr & 0x07FF));
+    else if (addr < 0x4000) return load<u8>(changetype<usize>(this.ioRegister1) + <usize>(addr & 0x000F));
+    else if (addr < 0x4020) return load<u8>(changetype<usize>(this.ioRegister2) + <usize>(addr & 0x001F));
+    else if (addr < 0x6000) return load<u8>(changetype<usize>(this.expansionROM) + <usize>(addr - 0x4020));
+    else if (addr < 0x8000) return load<u8>(changetype<usize>(this.SRAM) + <usize>(addr - 0x6000));
+    else if (addr < 0xC000) return load<u8>(changetype<usize>(this.PRGLo) + <usize>(addr - 0x8000));
+    else return load<u8>(changetype<usize>(this.PRGHi) + <usize>(addr - 0xC000));
   }
 
   @inline
@@ -179,7 +181,8 @@ class OLC6502 {
       : this.fetched;
   }
 
-  clock(): void {
+  clock(): bool {
+    let run = false;
     if (this.cycles == 0) {
       let opcode = this.read(this.pc++);
       this.status |= U;
@@ -190,9 +193,11 @@ class OLC6502 {
       this.opcode = opcode;
       this.cycles = cycs + (addr(this) & op(this));
       this.status |= U;
+      run = true;
     }
     this.clockCount++;
     this.cycles--;
+    return run;
   }
 
   @inline
@@ -206,15 +211,6 @@ class OLC6502 {
   @inline
   pop(): u8 {
     return this.read(0x0100 + ++this.stkp);
-  }
-
-  @inline
-  pop16be(): u16 {
-    let stkp = this.stkp;
-    this.stkp = stkp + 2;
-    return stkp == 254
-      ? <u16>this.read(0x01FF) | (<u16>this.read(0x0100) << 8)
-      : this.read16be(stkp + 1);
   }
 }
 
@@ -249,8 +245,9 @@ function REL(self: OLC6502): u8 {
 }
 
 function ABS(self: OLC6502): u8 {
-  self.addr_abs = self.read16be(self.pc);
-  self.pc += 2;
+  let pc = self.pc;
+  self.addr_abs = self.read(pc) | self.read(pc + 1);
+  self.pc = pc + 2;
   return 0;
 }
 
@@ -260,25 +257,25 @@ function samePage(a: u16, b: u16): bool {
   return (a >> 8) == (b >> 8);
 }
 
-
 function ABX(self: OLC6502): u8 {
   let pc = self.pc;
-  let result = self.read16be(self.pc);
+  let result = <u16>self.read(pc) | (<u16>self.read(pc + 1) << 8);
   let compare = self.addr_abs = result + self.x;
   self.pc = pc + 2;
   return <u8>select(0, 1, samePage(compare, result));
 }
 
 function ABY(self: OLC6502): u8 {
-  let result = self.read16be(self.pc);
+  let pc = self.pc;
+  let result = <u16>self.read(pc) | (<u16>self.read(pc + 1) << 8);
   let compare = self.addr_abs = result + self.y;
-  self.pc += 2;
+  self.pc = pc + 2;
   return <u8>select(0, 1, samePage(compare, result));
 }
 
 function IND(self: OLC6502): u8 {
   let pc = self.pc;
-  let ptr = self.read16be(self.pc);
+  let ptr = <u16>self.read(pc) | (<u16>self.read(pc + 1) << 8);
   self.pc = pc + 2;
 
   let value = (ptr & 0xFF) == 0xFF
@@ -431,12 +428,13 @@ function BRK(self: OLC6502): u8 {
   let pc = self.pc + 1;
   let stkp = self.stkp;
   self.setFlag(I, true);
-  self.writeu16be(0x0100 + stkp - 1, pc);
+  self.write(0x0100 + stkp, <u8>(pc >> 8));
+  self.write(0x0100 + (stkp - 1), <u8>pc);
   self.setFlag(B, true);
 	self.write(0x0100 + (stkp - 2), self.status);
 	self.setFlag(B, false);
   self.stkp = stkp - 3;
-	self.pc = self.read16be(0xFFFE);
+	self.pc = <u16>self.read(0xFFFE) | (<u16>self.read(0xFFFF) << 8);
   return 0;
 }
 
@@ -551,7 +549,9 @@ function JMP(self: OLC6502): u8 {
 }
 
 function JSR(self: OLC6502): u8 {
-  self.push16be(self.pc - 1);
+  let pc = self.pc;
+  self.push(<u8>(pc >> 8));
+  self.push(<u8>pc);
   self.pc = self.addr_abs;
   return 0;
 }
@@ -655,12 +655,12 @@ function ROR(self: OLC6502): u8 {
 
 function RTI(self: OLC6502): u8 {
   self.status = (self.pop() & ~B) & ~U; // set B and U to 0
-  self.pc = self.pop16be();
+  self.pc = <u16>self.pop() | (<u16>self.pop() << 8);
   return 0;
 }
 
 function RTS(self: OLC6502): u8 {
-  self.pc = self.pop16be();
+  self.pc = <u16>self.pop() | (<u16>self.pop() << 8);
   return 0;
 }
 
